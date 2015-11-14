@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/plantilla/uiMaestro.xhtml">
+        <ui:define name="app">
+            <div align="center">
+                <h:form id="frmList">
+
+                        <p:fieldset legend="Listado Foro" style="text-align: left">
+                        	<p:panelGrid columns="4">
+                        	<p:outputLabel value="Criterio:"></p:outputLabel>
+                        	<p:inputText></p:inputText>
+                        	<p:commandButton action="#" value="Buscar"></p:commandButton>
+                        	<p:commandButton action="#{foroManagedBean.prepareCrear}" value="Nuevo" style="float:right"></p:commandButton>
+                        	</p:panelGrid>
+                        </p:fieldset>
+                        
+                        <p:dataTable id="datatable" 
+                                 var="item" widgetVar="usrTable"   
+                                 emptyMessage="#{etiquetas.MensajeNoResultados}"
+                                 paginator="true" rows="#{etiquetas.PaginatorFilas}" scrollable="true" scrollHeight="400" 
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="#{etiquetas.PaginatorFilasPorPagina}">
+                                 <p:column headerText="Descripcion Foro"> 
+                            <h:outputText  />
+                        </p:column>
+                        <p:column headerText="Tipo Foro" > 
+                            <h:outputText />
+                        </p:column>
+                        <p:column headerText="Fecha Inicio" > 
+                            <h:outputText />
+                        </p:column>
+                        <p:column headerText="Fecha Fin" > 
+                            <h:outputText />
+                        </p:column>
+                        <p:column headerText="Activo" > 
+                            <h:outputText />
+                        </p:column>
+                        <p:column headerText="Opciones" > 
+                            <h:outputText />
+                        </p:column>
+                        </p:dataTable>
+                       
+                </h:form>
+            </div>
+           
+               
+
+        </ui:define>
+    </ui:composition>
+
+</html>
+
