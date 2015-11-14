@@ -58,10 +58,10 @@
         <property name="dataSource" ref="DataSource" />
         <property name="annotatedClasses">
             <list>
-                <value>pe.edu.cibertec.proyectocurso.model.Curso</value>
-                <value>pe.edu.cibertec.proyectocurso.model.Auditoria</value>
-                <value>pe.edu.cibertec.proyectocurso.model.Rol</value>
-                <value>pe.edu.cibertec.proyectocurso.model.Usuario</value>
+                <value>pe.gob.mintra.scv.model.Curso</value>
+                <value>pe.gob.mintra.scv.model.Auditoria</value>
+                <value>pe.gob.mintra.scv.model.Rol</value>
+                <value>pe.gob.mintra.scv.model.Usuario</value>
             </list>
         </property>
         <property name="hibernateProperties">
