@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretty-config xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" targetNamespace="http://ocpsoft.com/prettyfaces/3.3.3"
+	xmlns="http://ocpsoft.com/prettyfaces/3.3.3">
+
+
+	<url-mapping id="listarCurso">
+		<pattern value="/listarCurso" />
+		<view-id value="/faces/curso/listaCursos.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="obtenerCurso">
+		<pattern value="/obtenerCurso" />
+		<view-id value="/faces/curso/registroCursos.xhtml" />
+	</url-mapping>
+	
+	
+
+
+	
+
+
+
+
+</pretty-config>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pe.edu.cibertec.proyectocurso.dao.CursoDao">
+
+	<resultMap id="BaseResultMap" type="Curso">
+
+		<id column="idcurso" property="codigoCurso" />
+		<result column="nombrecurso" property="nombreCurso" />
+		<result column="descripcioncurso" property="descripcionCurso" />
+		<result column="tipocurso" property="tipoCurso" />
+		<result column="modalidadpago" property="modalidadPago" />
+		<result column="duracion" property="duracion" />
+		<result column="prerequisitos" property="preRequisitos" />
+		<result column="creditos" property="creditos" />
+
+	</resultMap>
+
+	<select id="listarCursos" resultMap="BaseResultMap">
+		select idcurso,
+		nombrecurso,
+		descripcioncurso,
+		tipocurso,
+		modalidadpago,
+		duracion,
+		prerequisitos,
+		creditos
+		from curso
+	</select>
+	
+	<select id="obtenerCurso" resultMap="BaseResultMap" parameterType="Curso">
+		select idcurso,
+		nombrecurso,
+		descripcioncurso,
+		tipocurso,
+		modalidadpago,
+		duracion,
+		prerequisitos,
+		creditos
+		from curso
+		where idcurso=#{codigoCurso}
+	</select>
+	
+	<update id="actualizarCurso" parameterType="Curso">
+	    update curso
+	    <set>
+			<if test="nombreCurso != null">
+				nombrecurso=#{nombreCurso},
+			</if>
+			<if test="descripcionCurso != null">
+				descripcioncurso=#{descripcionCurso},
+			</if>
+			<if test="tipoCurso != null">
+				tipocurso=#{tipoCurso},
+			</if>
+			<if test="modalidadPago != null">
+				modalidadpago=#{modalidadPago},
+			</if>
+			<if test="duracion != null">
+				duracion=#{duracion},
+			</if>
+			<if test="preRequisitos != null">
+				prerequisitos=#{preRequisitos},
+			</if>
+			<if test="creditos != null">
+				creditos=#{creditos},
+			</if>
+		</set>
+		where idcurso=#{codigoCurso}
+	</update>
+
+
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="R" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${jboss.server.log.dir}/jsfMyBatisSpring.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="1MB" />
+		<param name="MaxBackupIndex" value="5" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd/MM/yyyy hh:mm:ss} %-5p [%c] %m%n" />
+		</layout>
+	</appender>
+	<!-- The "category" represents the package names of your Application APIs 
+		which we want to log -->
+	<category name="pe.edu.cibertec.proyectocurso">
+		<priority value="INFO" />
+		<appender-ref ref="R" />
+	</category>
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="R" />
+	</root>
+</log4j:configuration>
