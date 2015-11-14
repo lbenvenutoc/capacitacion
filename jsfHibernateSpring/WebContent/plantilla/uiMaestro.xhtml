@@ -4,7 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" >
-    <f:view contentType="text/html"  locale="#{usuarioManagedBean.v_locale}">
+    <f:view contentType="text/html" locale="es">
         <h:head>            
             <f:facet name="first">            
                 <title>#{etiquetas.cl_titulo}</title>
@@ -50,7 +50,12 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="south" size="110">                   
-                    <p:outputLabel value="copiright 2015 MTPE"></p:outputLabel>               
+                    <h2 style="margin-top: 0px;"><p:outputLabel value=" #{etiquetas.cl_integrantes} :"></p:outputLabel></h2>
+                    <ul>
+                        <li>Luis Benvenuto Calderón</li>
+                        <li>Elmer Montenegro Ybañez</li>
+                        <li>Josué Huancapaza Córdova </li>
+                    </ul>
                 </p:layoutUnit>
             </p:layout>
 
