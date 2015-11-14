@@ -21,7 +21,7 @@
 
 
 	<context:annotation-config />
-	<context:component-scan base-package="pe.edu.cibertec.proyectocurso" />
+	<context:component-scan base-package="pe.gob.mintra.scv" />
 
 
 	<!-- Conexion a Base de Datos -->
@@ -48,7 +48,7 @@
 
     <!-- scan for mappers and let them be autowired -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="pe.edu.cibertec.proyectocurso.dao" />
+        <property name="basePackage" value="pe.gob.mintra.scv.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
     
