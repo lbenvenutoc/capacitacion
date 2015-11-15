@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/plantilla/uiMaestro.xhtml">
+	<ui:define name="app">
+		<div align="center">
+			<h1>#{etiquetas.cl_titulo_pregunta}</h1>
+			<h:form id="frmProgEval">
+
+				<p:panelGrid style="border: 0">
+
+					<p:row>
+						<p:column>
+
+							<p:panelGrid style="border: 0">
+								<f:facet name="header">
+									<p:row>
+										<p:column colspan="2">
+											<p:outputLabel value="#{etiquetas.cl_seleccion_curso_titulo}"></p:outputLabel>
+										</p:column>
+									</p:row>
+								</f:facet>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel value="#{etiquetas.cl_bsuqueda_curso_codigo}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="aa"></p:outputLabel>
+									</p:column>
+
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="#{etiquetas.cl_bsuqueda_curso_descripcion}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="bb"></p:outputLabel>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel value="#{etiquetas.cl_bsuqueda_curso_unidad}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="cc"></p:outputLabel>
+									</p:column>
+
+								</p:row>
+								<p:row>
+									<p:column>
+
+										<p:outputLabel
+											value="#{etiquetas.cl_formulario_pregunta_despreg}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+
+										<p:inputTextarea></p:inputTextarea>
+
+									</p:column>
+
+								</p:row>
+
+
+							</p:panelGrid>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column colspan="2">
+							<center>
+								<p:commandButton value="#{etiquetas.cl_admpreg_opcion_nuevo}"
+									onclick="dialogoNuevaOpcion.show();" type="button"></p:commandButton>
+							</center>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+
+							<p:panelGrid style="border: 0">
+
+								<p:row>
+									<p:column>
+										<p:dataTable id="tablaOpcion" var="objOpcion" paginator="true"
+											paginatorPosition="bottom" rows="20">
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_opcion_descripcionopcion}"></p:column>
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_opcion_actualizar}"></p:column>
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_opcion_eliminar}"></p:column>
+
+										</p:dataTable>
+									</p:column>
+								</p:row>
+
+							</p:panelGrid>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column colspan="2">
+							<center>
+								<p:commandButton value="#{etiquetas.cl_admpreg_grabar}"></p:commandButton>
+								<p:commandButton value="#{etiquetas.cl_admpreg_salir}"></p:commandButton>
+							</center>
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+
+
+
+			</h:form>
+		</div>
+
+		<!-- PANEL NUEVA OPCION -->
+		<p:dialog header="#{etiquetas.cl_admpreg_opcion_titulo}"
+			widgetVar="dialogoNuevaOpcion" showEffect="fade" hideEffect="fade"
+			resizable="false" closable="false">
+
+			<p:panelGrid id="panelNuevaOpcion">
+				<p:row>
+					<p:column>
+						<h:outputText value="#{etiquetas.cl_formmulario_opcion_desopcion}" />
+					</p:column>
+					<p:column>
+						<p:inputText></p:inputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2">
+						<center>
+							<p:commandButton
+								value="#{etiquetas.cl_formmulario_opcion_btn_actualizar}"></p:commandButton>
+							<p:commandButton
+								value="#{etiquetas.cl_formmulario_opcion_btn_cerrar}"
+								onclick="dialogoNuevaOpcion.hide();" type="button"></p:commandButton>
+						</center>
+					</p:column>
+				</p:row>
+
+			</p:panelGrid>
+		</p:dialog>
+
+
+		<!-- FIN PANEL NUEVA OPCION -->
+
+
+	</ui:define>
+</ui:composition>
+
+</html>
+

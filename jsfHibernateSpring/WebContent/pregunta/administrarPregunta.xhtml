@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/plantilla/uiMaestro.xhtml">
+	<ui:define name="app">
+		<div align="center">
+			<h1>#{etiquetas.cl_menuitem_admpreg}</h1>
+			<h:form id="frmAdmPreg">
+
+				<p:panelGrid style="border: 0">
+
+					<p:row>
+						<p:column>
+
+							<p:panelGrid style="border: 0">
+								<f:facet name="header">
+									<p:row>
+										<p:column colspan="2">
+											<p:outputLabel value="#{etiquetas.cl_bsuqueda_curso_titulo}"></p:outputLabel>
+										</p:column>
+									</p:row>
+								</f:facet>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel value="#{etiquetas.cl_bsuqueda_curso_codigo}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="aa"></p:outputLabel>
+									</p:column>
+
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="#{etiquetas.cl_bsuqueda_curso_descripcion}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="bb"></p:outputLabel>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel value="#{etiquetas.cl_bsuqueda_curso_unidad}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="cc"></p:outputLabel>
+									</p:column>
+
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:commandButton value="#{etiquetas.cl_bsuqueda_curso_buscar}"></p:commandButton>
+									</p:column>
+									<p:column>
+										<p:commandButton
+											value="#{etiquetas.cl_bsuqueda_curso_limpiar}"></p:commandButton>
+									</p:column>
+
+								</p:row>
+
+							</p:panelGrid>
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<center>
+								<p:commandButton value="#{etiquetas.cl_admpreg_nuevo}"
+									action="#{preguntaManagedBean.mostrarPregunta}"></p:commandButton>
+							</center>
+
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+
+							<p:panelGrid style="border: 0">
+
+								<p:row>
+									<p:column>
+										<p:dataTable id="tablaAdmPreg" var="objPreg" paginator="true"
+											paginatorPosition="bottom" rows="20">
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_codigopreg}"></p:column>
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_descripcionpreg}"></p:column>
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_actualizar}"></p:column>
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_eliminar}"></p:column>
+
+
+										</p:dataTable>
+									</p:column>
+								</p:row>
+
+							</p:panelGrid>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<center>
+								<p:commandButton value="#{etiquetas.cl_admpreg_cancelar}"></p:commandButton>
+							</center>
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+
+
+
+			</h:form>
+		</div>
+
+
+
+	</ui:define>
+</ui:composition>
+
+</html>
+
