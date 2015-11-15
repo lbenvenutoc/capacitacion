@@ -8,16 +8,20 @@
 		<pattern value="/listarCurso" />
 		<view-id value="/faces/curso/listaCursos.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="obtenerCurso">
 		<pattern value="/obtenerCurso" />
 		<view-id value="/faces/curso/registroCursos.xhtml" />
 	</url-mapping>
-	
-	
 
 
-	
+
+	<!-- PROGRAMACION DE EVALUACION -->
+
+	<url-mapping id="administrarEvaluacion">
+		<pattern value="/administrarEvaluacion" />
+		<view-id value="/faces/programacionevaluacion/administrarEvaluacion.xhtml" />
+	</url-mapping>
 
 
 
