@@ -76,11 +76,16 @@
 
 								<p:row>
 									<p:column>
-										<p:outputLabel value="#{etiquetas.cl_progeval_evaluacion_fechaini}"></p:outputLabel>
+										<p:outputLabel
+											value="#{etiquetas.cl_progeval_evaluacion_fechaini}"></p:outputLabel>
 
 									</p:column>
 									<p:column>
-										<p:calendar></p:calendar>
+										<p:calendar locale="es" pattern="dd/MM/yyyy" showOn="button"
+											readonlyInput="true"
+											value="#{documentoManaged.objDsgBusqueda.fecIniDoc}"
+											maxlength="10" size="10">
+										</p:calendar>
 									</p:column>
 
 								</p:row>
@@ -91,7 +96,11 @@
 
 									</p:column>
 									<p:column>
-										<p:calendar></p:calendar>
+										<p:calendar locale="es" pattern="dd/MM/yyyy" showOn="button"
+											readonlyInput="true"
+											value="#{documentoManaged.objDsgBusqueda.fecIniDoc}"
+											maxlength="10" size="10">
+										</p:calendar>
 									</p:column>
 								</p:row>
 
@@ -120,10 +129,8 @@
 
 								<p:row>
 									<p:column>
-										<p:dataTable id="tablaEvaluacion"
-											value="#{programacionEvaluacionManagedBean.lstProgEval}"
-											var="objadmeval" paginator="true" paginatorPosition="bottom"
-											rows="20">
+										<p:dataTable id="tablaEvaluacion" var="objEvaluacion"
+											paginator="true" paginatorPosition="bottom" rows="20">
 
 											<p:column
 												headerText="#{etiquetas.cl_cabecera_tablaprogeval_participante}"></p:column>

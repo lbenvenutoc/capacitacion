@@ -22,6 +22,11 @@
 		<pattern value="/administrarEvaluacion" />
 		<view-id value="/faces/programacionevaluacion/administrarEvaluacion.xhtml" />
 	</url-mapping>
+	
+	<url-mapping id="programarEvaluacion">
+		<pattern value="/programarEvaluacion" />
+		<view-id value="/faces/programacionevaluacion/programarEvaluacion.xhtml" />
+	</url-mapping>
 
 
 
