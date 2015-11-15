@@ -1,0 +1,389 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/plantilla/uiMaestro.xhtml">
+	<ui:define name="app">
+		<div align="center">
+			<h1>#{etiquetas.cl_formmulario_evaluacion_titulo}</h1>
+			<h:form id="frmProgEval">
+
+				<p:panelGrid style="border: 0">
+
+					<p:row>
+						<p:column>
+
+							<p:panelGrid style="border: 0">
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="#{etiquetas.cl_formmulario_evaluacion_fechainicial}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="01/01/2015 08:00"></p:outputLabel>
+									</p:column>
+
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="#{etiquetas.cl_formmulario_evaluacion_fechafinal}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="01/01/2015 08:40"></p:outputLabel>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="#{etiquetas.cl_formmulario_evaluacion_nota}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value=""></p:outputLabel>
+									</p:column>
+
+								</p:row>
+
+							</p:panelGrid>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<p:panelGrid style="border: 0">
+								<f:facet name="header">
+									<p:row>
+										<p:column colspan="2">
+											<p:outputLabel value="#{etiquetas.cl_progeval_curso_titulo}"></p:outputLabel>
+										</p:column>
+									</p:row>
+								</f:facet>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel value="#{etiquetas.cl_bsuqueda_curso_codigo}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="aa"></p:outputLabel>
+									</p:column>
+
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="#{etiquetas.cl_bsuqueda_curso_descripcion}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="bb"></p:outputLabel>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel value="#{etiquetas.cl_bsuqueda_curso_unidad}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="cc"></p:outputLabel>
+									</p:column>
+
+								</p:row>
+
+							</p:panelGrid>
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:panelGrid style="border: 0">
+								<f:facet name="header">
+									<p:row>
+										<p:column colspan="2">
+											<p:outputLabel
+												value="#{etiquetas.cl_formmulario_evaluacion_participante_titulo}"></p:outputLabel>
+										</p:column>
+									</p:row>
+								</f:facet>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="#{etiquetas.cl_formmulario_evaluacion_participante_apellidosnombres}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="Saravia Flores Jorge Armando"></p:outputLabel>
+									</p:column>
+
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="#{etiquetas.cl_formmulario_evaluacion_participante_rol}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="Participante"></p:outputLabel>
+									</p:column>
+								</p:row>
+
+							</p:panelGrid>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<p:outputLabel value="1.- Pergunta 1"></p:outputLabel>
+
+
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:selectOneRadio>
+								<f:selectItem itemLabel="Alternativa 1" />
+								<f:selectItem itemLabel="Alternativa 2" />
+								<f:selectItem itemLabel="Alternativa 3" />
+								<f:selectItem itemLabel="Alternativa 4" />
+								<f:selectItem itemLabel="Alternativa 5" />
+							</p:selectOneRadio>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:outputLabel value="2.- Pergunta 2"></p:outputLabel>
+
+
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:selectOneRadio>
+								<f:selectItem itemLabel="Alternativa 1" />
+								<f:selectItem itemLabel="Alternativa 2" />
+								<f:selectItem itemLabel="Alternativa 3" />
+								<f:selectItem itemLabel="Alternativa 4" />
+								<f:selectItem itemLabel="Alternativa 5" />
+							</p:selectOneRadio>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:outputLabel value="3.- Pergunta 3"></p:outputLabel>
+
+
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:selectOneRadio>
+								<f:selectItem itemLabel="Alternativa 1" />
+								<f:selectItem itemLabel="Alternativa 2" />
+								<f:selectItem itemLabel="Alternativa 3" />
+								<f:selectItem itemLabel="Alternativa 4" />
+								<f:selectItem itemLabel="Alternativa 5" />
+							</p:selectOneRadio>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<p:outputLabel value="4.- Pergunta 4"></p:outputLabel>
+
+
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:selectOneRadio>
+								<f:selectItem itemLabel="Alternativa 1" />
+								<f:selectItem itemLabel="Alternativa 2" />
+								<f:selectItem itemLabel="Alternativa 3" />
+								<f:selectItem itemLabel="Alternativa 4" />
+								<f:selectItem itemLabel="Alternativa 5" />
+							</p:selectOneRadio>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<p:outputLabel value="5.- Pergunta 5"></p:outputLabel>
+
+
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:selectOneRadio>
+								<f:selectItem itemLabel="Alternativa 1" />
+								<f:selectItem itemLabel="Alternativa 2" />
+								<f:selectItem itemLabel="Alternativa 3" />
+								<f:selectItem itemLabel="Alternativa 4" />
+								<f:selectItem itemLabel="Alternativa 5" />
+							</p:selectOneRadio>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<p:outputLabel value="6.- Pergunta 6"></p:outputLabel>
+
+
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:selectOneRadio>
+								<f:selectItem itemLabel="Alternativa 1" />
+								<f:selectItem itemLabel="Alternativa 2" />
+								<f:selectItem itemLabel="Alternativa 3" />
+								<f:selectItem itemLabel="Alternativa 4" />
+								<f:selectItem itemLabel="Alternativa 5" />
+							</p:selectOneRadio>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<p:outputLabel value="7.- Pergunta 7"></p:outputLabel>
+
+
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:selectOneRadio>
+								<f:selectItem itemLabel="Alternativa 1" />
+								<f:selectItem itemLabel="Alternativa 2" />
+								<f:selectItem itemLabel="Alternativa 3" />
+								<f:selectItem itemLabel="Alternativa 4" />
+								<f:selectItem itemLabel="Alternativa 5" />
+							</p:selectOneRadio>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<p:outputLabel value="8.- Pergunta 8"></p:outputLabel>
+
+
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:selectOneRadio>
+								<f:selectItem itemLabel="Alternativa 1" />
+								<f:selectItem itemLabel="Alternativa 2" />
+								<f:selectItem itemLabel="Alternativa 3" />
+								<f:selectItem itemLabel="Alternativa 4" />
+								<f:selectItem itemLabel="Alternativa 5" />
+							</p:selectOneRadio>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<p:outputLabel value="9.- Pergunta 9"></p:outputLabel>
+
+
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:selectOneRadio>
+								<f:selectItem itemLabel="Alternativa 1" />
+								<f:selectItem itemLabel="Alternativa 2" />
+								<f:selectItem itemLabel="Alternativa 3" />
+								<f:selectItem itemLabel="Alternativa 4" />
+								<f:selectItem itemLabel="Alternativa 5" />
+							</p:selectOneRadio>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<p:outputLabel value="10.- Pergunta 10"></p:outputLabel>
+
+
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:selectOneRadio>
+								<f:selectItem itemLabel="Alternativa 1" />
+								<f:selectItem itemLabel="Alternativa 2" />
+								<f:selectItem itemLabel="Alternativa 3" />
+								<f:selectItem itemLabel="Alternativa 4" />
+								<f:selectItem itemLabel="Alternativa 5" />
+							</p:selectOneRadio>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<center>
+								<p:commandButton
+									value="#{etiquetas.cl_formmulario_evaluacion_btn_finalizar}"></p:commandButton>
+								<p:commandButton
+									value="#{etiquetas.cl_formmulario_evaluacion_btn_cancelar}"></p:commandButton>
+							</center>
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+
+
+
+			</h:form>
+		</div>
+
+
+
+	</ui:define>
+</ui:composition>
+
+</html>
+
