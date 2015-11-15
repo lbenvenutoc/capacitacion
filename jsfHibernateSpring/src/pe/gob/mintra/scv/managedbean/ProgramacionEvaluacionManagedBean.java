@@ -30,6 +30,12 @@ public class ProgramacionEvaluacionManagedBean {
 		return vista;
 	}
 
+	public String rendirEvaluacion() {
+		String vista = null;
+		vista = "pretty:rendirEvaluacion";
+		return vista;
+	}
+
 	public List<ProgramacionEvaluacion> getLstProgEval() {
 		return lstProgEval;
 	}
