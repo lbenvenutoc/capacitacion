@@ -44,6 +44,15 @@
 		<view-id value="/faces/pregunta/nuevaPregunta.xhtml" />
 	</url-mapping>
 
-
+<!-- ADMINISTRACION DE FORO -->
+	<url-mapping id="listarForo">
+		<pattern value="/listarForo" />
+		<view-id value="/faces/aplicacion/foro/listaForo.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="crearForo">
+		<pattern value="/crearForo" />
+		<view-id value="/faces/aplicacion/foro/CrearForo.xhtml" />
+	</url-mapping>
 
 </pretty-config>

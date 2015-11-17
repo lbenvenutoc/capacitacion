@@ -12,14 +12,18 @@ public class ForoManagedBean implements Serializable {
 	public ForoManagedBean() {
 	}
 
-	public String listarCursos() {
-
-		return "/foro/listaForo";
+	public String listarForo() {
+		String vista = null;
+		vista = "pretty:listarForo";
+		return vista;
+		//return "/aplicacion/foro/listaForo";
 	}
 
 	public String prepareCrear() {
-
-		return "/foro/CrearForo";
+		String vista = null;
+		vista = "pretty:crearForo";
+		return vista;
+		//return "/aplicacion/foro/CrearForo";
 	}
 
 }
