@@ -13,11 +13,14 @@
 
                         <p:fieldset legend="Nuevo Foro" style="text-align: left">
                         	<p:panelGrid columns="2">
-                        	<p:outputLabel value="Criterio:"></p:outputLabel>
+                        	<p:outputLabel value="Tipo de Foro:"></p:outputLabel>
                         	<p:panelGrid columns="2">
-                        	<p:inputText></p:inputText>
+                        	<p:selectOneMenu style="width:150px" >
+                        		<f:selectItem itemLabel="---"></f:selectItem>
+                        	</p:selectOneMenu>
                         	<p:commandButton value="Nuevo" 
                                                  oncomplete="PF('CreateViewDialog').show()" 
+                                                 update="@form"
                                                  process="@this" 
                                                  actionListener="#"/>
                         	</p:panelGrid>
