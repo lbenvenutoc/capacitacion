@@ -54,5 +54,15 @@
 		<pattern value="/crearForo" />
 		<view-id value="/faces/aplicacion/foro/CrearForo.xhtml" />
 	</url-mapping>
+	
+	<url-mapping id="editarForo">
+		<pattern value="/editarForo" />
+		<view-id value="/faces/aplicacion/foro/EditarForo.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="verForo">
+		<pattern value="/verForo" />
+		<view-id value="/faces/aplicacion/foro/VerForo.xhtml" />
+	</url-mapping>
 
 </pretty-config>
