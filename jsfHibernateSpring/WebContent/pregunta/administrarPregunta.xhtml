@@ -90,16 +90,22 @@
 								<p:row>
 									<p:column>
 										<p:dataTable id="tablaAdmPreg" var="objPreg" paginator="true"
+											value="#{preguntaManagedBean.lstPregunta}"
 											paginatorPosition="bottom" rows="20">
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_codigopreg}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_codigopreg}">#{objPreg.codPre}</p:column>
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_descripcionpreg}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_descripcionpreg}">#{objPreg.desPre}</p:column>
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_actualizar}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_actualizar}">
+												<p:commandButton action="#{preguntaManagedBean.mostrarPregunta}" value="">
+													<f:setPropertyActionListener value="#{objPreg}"
+														target="#{preguntaManagedBean.objPregunta}"></f:setPropertyActionListener>
+												</p:commandButton>
+											</p:column>
 
 											<p:column
 												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_eliminar}"></p:column>

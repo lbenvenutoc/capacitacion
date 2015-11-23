@@ -7,8 +7,9 @@
 
 	<typeAliases>
 
-		<typeAlias type="pe.gob.mintra.scv.model.Curso"
-			alias="Curso" />
+		<typeAlias type="pe.gob.mintra.scv.model.Curso" alias="Curso" />
+		<typeAlias type="pe.gob.mintra.scv.model.Pregunta" alias="Pregunta" />
+		<typeAlias type="pe.gob.mintra.scv.model.Opcion" alias="Opcion" />
 
 	</typeAliases>
 
@@ -17,7 +18,7 @@
 
 
 		<mapper resource="pe/gob/mintra/scv/dao/maps/CursoMapper.xml" />
-
+		<mapper resource="pe/gob/mintra/scv/dao/maps/PreguntaMapper.xml" />
 
 	</mappers>
 </configuration>
