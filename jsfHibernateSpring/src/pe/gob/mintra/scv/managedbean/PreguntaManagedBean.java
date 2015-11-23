@@ -23,10 +23,14 @@ public class PreguntaManagedBean {
 	private List<Opcion> lstOpcion;
 	private Pregunta objPregunta;
 	private Opcion objOpcion;
+	private UnidadAprendisaje unidadAprendisaje;
 
 	public PreguntaManagedBean() {
 		inicializarPregunta();
 		inicializarOpcion();
+		unidadAprendisaje = new UnidadAprendisaje();
+		unidadAprendisaje.setCodCur(1);
+		unidadAprendisaje.setCodUniApr(1);
 	}
 
 	public void inicializarPregunta() {
@@ -42,9 +46,7 @@ public class PreguntaManagedBean {
 	public String administrarPregunta() {
 		String vista = null;
 		System.out.println("administrarPregunta");
-		UnidadAprendisaje unidadAprendisaje = new UnidadAprendisaje();
-		unidadAprendisaje.setCodCur(1);
-		unidadAprendisaje.setCodUniApr(1);
+
 		HashMap<String, Object> outParameters = new HashMap<String, Object>();
 		preguntaService.listarPreguntas(unidadAprendisaje, outParameters);
 		lstPregunta = (List<Pregunta>) outParameters.get("lstCur");
@@ -80,15 +82,34 @@ public class PreguntaManagedBean {
 	}
 
 	public void actualizarOpcion() {
-		if (objOpcion.getCodOpc().equals(-1)) {			
+		if (objOpcion.getCodOpc().equals(-1)) {
 			lstOpcion.add(objOpcion);
-		}else{
-			for(Opcion o:lstOpcion){
-				if(o.getCodOpc().equals(objOpcion)){
-					o=objOpcion;
+		} else {
+			for (Opcion o : lstOpcion) {
+				if (o.getCodOpc().equals(objOpcion)) {
+					o = objOpcion;
 				}
 			}
 		}
+	}
+
+	public String actualizarPregunta() {
+		String vista = null;
+		HashMap<String, Object> outParametersPregunta = new HashMap<String, Object>();
+		HashMap<String, Object> outParametersOpcion = new HashMap<String, Object>();
+		if (objPregunta.getCodPre().equals(-1)) {
+			int i = 1;
+			preguntaService.insertarPregunta(objPregunta, unidadAprendisaje,
+					outParametersPregunta);
+			for (Opcion opcion : lstOpcion) {
+				opcion.setOpcCor(i);
+				preguntaService.insertarOpcion(objPregunta, opcion,
+						outParametersOpcion);
+				i++;
+			}
+		}
+		vista = administrarPregunta();
+		return vista;
 	}
 
 	public List<Pregunta> getLstPregunta() {
@@ -121,6 +142,14 @@ public class PreguntaManagedBean {
 
 	public void setObjOpcion(Opcion objOpcion) {
 		this.objOpcion = objOpcion;
+	}
+
+	public UnidadAprendisaje getUnidadAprendisaje() {
+		return unidadAprendisaje;
+	}
+
+	public void setUnidadAprendisaje(UnidadAprendisaje unidadAprendisaje) {
+		this.unidadAprendisaje = unidadAprendisaje;
 	}
 
 }

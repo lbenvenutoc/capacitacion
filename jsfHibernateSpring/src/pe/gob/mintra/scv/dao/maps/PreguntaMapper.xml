@@ -10,7 +10,7 @@
 
 
 	</resultMap>
-	
+
 	<resultMap id="ResultMapOpcion" type="Opcion">
 
 		<id column="N_CODOPC" property="codOpc" />
@@ -29,13 +29,35 @@
 		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
 		)}
 	</select>
-	
+	<select id="insertarPregunta" statementType="CALLABLE">
+		{call
+		PKG_PREGUNTA.SP_INSPRE(
+		#{pregunta.desPre},
+		#{unidadAprendisaje.codCur},
+		#{unidadAprendisaje.codUniApr},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+
 	<select id="listarOpciones" statementType="CALLABLE" resultMap="ResultMapOpcion">
 		{call PKG_PREGUNTA.SP_LSTOPC(
-		#{pregunta.codPre},		
+		#{pregunta.codPre},
 		#{outParameters.lstCur,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapOpcion},
 		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
 		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	<select id="insertarOpcion" statementType="CALLABLE">
+		{call
+		PKG_PREGUNTA.SP_INSOPC(
+		#{pregunta.codPre},
+		#{opcion.desOpc},
+		#{opcion.opcCor},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
 		)}
 	</select>
 
