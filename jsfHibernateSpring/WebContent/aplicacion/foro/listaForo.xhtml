@@ -21,29 +21,34 @@
                         </p:fieldset>
                         
                         <p:dataTable id="datatable" 
-                                 var="item" widgetVar="usrTable"   
+                        		value="#{foroManagedBean.lst}"
+                                 var="lst" widgetVar="usrTable"   
                                  emptyMessage="#{etiquetas.MensajeNoResultados}"
                                  paginator="true" rows="#{etiquetas.PaginatorFilas}" scrollable="true" scrollHeight="400" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                  rowsPerPageTemplate="#{etiquetas.PaginatorFilasPorPagina}">
                                  <p:column headerText="Descripcion Foro"> 
-                            <h:outputText  />
+                            <h:outputText  value="#{lst.desc}"/>
                         </p:column>
                         <p:column headerText="Tipo Foro" > 
-                            <h:outputText />
+                            <h:outputText value="#{lst.tipo}"/>
                         </p:column>
                         <p:column headerText="Fecha Inicio" > 
-                            <h:outputText />
+                            <h:outputText value="#{lst.fini}"/>
                         </p:column>
                         <p:column headerText="Fecha Fin" > 
-                            <h:outputText />
+                            <h:outputText value="#{lst.ffin}"/>
                         </p:column>
                         <p:column headerText="Activo" > 
-                            <h:outputText />
+                            <h:outputText value="#{lst.activo}"/>
                         </p:column>
                         <p:column headerText="Opciones" > 
-                            <p:commandButton value="Ver"></p:commandButton>
-                            <p:commandButton value="Editar"></p:commandButton>
+                            <p:commandButton value="Ver" 
+                            action="#{foroManagedBean.verForo}" >
+                            </p:commandButton>
+                            <p:commandButton value="Editar" 
+                            action="#{foroManagedBean.prepareEditar}" >
+                            </p:commandButton>
                         </p:column>
                         </p:dataTable>
                        

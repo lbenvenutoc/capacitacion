@@ -15,15 +15,8 @@
                 <p:outputLabel value="Nombre Tipo Foro:" for="cargo" />
                 <p:inputText></p:inputText>               
 
-                <p:commandButton value="Aceptar"
-                                 actionListener="#" 
-                                 process="dlgForm"
-                                 update="dlgForm"/>
-                <p:commandButton value="Cancelar" 
-                                 process="@this"
-                                 update="dlgForm" 
-                                 actionListener="#"
-                                 oncomplete="PF('CreateViewDialog').hide()" />
+                <p:commandButton value="Aceptar"/>
+                <p:commandButton value="Cancelar" oncomplete="PF('CreateViewDialog').hide()" />
                 
             </h:panelGrid>
         </h:form>
