@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/plantilla/uiMaestro.xhtml">
+        <ui:define name="app">
+            <div align="center">
+                <h:form id="frmCrear">
+
+                        <p:panel header="Curso de Extension Profesional">
+                        	<p:panelGrid columns="1">
+                        	<p:commandLink value="Participantes" action="#"></p:commandLink>
+                        	<br/>
+                        	<p:fieldset>
+                        	<p:panelGrid columns="1">
+                        	<br/>
+                        	<br/>
+                        	<p:commandLink value="Foro presentacion" action="#"></p:commandLink>
+                        	</p:panelGrid>
+                        	</p:fieldset>
+                        	
+                        	<p:fieldset>
+                        	<p:panelGrid columns="1">
+                        	<br/>
+                        	<br/>
+                        	<p:commandLink value="Modulo I Foro" action="#"></p:commandLink>
+                        	<br/>
+                        	<p:commandLink value="AutoEvaluacion Modulo I" action="#"></p:commandLink>
+                        	</p:panelGrid>
+                        	</p:fieldset>
+                        	
+                        	<p:fieldset>
+                        	<p:panelGrid columns="1">
+                        	<br/>
+                        	<br/>
+                        	<p:commandLink value="Modulo II Foro" action="#"></p:commandLink>
+                        	<br/>
+                        	<p:commandLink value="AutoEvaluacion Modulo II" action="#"></p:commandLink>
+                        	<br/>
+                        	<p:commandLink value="Evaluacion De Entrada" action="#"></p:commandLink>
+                        	</p:panelGrid>
+                        	</p:fieldset>
+                        	
+                        	</p:panelGrid>
+                        </p:panel>
+                        
+                        
+                       
+                </h:form>
+            </div>
+           
+               
+
+        </ui:define>
+        <ui:include src="dlgEditarDatos.xhtml"/>
+    </ui:composition>
+
+</html>
+

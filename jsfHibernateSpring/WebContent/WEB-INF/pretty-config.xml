@@ -64,5 +64,33 @@
 		<pattern value="/verForo" />
 		<view-id value="/faces/aplicacion/foro/VerForo.xhtml" />
 	</url-mapping>
+	
+	<!-- ADMINISTRACION DE TIPO FORO -->
+	<url-mapping id="listarTipoForo">
+		<pattern value="/listarTipoForo" />
+		<view-id value="/faces/aplicacion/tipoForo/listaTipoForo.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="crearTipoForo">
+		<pattern value="/crearTipoForo" />
+		<view-id value="/faces/aplicacion/tipoForo/CrearTipoForo.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="editarTipoForo">
+		<pattern value="/editarTipoForo" />
+		<view-id value="/faces/aplicacion/tipoForo/EditarTipoForo.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="verTipoForo">
+		<pattern value="/verTipoForo" />
+		<view-id value="/faces/aplicacion/tipoForo/VerTipoForo.xhtml" />
+	</url-mapping>
+	
+	<!-- USUARIO X FORO -->
+	
+	<url-mapping id="usuarioXForo">
+		<pattern value="/usuarioXForo" />
+		<view-id value="/faces/aplicacion/usuarioXForo/usuarioXForo.xhtml" />
+	</url-mapping>
 
 </pretty-config>

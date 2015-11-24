@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @Scope("session")
-public class ForoManagedBean implements Serializable {
+public class TipoForoManagedBean implements Serializable {
 	
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class ForoManagedBean implements Serializable {
 		this.lst = lst;
 	}
 
-	public ForoManagedBean() {
+	public TipoForoManagedBean() {
 		Map<String, String> mapa = new HashMap<String, String>();
 		mapa.put("desc", "Foro para presentacion de participantes del modulo 5");
 		mapa.put("tipo", "Foro de Presentacion");
@@ -40,33 +40,27 @@ public class ForoManagedBean implements Serializable {
 		lst.add(mapa);
 	}
 
-	public String listarForo() {
+	public String listarTipoForo() {
 		String vista = null;
-		vista = "pretty:listarForo";
+		vista = "pretty:listarTipoForo";
 		return vista;
 	}
 
 	public String prepareCrear() {
 		String vista = null;
-		vista = "pretty:crearForo";
+		vista = "pretty:crearTipoForo";
 		return vista;
 	}
 	
 	public String prepareEditar() {
 		String vista = null;
-		vista = "pretty:editarForo";
+		vista = "pretty:editarTipoForo";
 		return vista;
 	}
 	
-	public String verForo() {
+	public String verTipoForo() {
 		String vista = null;
-		vista = "pretty:verForo";
-		return vista;
-	}
-	
-	public String usuarioXForo() {
-		String vista = null;
-		vista = "pretty:usuarioXForo";
+		vista = "pretty:verTipoForo";
 		return vista;
 	}
 

@@ -11,7 +11,10 @@
                     <p:menuitem action="#{programacionEvaluacionManagedBean.programarEvaluacion}" value="#{etiquetas.cl_menuitem_admeval}" icon="ui-icon-home"/> 
                     <p:menuitem action="#{preguntaManagedBean.administrarPregunta}" value="#{etiquetas.cl_menuitem_admpreg}" icon="ui-icon-home"/> 
                      <p:menuitem action="#{programacionEvaluacionManagedBean.rendirEvaluacion}" value="#{etiquetas.cl_menuitem_evaluacion}" icon="ui-icon-home"/>
-                     <p:menuitem action="#{foroManagedBean.listarForo}" value="Ajustes" icon="ui-icon-home"/>   
+                     <p:menuitem action="#{foroManagedBean.listarForo}" value="Mantenimiento Foro" icon="ui-icon-home"/>   
+                     <p:menuitem action="#{tipoForoManagedBean.listarTipoForo}" value="Mantenimiento Tipo Foro" icon="ui-icon-home"/>
+                     <p:menuitem action="#{foroManagedBean.usuarioXForo}" 
+                     value="Usuario X Foro" icon="ui-icon-home"/>
                 </p:submenu>                  
                 <p:submenu label="Frameworks">  
                     <p:menuitem value="PrimeFaces" url="http://www.primefaces.org" icon="ui-icon-home" target="_blank"/>                      
