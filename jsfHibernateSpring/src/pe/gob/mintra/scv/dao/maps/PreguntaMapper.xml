@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pe.gob.mintra.scv.dao.PreguntaDao">
+
+	<resultMap id="ResultMapPregunta" type="Pregunta">
+
+		<id column="N_CODPRE" property="codPre" />
+		<result column="V_DESPRE" property="desPre" />
+
+
+
+	</resultMap>
+
+	<resultMap id="ResultMapOpcion" type="Opcion">
+
+		<id column="N_CODOPC" property="codOpc" />
+		<result column="V_DESOPC" property="desOpc" />
+
+
+
+	</resultMap>
+
+	<select id="listarPreguntas" statementType="CALLABLE" resultMap="ResultMapPregunta">
+		{call PKG_PREGUNTA.SP_LSTPRE(
+		#{unidadAprendisaje.codCur},
+		#{unidadAprendisaje.codUniApr},
+		#{outParameters.lstCur,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapPregunta},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	<select id="insertarPregunta" statementType="CALLABLE">
+		{call
+		PKG_PREGUNTA.SP_INSPRE(
+		#{pregunta.desPre},
+		#{unidadAprendisaje.codCur},
+		#{unidadAprendisaje.codUniApr},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+
+	<select id="listarOpciones" statementType="CALLABLE" resultMap="ResultMapOpcion">
+		{call PKG_PREGUNTA.SP_LSTOPC(
+		#{pregunta.codPre},
+		#{outParameters.lstCur,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapOpcion},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	<select id="insertarOpcion" statementType="CALLABLE">
+		{call
+		PKG_PREGUNTA.SP_INSOPC(
+		#{pregunta.codPre},
+		#{opcion.desOpc},
+		#{opcion.opcCor},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+
+
+</mapper>

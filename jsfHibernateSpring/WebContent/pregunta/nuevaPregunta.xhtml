@@ -65,7 +65,8 @@
 									</p:column>
 									<p:column>
 
-										<p:inputTextarea></p:inputTextarea>
+										<p:inputTextarea
+											value="#{preguntaManagedBean.objPregunta.desPre}"></p:inputTextarea>
 
 									</p:column>
 
@@ -81,7 +82,10 @@
 						<p:column colspan="2">
 							<center>
 								<p:commandButton value="#{etiquetas.cl_admpreg_opcion_nuevo}"
-									onclick="dialogoNuevaOpcion.show();" type="button"></p:commandButton>
+									action="#{preguntaManagedBean.inicializarOpcion}"	
+									update=":frmNuevaOpcion:panelNuevaOpcion"							
+									oncomplete="dialogoNuevaOpcion.show();">
+								</p:commandButton>
 							</center>
 						</p:column>
 					</p:row>
@@ -94,13 +98,23 @@
 								<p:row>
 									<p:column>
 										<p:dataTable id="tablaOpcion" var="objOpcion" paginator="true"
+											value="#{preguntaManagedBean.lstOpcion}"
 											paginatorPosition="bottom" rows="20">
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_opcion_descripcionopcion}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_opcion_descripcionopcion}">#{objOpcion.desOpc}</p:column>
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_opcion_actualizar}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_opcion_actualizar}">
+
+												<p:commandButton
+													action="#{preguntaManagedBean.mostrarOpcion}" value=""
+													oncomplete="dialogoNuevaOpcion.show();"
+													update=":frmNuevaOpcion:panelNuevaOpcion">
+													<f:setPropertyActionListener value="#{objOpcion}"
+														target="#{preguntaManagedBean.objOpcion}"></f:setPropertyActionListener>
+												</p:commandButton>
+											</p:column>
 
 											<p:column
 												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_opcion_eliminar}"></p:column>
@@ -117,7 +131,7 @@
 					<p:row>
 						<p:column colspan="2">
 							<center>
-								<p:commandButton value="#{etiquetas.cl_admpreg_grabar}"></p:commandButton>
+								<p:commandButton value="#{etiquetas.cl_admpreg_grabar}" action="#{preguntaManagedBean.actualizarPregunta}"></p:commandButton>
 								<p:commandButton value="#{etiquetas.cl_admpreg_salir}"></p:commandButton>
 							</center>
 						</p:column>
@@ -131,33 +145,39 @@
 		</div>
 
 		<!-- PANEL NUEVA OPCION -->
-		<p:dialog header="#{etiquetas.cl_admpreg_opcion_titulo}"
-			widgetVar="dialogoNuevaOpcion" showEffect="fade" hideEffect="fade"
-			resizable="false" closable="false">
+		<h:form id="frmNuevaOpcion">
+			<p:dialog header="#{etiquetas.cl_admpreg_opcion_titulo}"
+				widgetVar="dialogoNuevaOpcion" showEffect="fade" hideEffect="fade"
+				resizable="false" closable="false">
 
-			<p:panelGrid id="panelNuevaOpcion">
-				<p:row>
-					<p:column>
-						<h:outputText value="#{etiquetas.cl_formmulario_opcion_desopcion}" />
-					</p:column>
-					<p:column>
-						<p:inputText></p:inputText>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column colspan="2">
-						<center>
-							<p:commandButton
-								value="#{etiquetas.cl_formmulario_opcion_btn_actualizar}"></p:commandButton>
-							<p:commandButton
-								value="#{etiquetas.cl_formmulario_opcion_btn_cerrar}"
-								onclick="dialogoNuevaOpcion.hide();" type="button"></p:commandButton>
-						</center>
-					</p:column>
-				</p:row>
+				<p:panelGrid id="panelNuevaOpcion">
+					<p:row>
+						<p:column>
+							<h:outputText
+								value="#{etiquetas.cl_formmulario_opcion_desopcion}" />
+						</p:column>
+						<p:column>
+							<p:inputText value="#{preguntaManagedBean.objOpcion.desOpc}"></p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<center>
+								<p:commandButton
+									value="#{etiquetas.cl_formmulario_opcion_btn_actualizar}"
+									action="#{preguntaManagedBean.actualizarOpcion}"
+									oncomplete="dialogoNuevaOpcion.hide();"
+									update=":frmProgEval:tablaOpcion"></p:commandButton>
+								<p:commandButton
+									value="#{etiquetas.cl_formmulario_opcion_btn_cerrar}"															
+									onclick="dialogoNuevaOpcion.hide();"></p:commandButton>
+							</center>
+						</p:column>
+					</p:row>
 
-			</p:panelGrid>
-		</p:dialog>
+				</p:panelGrid>
+			</p:dialog>
+		</h:form>
 
 
 		<!-- FIN PANEL NUEVA OPCION -->

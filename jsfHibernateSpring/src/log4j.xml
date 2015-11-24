@@ -31,11 +31,11 @@
         <priority value="info" />
     </category>
   
-    <category name="pe.edu.cibertec.proyectocurso">
+    <category name="pe.gob.mintra.scv">
         <priority value="debug" />    
     </category>
     
-    <logger name="pe.edu.cibertec.proyectocurso">
+    <logger name="pe.gob.mintra.scv">
         <appender-ref ref="Archivo" />
     </logger>
     <root>
