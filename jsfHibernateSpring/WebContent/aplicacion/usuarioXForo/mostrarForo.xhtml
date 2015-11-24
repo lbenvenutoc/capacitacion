@@ -11,40 +11,27 @@
             <div align="center">
                 <h:form id="frmCrear">
 
-                        <p:panel header="Curso de Extension Profesional">
+                        <p:panel header="Foro de Presentacion">
                         	<p:panelGrid columns="1">
-                        	<p:commandLink value="Participantes" action="#"></p:commandLink>
+                        	
                         	<br/>
                         	<p:fieldset>
                         	<p:panelGrid columns="1">
-                        	<br/>
-                        	<br/>
-                        	<p:commandLink value="Foro presentacion" 
-                        	action="#{foroManagedBean.mostrarForo}"></p:commandLink>
+                        	<p:inputTextarea cols="4" rows="6" value="#{foroManagedBean.textoBienvenida}"></p:inputTextarea>
                         	</p:panelGrid>
                         	</p:fieldset>
                         	
                         	<p:fieldset>
                         	<p:panelGrid columns="1">
-                        	<br/>
-                        	<br/>
-                        	<p:commandLink value="Modulo I Foro" action="#"></p:commandLink>
-                        	<br/>
-                        	<p:commandLink value="AutoEvaluacion Modulo I" action="#"></p:commandLink>
+                        	<p:column>
+                        	<p:editor id="editor" widgetVar="editorWidget" 
+                        	 width="500" height="150"/>
+                        	 <p:commandButton value="Enviar" 
+                        	 style="float: right; vertical-align: bottom !important;" 
+                        	 action="#"></p:commandButton>
+                        	</p:column>
                         	</p:panelGrid>
-                        	</p:fieldset>
-                        	
-                        	<p:fieldset>
-                        	<p:panelGrid columns="1">
-                        	<br/>
-                        	<br/>
-                        	<p:commandLink value="Modulo II Foro" action="#"></p:commandLink>
-                        	<br/>
-                        	<p:commandLink value="AutoEvaluacion Modulo II" action="#"></p:commandLink>
-                        	<br/>
-                        	<p:commandLink value="Evaluacion De Entrada" action="#"></p:commandLink>
-                        	</p:panelGrid>
-                        	</p:fieldset>
+                        	</p:fieldset>                                               
                         	
                         	</p:panelGrid>
                         </p:panel>

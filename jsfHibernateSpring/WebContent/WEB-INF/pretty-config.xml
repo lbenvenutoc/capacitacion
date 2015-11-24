@@ -92,5 +92,10 @@
 		<pattern value="/usuarioXForo" />
 		<view-id value="/faces/aplicacion/usuarioXForo/usuarioXForo.xhtml" />
 	</url-mapping>
+	
+	<url-mapping id="mostrarForo">
+		<pattern value="/mostrarForo" />
+		<view-id value="/faces/aplicacion/usuarioXForo/mostrarForo.xhtml" />
+	</url-mapping>
 
 </pretty-config>

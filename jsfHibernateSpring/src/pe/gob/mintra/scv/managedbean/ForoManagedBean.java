@@ -18,9 +18,21 @@ public class ForoManagedBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<Map<String, String>> lst = new ArrayList<Map<String, String>>();
+	
+	private String textoBienvenida;
 
 	
 	
+
+	public String getTextoBienvenida() {
+		textoBienvenida = "Aprovechemos la oportunidad para realizar una breve presentacion personal" +
+				" de acuerdo a las siguientes instrucciones:";
+		return textoBienvenida;
+	}
+
+	public void setTextoBienvenida(String textoBienvenida) {
+		this.textoBienvenida = textoBienvenida;
+	}
 
 	public List<Map<String, String>> getLst() {
 		return lst;
@@ -67,6 +79,12 @@ public class ForoManagedBean implements Serializable {
 	public String usuarioXForo() {
 		String vista = null;
 		vista = "pretty:usuarioXForo";
+		return vista;
+	}
+	
+	public String mostrarForo() {
+		String vista = null;
+		vista = "pretty:mostrarForo";
 		return vista;
 	}
 
