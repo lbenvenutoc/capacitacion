@@ -1,0 +1,38 @@
+package pe.gob.mintra.scv.dao;
+
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+import pe.gob.mintra.scv.model.Evaluacion;
+import pe.gob.mintra.scv.model.ProgramacionEvaluacion;
+import pe.gob.mintra.scv.model.UnidadAprendisaje;
+
+public interface EvaluacionDao {
+
+	public void listarProgramacionEvaluacion(
+			@Param("unidadAprendisaje") UnidadAprendisaje unidadAprendisaje,
+			@Param("outParameters") Map<String, Object> outParameters);
+
+	public void listarEvaluacion(
+			@Param("programacionEvaluacion") ProgramacionEvaluacion programacionEvaluacion,
+			@Param("outParameters") Map<String, Object> outParameters);
+	
+	public void actualizarProgramacionEvaluacion(
+			@Param("programacionEvaluacion") ProgramacionEvaluacion programacionEvaluacion,
+			@Param("outParameters") Map<String, Object> outParameters);
+	
+	public void eliminarEvaluacion(
+			@Param("evaluacion") Evaluacion evaluacion,
+			@Param("outParameters") Map<String, Object> outParameters);
+	
+	public void insertarEvaluacion(
+			@Param("evaluacion") Evaluacion evaluacion,
+			@Param("outParameters") Map<String, Object> outParameters);
+	
+	public void insertarProgramacionEvaluacion(
+			@Param("unidadAprendisaje") UnidadAprendisaje unidadAprendisaje,
+			@Param("programacionEvaluacion") ProgramacionEvaluacion programacionEvaluacion,
+			@Param("outParameters") Map<String, Object> outParameters);
+
+}

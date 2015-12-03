@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pe.gob.mintra.scv.dao.EvaluacionDao">
+
+	<resultMap id="ResultMapProgramacionEvaluacion" type="ProgramacionEvaluacion">
+		<id column="N_CODPROEVA" property="nCodProEva" />
+		<result column="V_NOMCUR" property="vNomCur" />
+		<result column="V_DESUNI" property="vDesUni" />
+		<result column="D_FINPROEVA" property="dFinProEva" />
+		<result column="D_FFIPROEVA" property="dFfiProEva" />
+		<result column="N_CANPROEVA" property="nCanProEva" />
+	</resultMap>
+
+	<resultMap id="ResultMapEvaluacion" type="Evaluacion">
+		<result column="N_CODEVA" property="nCodEva" />
+		<result column="N_CODPROEVA" property="nCodProEva" />
+		<result column="V_DESPER" property="vDesPer" />
+	</resultMap>
+
+	<select id="listarProgramacionEvaluacion" statementType="CALLABLE"
+		resultMap="ResultMapProgramacionEvaluacion">
+		{call PKG_EVALUACION.SP_LSTPROEVA(
+		#{unidadAprendisaje.codCur},
+		#{unidadAprendisaje.codUniApr},
+		#{outParameters.lstProEva,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapProgramacionEvaluacion},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+	<select id="listarEvaluacion" statementType="CALLABLE"
+		resultMap="ResultMapEvaluacion">
+		{call PKG_EVALUACION.SP_LSTEVA(
+		#{programacionEvaluacion.nCodProEva},
+		#{outParameters.lstEva,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapEvaluacion},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+	<select id="actualizarProgramacionEvaluacion" statementType="CALLABLE">
+		{call
+		PKG_EVALUACION.SP_ACTPROEVA(
+		#{programacionEvaluacion.nCodProEva},
+		#{programacionEvaluacion.dFinProEva},
+		#{programacionEvaluacion.dFfiProEva},
+		#{outParameters.codErr,
+		jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+	<select id="eliminarEvaluacion" statementType="CALLABLE">
+		{call
+		PKG_EVALUACION.SP_ELIEVA(
+		#{evaluacion.nCodEva},
+		#{evaluacion.nCodProEva},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+	<select id="insertarEvaluacion" statementType="CALLABLE">
+		{call
+		PKG_EVALUACION.SP_INSEVA(
+		#{evaluacion.nCodProEva},
+		#{evaluacion.vDesEva},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	
+	<select id="insertarProgramacionEvaluacion" statementType="CALLABLE">
+		{call
+		PKG_EVALUACION.SP_INSPROEVA(
+	    #{programacionEvaluacion.dFinProEva},
+		#{programacionEvaluacion.dFfiProEva},
+		#{unidadAprendisaje.codCur},
+		#{unidadAprendisaje.codUniApr},
+		#{outParameters.codProEva, jdbcType=INTEGER,mode=OUT}
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+
+
+</mapper>
