@@ -8,12 +8,15 @@ public class Opcion implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -3898335952952057325L;
+
 	private Integer codOpc;
 	private String desOpc;
 	private Integer opcCor;
+	private Pregunta pregunta;
 
 	public Opcion() {
 		codOpc = -1;
+		pregunta = new Pregunta();
 	}
 
 	public Integer getCodOpc() {
@@ -39,5 +42,14 @@ public class Opcion implements Serializable {
 	public void setOpcCor(Integer opcCor) {
 		this.opcCor = opcCor;
 	}
+
+	public Pregunta getPregunta() {
+		return pregunta;
+	}
+
+	public void setPregunta(Pregunta pregunta) {
+		this.pregunta = pregunta;
+	}
+	
 
 }

@@ -90,26 +90,42 @@
 									<p:column>
 										<p:dataTable id="tablaadmeval"
 											value="#{programacionEvaluacionManagedBean.lstProgEval}"
-											var="objadmeval" paginator="true" paginatorPosition="bottom"
+											var="objAdmEval" paginator="true" paginatorPosition="bottom"
 											rows="20">
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmeval_curso}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmeval_curso}">#{objAdmEval.vNomCur}</p:column>
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmeval_unidad}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmeval_unidad}">#{objAdmEval.vDesUni}</p:column>
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmeval_canteval}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmeval_canteval}">#{objAdmEval.nCanProEva}</p:column>
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmeval_fecini}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmeval_fecini}">
+
+												<p:calendar value="#{objAdmEval.dFinProEva}" locale="es"
+													pattern="dd/MM/yyyy hh:mm:ss" disabled="true"></p:calendar>
+
+											</p:column>
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmeval_fecfin}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmeval_fecfin}">
+												<p:calendar value="#{objAdmEval.dFfiProEva}" locale="es"
+												
+													pattern="dd/MM/yyyy hh:mm:ss" disabled="true"></p:calendar>
+											</p:column>
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmeval_actualizar}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmeval_actualizar}">
+												<p:commandButton
+													action="#{programacionEvaluacionManagedBean.mostrarProgramacionEvaluacion}"
+													value="Actualizar">
+													<f:setPropertyActionListener value="#{objAdmEval}"
+														target="#{programacionEvaluacionManagedBean.objProgramacionEvaluacion}"></f:setPropertyActionListener>
+												</p:commandButton>
+											</p:column>
 
 											<p:column
 												headerText="#{etiquetas.cl_cabecera_tablaadmeval_eliminar}"></p:column>

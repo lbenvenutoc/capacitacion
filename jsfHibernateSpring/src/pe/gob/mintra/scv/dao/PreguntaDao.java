@@ -25,4 +25,18 @@ public interface PreguntaDao {
 			@Param("opcion") Opcion opcion,
 			@Param("outParameters") Map<String, Object> outParameters);
 
+	public void actualizarPregunta(@Param("pregunta") Pregunta pregunta,			
+			@Param("outParameters") Map<String, Object> outParameters);
+	
+	public void eliminarPregunta(@Param("pregunta") Pregunta pregunta,			
+			@Param("outParameters") Map<String, Object> outParameters);
+
+	public void actualizarOpcion(@Param("pregunta") Pregunta pregunta,
+			@Param("opcion") Opcion opcion,
+			@Param("outParameters") Map<String, Object> outParameters);
+	
+	public void eliminarOpcion(@Param("pregunta") Pregunta pregunta,
+			@Param("opcion") Opcion opcion,
+			@Param("outParameters") Map<String, Object> outParameters);
+
 }

@@ -47,4 +47,32 @@ public class PreguntaServiceImpl implements PreguntaService {
 
 	}
 
+	@Override
+	public void actualizarPregunta(Pregunta pregunta,
+			Map<String, Object> outParameters) {
+		preguntaDao.actualizarPregunta(pregunta, outParameters);
+
+	}
+
+	@Override
+	public void actualizarOpcion(Pregunta pregunta, Opcion opcion,
+			Map<String, Object> outParameters) {
+		preguntaDao.actualizarOpcion(pregunta, opcion, outParameters);
+
+	}
+
+	@Override
+	public void eliminarOpcion(Pregunta pregunta, Opcion opcion,
+			Map<String, Object> outParameters) {
+		preguntaDao.eliminarOpcion(pregunta, opcion, outParameters);
+
+	}
+
+	@Override
+	public void eliminarPregunta(Pregunta pregunta,
+			Map<String, Object> outParameters) {
+		preguntaDao.eliminarPregunta(pregunta, outParameters);
+
+	}
+
 }

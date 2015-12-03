@@ -101,14 +101,23 @@
 
 											<p:column
 												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_actualizar}">
-												<p:commandButton action="#{preguntaManagedBean.mostrarPregunta}" value="">
+												<p:commandButton
+													action="#{preguntaManagedBean.mostrarPregunta}"
+													value="Actualizar">
 													<f:setPropertyActionListener value="#{objPreg}"
 														target="#{preguntaManagedBean.objPregunta}"></f:setPropertyActionListener>
 												</p:commandButton>
 											</p:column>
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_eliminar}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_eliminar}">
+												<p:commandButton
+													action="#{preguntaManagedBean.eliminarPregunta}"
+													update=":frmAdmPreg:tablaAdmPreg" value="Eliminar">
+													<f:setPropertyActionListener value="#{objPreg}"
+														target="#{preguntaManagedBean.objPregunta}"></f:setPropertyActionListener>
+												</p:commandButton>
+											</p:column>
 
 
 										</p:dataTable>

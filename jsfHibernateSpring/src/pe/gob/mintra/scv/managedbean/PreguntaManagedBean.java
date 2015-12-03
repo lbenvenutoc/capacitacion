@@ -24,6 +24,7 @@ public class PreguntaManagedBean {
 	private Pregunta objPregunta;
 	private Opcion objOpcion;
 	private UnidadAprendisaje unidadAprendisaje;
+	private List<Opcion> lstOpcionEliminados;
 
 	public PreguntaManagedBean() {
 		inicializarPregunta();
@@ -31,6 +32,7 @@ public class PreguntaManagedBean {
 		unidadAprendisaje = new UnidadAprendisaje();
 		unidadAprendisaje.setCodCur(1);
 		unidadAprendisaje.setCodUniApr(1);
+		lstOpcionEliminados = new ArrayList<Opcion>();
 	}
 
 	public void inicializarPregunta() {
@@ -101,15 +103,55 @@ public class PreguntaManagedBean {
 			int i = 1;
 			preguntaService.insertarPregunta(objPregunta, unidadAprendisaje,
 					outParametersPregunta);
+			objPregunta
+					.setCodPre((Integer) outParametersPregunta.get("codIns"));
 			for (Opcion opcion : lstOpcion) {
+				System.out.println("SE INSERTO PREGUNTA CON CODIGO: "
+						+ objPregunta.getCodPre());
 				opcion.setOpcCor(i);
 				preguntaService.insertarOpcion(objPregunta, opcion,
 						outParametersOpcion);
+				System.out.println("Opcion " + i + " "
+						+ outParametersOpcion.get("menErr"));
 				i++;
 			}
+		} else {
+			int i = 1;
+			preguntaService.actualizarPregunta(objPregunta,
+					outParametersPregunta);
+
+			for (Opcion opcion : lstOpcion) {
+				opcion.setOpcCor(i);
+				if (!opcion.getCodOpc().equals(-1)) {
+					preguntaService.actualizarOpcion(objPregunta, opcion,
+							outParametersOpcion);
+				} else {
+					preguntaService.insertarOpcion(objPregunta, opcion,
+							outParametersOpcion);
+				}
+
+				i++;
+			}
+
+			for (Opcion opcion : lstOpcionEliminados) {
+				preguntaService.eliminarOpcion(objPregunta, opcion,
+						outParametersOpcion);
+			}
+
 		}
 		vista = administrarPregunta();
 		return vista;
+	}
+
+	public void quitarOpcion() {
+		lstOpcionEliminados.add(objOpcion);
+		lstOpcion.remove(objOpcion);
+	}
+
+	public void eliminarPregunta() {
+		HashMap<String, Object> outParameters = new HashMap<String, Object>();
+		preguntaService.eliminarPregunta(objPregunta, outParameters);
+		administrarPregunta();
 	}
 
 	public List<Pregunta> getLstPregunta() {

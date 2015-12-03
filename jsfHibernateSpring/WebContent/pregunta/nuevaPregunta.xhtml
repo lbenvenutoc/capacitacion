@@ -82,8 +82,8 @@
 						<p:column colspan="2">
 							<center>
 								<p:commandButton value="#{etiquetas.cl_admpreg_opcion_nuevo}"
-									action="#{preguntaManagedBean.inicializarOpcion}"	
-									update=":frmNuevaOpcion:panelNuevaOpcion"							
+									action="#{preguntaManagedBean.inicializarOpcion}"
+									update=":frmNuevaOpcion:panelNuevaOpcion"
 									oncomplete="dialogoNuevaOpcion.show();">
 								</p:commandButton>
 							</center>
@@ -108,8 +108,8 @@
 												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_opcion_actualizar}">
 
 												<p:commandButton
-													action="#{preguntaManagedBean.mostrarOpcion}" value=""
-													oncomplete="dialogoNuevaOpcion.show();"
+													action="#{preguntaManagedBean.mostrarOpcion}"
+													value="Actualizar" oncomplete="dialogoNuevaOpcion.show();"
 													update=":frmNuevaOpcion:panelNuevaOpcion">
 													<f:setPropertyActionListener value="#{objOpcion}"
 														target="#{preguntaManagedBean.objOpcion}"></f:setPropertyActionListener>
@@ -117,7 +117,14 @@
 											</p:column>
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_opcion_eliminar}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_opcion_eliminar}">
+												<p:commandButton
+													action="#{preguntaManagedBean.quitarOpcion}"
+													value="Eliminar" update=":frmProgEval:tablaOpcion">
+													<f:setPropertyActionListener value="#{objOpcion}"
+														target="#{preguntaManagedBean.objOpcion}"></f:setPropertyActionListener>
+												</p:commandButton>
+											</p:column>
 
 										</p:dataTable>
 									</p:column>
@@ -131,7 +138,8 @@
 					<p:row>
 						<p:column colspan="2">
 							<center>
-								<p:commandButton value="#{etiquetas.cl_admpreg_grabar}" action="#{preguntaManagedBean.actualizarPregunta}"></p:commandButton>
+								<p:commandButton value="#{etiquetas.cl_admpreg_grabar}"
+									action="#{preguntaManagedBean.actualizarPregunta}"></p:commandButton>
 								<p:commandButton value="#{etiquetas.cl_admpreg_salir}"></p:commandButton>
 							</center>
 						</p:column>
@@ -169,7 +177,7 @@
 									oncomplete="dialogoNuevaOpcion.hide();"
 									update=":frmProgEval:tablaOpcion"></p:commandButton>
 								<p:commandButton
-									value="#{etiquetas.cl_formmulario_opcion_btn_cerrar}"															
+									value="#{etiquetas.cl_formmulario_opcion_btn_cerrar}"
 									onclick="dialogoNuevaOpcion.hide();"></p:commandButton>
 							</center>
 						</p:column>

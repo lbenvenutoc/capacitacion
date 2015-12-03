@@ -81,9 +81,9 @@
 
 									</p:column>
 									<p:column>
-										<p:calendar locale="es" pattern="dd/MM/yyyy" showOn="button"
-											readonlyInput="true"
-											value="#{documentoManaged.objDsgBusqueda.fecIniDoc}"
+										<p:calendar locale="es" showOn="button"
+											pattern="dd/MM/yyyy hh:mm:ss" readonlyInput="true"
+											value="#{programacionEvaluacionManagedBean.objProgramacionEvaluacion.dFinProEva}"
 											maxlength="10" size="10">
 										</p:calendar>
 									</p:column>
@@ -96,11 +96,12 @@
 
 									</p:column>
 									<p:column>
-										<p:calendar locale="es" pattern="dd/MM/yyyy" showOn="button"
-											readonlyInput="true"
-											value="#{documentoManaged.objDsgBusqueda.fecIniDoc}"
+										<p:calendar locale="es" pattern="dd/MM/yyyy hh:mm:ss"
+											showOn="button" readonlyInput="true"
+											value="#{programacionEvaluacionManagedBean.objProgramacionEvaluacion.dFfiProEva}"
 											maxlength="10" size="10">
 										</p:calendar>
+										
 									</p:column>
 								</p:row>
 
@@ -129,14 +130,25 @@
 
 								<p:row>
 									<p:column>
-										<p:dataTable id="tablaEvaluacion" var="objEvaluacion"
+										<p:dataTable id="tablaEvaluacion" var="objProgEval"
+										value="#{programacionEvaluacionManagedBean.lstEval}"
 											paginator="true" paginatorPosition="bottom" rows="20">
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaprogeval_participante}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaprogeval_participante}">
+												#{objProgEval.vDesPer}
+												</p:column>
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaprogeval_quitar}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaprogeval_quitar}">
+												
+												<p:commandButton
+													action="#{programacionEvaluacionManagedBean.quitarEvaluacion}"
+													value="Eliminar" update=":frmProgEval:tablaEvaluacion">
+													<f:setPropertyActionListener value="#{objProgEval}"
+														target="#{programacionEvaluacionManagedBean.objEvaluacion}"></f:setPropertyActionListener>
+												</p:commandButton>
+											</p:column>
 
 
 										</p:dataTable>
@@ -151,6 +163,7 @@
 					<p:row>
 						<p:column>
 							<center>
+							    <p:commandButton value="#{etiquetas.cl_progeval_grabar}" action="#{programacionEvaluacionManagedBean.actualizarProgramacionEvaluacion}"></p:commandButton>
 								<p:commandButton value="#{etiquetas.cl_admeval_cancelar}"></p:commandButton>
 							</center>
 						</p:column>

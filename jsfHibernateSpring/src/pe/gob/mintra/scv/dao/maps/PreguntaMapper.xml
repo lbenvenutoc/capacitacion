@@ -15,7 +15,7 @@
 
 		<id column="N_CODOPC" property="codOpc" />
 		<result column="V_DESOPC" property="desOpc" />
-
+		
 
 
 	</resultMap>
@@ -36,7 +36,26 @@
 		#{unidadAprendisaje.codCur},
 		#{unidadAprendisaje.codUniApr},
 		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.codIns, jdbcType=INTEGER,mode=OUT}
+		)}
+	</select>
+	<select id="actualizarPregunta" statementType="CALLABLE">
+		{call
+		PKG_PREGUNTA.SP_ACTPRE(
+		#{pregunta.codPre},
+		#{pregunta.desPre},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
 		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	<select id="eliminarPregunta" statementType="CALLABLE">
+		{call
+		PKG_PREGUNTA.SP_ELIPRE(
+		#{pregunta.codPre},		
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
 		)}
 	</select>
 
@@ -55,6 +74,29 @@
 		#{pregunta.codPre},
 		#{opcion.desOpc},
 		#{opcion.opcCor},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	<select id="actualizarOpcion" statementType="CALLABLE">
+		{call
+		PKG_PREGUNTA.SP_ACTOPC(
+		#{pregunta.codPre},
+		#{opcion.codOpc},
+		#{opcion.desOpc},
+		#{opcion.opcCor},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	
+	<select id="eliminarOpcion" statementType="CALLABLE">
+		{call
+		PKG_PREGUNTA.SP_ELIOPC(
+		#{pregunta.codPre},
+		#{opcion.codOpc},		
 		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
 		#{outParameters.menErr,
 		jdbcType=VARCHAR,mode=OUT}

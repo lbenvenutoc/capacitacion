@@ -16,10 +16,23 @@ public interface PreguntaService {
 	public void listarOpciones(Pregunta pregunta,
 			Map<String, Object> outParameters);
 
-	public void insertarPregunta(Pregunta pregunta,UnidadAprendisaje unidadAprendisaje,
+	public void insertarPregunta(Pregunta pregunta,
+			UnidadAprendisaje unidadAprendisaje,
 			Map<String, Object> outParameters);
 
 	public void insertarOpcion(Pregunta pregunta, Opcion opcion,
+			Map<String, Object> outParameters);
+
+	public void actualizarPregunta(Pregunta pregunta,
+			Map<String, Object> outParameters);
+
+	public void eliminarPregunta(Pregunta pregunta,
+			Map<String, Object> outParameters);
+
+	public void actualizarOpcion(Pregunta pregunta, Opcion opcion,
+			Map<String, Object> outParameters);
+
+	public void eliminarOpcion(Pregunta pregunta, Opcion opcion,
 			Map<String, Object> outParameters);
 
 }
