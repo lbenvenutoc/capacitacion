@@ -1,9 +1,14 @@
 package pe.gob.mintra.scv.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ProgramacionEvaluacion {
+public class ProgramacionEvaluacion implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1648678569824579047L;
 	private Integer nCodProEva;
 	private Date dFinProEva;
 	private Date dFfiProEva;
@@ -11,6 +16,8 @@ public class ProgramacionEvaluacion {
 	private Integer nCanProEva;
 	private String vNomCur;
 	private String vDesUni;
+	private Integer nCodUniApr;
+	private Integer nCodCur;
 
 	public ProgramacionEvaluacion() {
 		nCodProEva = -1;
@@ -48,8 +55,6 @@ public class ProgramacionEvaluacion {
 		this.nEstProEva = nEstProEva;
 	}
 
-	
-
 	public String getvNomCur() {
 		return vNomCur;
 	}
@@ -74,6 +79,22 @@ public class ProgramacionEvaluacion {
 		this.nCanProEva = nCanProEva;
 	}
 
+	public Integer getnCodUniApr() {
+		return nCodUniApr;
+	}
+
+	public void setnCodUniApr(Integer nCodUniApr) {
+		this.nCodUniApr = nCodUniApr;
+	}
+
+	public Integer getnCodCur() {
+		return nCodCur;
+	}
+
+	public void setnCodCur(Integer nCodCur) {
+		this.nCodCur = nCodCur;
+	}
+	
 	
 
 }

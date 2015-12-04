@@ -1,7 +1,13 @@
 package pe.gob.mintra.scv.model;
 
-public class Evaluacion {
+import java.io.Serializable;
 
+public class Evaluacion implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -886448986386937316L;
 	private Integer nCodEva;
 	private Integer nCodProEva;
 	private String vDesEva;

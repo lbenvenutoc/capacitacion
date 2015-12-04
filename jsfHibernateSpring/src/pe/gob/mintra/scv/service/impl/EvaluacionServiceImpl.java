@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.gob.mintra.scv.dao.EvaluacionDao;
+import pe.gob.mintra.scv.model.DetalleEvaluacion;
 import pe.gob.mintra.scv.model.Evaluacion;
 import pe.gob.mintra.scv.model.ProgramacionEvaluacion;
 import pe.gob.mintra.scv.model.UnidadAprendisaje;
+import pe.gob.mintra.scv.model.UsuarioPorEvaluacion;
 import pe.gob.mintra.scv.service.EvaluacionService;
 
 @Service("evaluacionService")
@@ -64,6 +66,38 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		evaluacionDao.insertarProgramacionEvaluacion(unidadAprendisaje,
 				programacionEvaluacion, outParameters);
 
+	}
+
+	@Override
+	public void listarUsuarioPorCurso(UnidadAprendisaje unidadAprendisaje,
+			Map<String, Object> outParameters) {
+		evaluacionDao.listarUsuarioPorCurso(unidadAprendisaje, outParameters);
+
+	}
+
+	@Override
+	public void insertarUsuarioPorEvaluacion(
+			UsuarioPorEvaluacion usuarioEvaluacion,
+			Map<String, Object> outParameters) {
+		evaluacionDao.insertarUsuarioPorEvaluacion(usuarioEvaluacion,
+				outParameters);
+
+	}
+
+	@Override
+	public void insertarDetalleEvaluacion(DetalleEvaluacion detalleEvaluacion,
+			Map<String, Object> outParameters) {
+		evaluacionDao.insertarDetalleEvaluacion(detalleEvaluacion,
+				outParameters);
+
+	}
+
+	@Override
+	public void eliminarProgramacionEvaluacion(
+			ProgramacionEvaluacion programacionEvaluacion,
+			Map<String, Object> outParameters) {
+		evaluacionDao.eliminarProgramacionEvaluacion(programacionEvaluacion, outParameters);
+		
 	}
 
 }

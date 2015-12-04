@@ -16,6 +16,13 @@
 		<result column="N_CODPROEVA" property="nCodProEva" />
 		<result column="V_DESPER" property="vDesPer" />
 	</resultMap>
+	
+	<resultMap id="ResultMapUsuarioPorCurso" type="UsuarioPorCurso">
+		<result column="N_CODUSU" property="nCodUsu" />
+		<result column="N_CODCUR" property="nCodCur" />
+		<result column="N_CODPER" property="nCodPer" />
+		<result column="V_DESPER" property="vDesPer" />
+	</resultMap>
 
 	<select id="listarProgramacionEvaluacion" statementType="CALLABLE"
 		resultMap="ResultMapProgramacionEvaluacion">
@@ -67,6 +74,7 @@
 		PKG_EVALUACION.SP_INSEVA(
 		#{evaluacion.nCodProEva},
 		#{evaluacion.vDesEva},
+		#{outParameters.nCodEva, jdbcType=INTEGER,mode=OUT},
 		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
 		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
 		)}
@@ -79,9 +87,53 @@
 		#{programacionEvaluacion.dFfiProEva},
 		#{unidadAprendisaje.codCur},
 		#{unidadAprendisaje.codUniApr},
-		#{outParameters.codProEva, jdbcType=INTEGER,mode=OUT}
+		#{outParameters.codProEva, jdbcType=INTEGER,mode=OUT},
 		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
 		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	
+	<select id="listarUsuarioPorCurso" statementType="CALLABLE"
+		resultMap="ResultMapUsuarioPorCurso">
+		{call PKG_EVALUACION.SP_LSTUSUCUR(
+		#{unidadAprendisaje.codCur},		
+		#{outParameters.lstUsuCur,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapUsuarioPorCurso},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	
+	<select id="insertarUsuarioPorEvaluacion" statementType="CALLABLE">
+		{call
+		PKG_EVALUACION.SP_INSUSUEVA(
+	    #{usuarioEvaluacion.nCodUsu},
+		#{usuarioEvaluacion.nCodPer},
+		#{usuarioEvaluacion.nCodEva},
+		#{usuarioEvaluacion.nCodProEva},		
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	
+	<select id="insertarDetalleEvaluacion" statementType="CALLABLE">
+		{call
+		PKG_EVALUACION.SP_INSDETEVA(
+		#{detalleEvaluacion.nCodEva},
+		#{detalleEvaluacion.nCodProEva},
+		#{detalleEvaluacion.nCodPre},
+		#{detalleEvaluacion.nCodOpc},		
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	
+	<select id="eliminarProgramacionEvaluacion" statementType="CALLABLE">
+		{call
+		PKG_EVALUACION.SP_ELIPROEVA(
+		#{programacionEvaluacion.nCodProEva},		
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
 		)}
 	</select>
 

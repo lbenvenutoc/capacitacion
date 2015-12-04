@@ -128,7 +128,17 @@
 											</p:column>
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmeval_eliminar}"></p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmeval_eliminar}">
+												
+												<p:commandButton
+													action="#{programacionEvaluacionManagedBean.eliminarProgramacionEvaluacion}"
+													update=":frmAdmEval:tablaadmeval"
+													value="Eliminar">
+													<f:setPropertyActionListener value="#{objAdmEval}"
+														target="#{programacionEvaluacionManagedBean.objProgramacionEvaluacion}"></f:setPropertyActionListener>
+												</p:commandButton>
+											
+											</p:column>
 
 										</p:dataTable>
 									</p:column>

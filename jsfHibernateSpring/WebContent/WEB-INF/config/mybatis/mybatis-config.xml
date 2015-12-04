@@ -10,9 +10,14 @@
 		<typeAlias type="pe.gob.mintra.scv.model.Curso" alias="Curso" />
 		<typeAlias type="pe.gob.mintra.scv.model.Pregunta" alias="Pregunta" />
 		<typeAlias type="pe.gob.mintra.scv.model.Opcion" alias="Opcion" />
-		<typeAlias type="pe.gob.mintra.scv.model.ProgramacionEvaluacion" alias="ProgramacionEvaluacion" />
+		<typeAlias type="pe.gob.mintra.scv.model.ProgramacionEvaluacion"
+			alias="ProgramacionEvaluacion" />
 		<typeAlias type="pe.gob.mintra.scv.model.Evaluacion" alias="Evaluacion" />
-		
+		<typeAlias type="pe.gob.mintra.scv.model.UsuarioPorCurso"
+			alias="UsuarioPorCurso" />
+		<typeAlias type="pe.gob.mintra.scv.model.DetalleEvaluacion"
+			alias="DetalleEvaluacion" />
+
 	</typeAliases>
 
 

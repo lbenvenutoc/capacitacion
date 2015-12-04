@@ -101,7 +101,7 @@
 											value="#{programacionEvaluacionManagedBean.objProgramacionEvaluacion.dFfiProEva}"
 											maxlength="10" size="10">
 										</p:calendar>
-										
+
 									</p:column>
 								</p:row>
 
@@ -116,7 +116,9 @@
 					<p:row>
 						<p:column>
 							<center>
-								<p:commandButton value="#{etiquetas.cl_progeval_nuevo}"></p:commandButton>
+								<p:commandButton value="#{etiquetas.cl_progeval_nuevo}"
+									action="#{programacionEvaluacionManagedBean.generarEvaluacion}"
+									update=":frmProgEval:tablaEvaluacion"></p:commandButton>
 							</center>
 
 
@@ -131,7 +133,7 @@
 								<p:row>
 									<p:column>
 										<p:dataTable id="tablaEvaluacion" var="objProgEval"
-										value="#{programacionEvaluacionManagedBean.lstEval}"
+											value="#{programacionEvaluacionManagedBean.lstEval}"
 											paginator="true" paginatorPosition="bottom" rows="20">
 
 											<p:column
@@ -141,7 +143,7 @@
 
 											<p:column
 												headerText="#{etiquetas.cl_cabecera_tablaprogeval_quitar}">
-												
+
 												<p:commandButton
 													action="#{programacionEvaluacionManagedBean.quitarEvaluacion}"
 													value="Eliminar" update=":frmProgEval:tablaEvaluacion">
@@ -163,7 +165,8 @@
 					<p:row>
 						<p:column>
 							<center>
-							    <p:commandButton value="#{etiquetas.cl_progeval_grabar}" action="#{programacionEvaluacionManagedBean.actualizarProgramacionEvaluacion}"></p:commandButton>
+								<p:commandButton value="#{etiquetas.cl_progeval_grabar}"
+									action="#{programacionEvaluacionManagedBean.actualizarProgramacionEvaluacion}"></p:commandButton>
 								<p:commandButton value="#{etiquetas.cl_admeval_cancelar}"></p:commandButton>
 							</center>
 						</p:column>

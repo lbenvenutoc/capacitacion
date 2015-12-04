@@ -9,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import pe.gob.mintra.scv.model.DetalleEvaluacion;
 import pe.gob.mintra.scv.model.Evaluacion;
 import pe.gob.mintra.scv.model.Opcion;
 import pe.gob.mintra.scv.model.Pregunta;
 import pe.gob.mintra.scv.model.ProgramacionEvaluacion;
 import pe.gob.mintra.scv.model.UnidadAprendisaje;
+import pe.gob.mintra.scv.model.UsuarioPorCurso;
+import pe.gob.mintra.scv.model.UsuarioPorEvaluacion;
 import pe.gob.mintra.scv.service.EvaluacionService;
 import pe.gob.mintra.scv.service.PreguntaService;
 
@@ -34,6 +37,7 @@ public class ProgramacionEvaluacionManagedBean {
 	private List<Evaluacion> lstEval;
 	private List<Pregunta> lstPregunta;
 	private List<Opcion> lstOpcion;
+	private List<UsuarioPorCurso> lstUsuarioPorCurso;
 
 	public ProgramacionEvaluacionManagedBean() {
 		unidadAprendisaje = new UnidadAprendisaje();
@@ -42,6 +46,7 @@ public class ProgramacionEvaluacionManagedBean {
 		inicializarProgramacionEvaluacion();
 		lstPregunta = new ArrayList<Pregunta>();
 		lstOpcion = new ArrayList<Opcion>();
+		lstUsuarioPorCurso = new ArrayList<UsuarioPorCurso>();
 	}
 
 	public void inicializarProgramacionEvaluacion() {
@@ -80,12 +85,38 @@ public class ProgramacionEvaluacionManagedBean {
 		return vista;
 	}
 
+	public void generarEvaluacion() {
+		HashMap<String, Object> outParametersUsuPorCur = new HashMap<String, Object>();
+
+		evaluacionService.listarUsuarioPorCurso(unidadAprendisaje,
+				outParametersUsuPorCur);
+		lstUsuarioPorCurso = (List<UsuarioPorCurso>) outParametersUsuPorCur
+				.get("lstUsuCur");
+		Evaluacion e = null;
+		if (lstUsuarioPorCurso.size() > 0) {
+
+			for (UsuarioPorCurso uc : lstUsuarioPorCurso) {
+				e = new Evaluacion();
+				e.setvDesPer(uc.getvDesPer());
+				lstEval.add(e);
+			}
+
+		}
+	}
+
 	public String actualizarProgramacionEvaluacion() {
 		String vista = null;
 		HashMap<String, Object> outParametersProgramacion = new HashMap<String, Object>();
 		HashMap<String, Object> outParametersEvaluacion = new HashMap<String, Object>();
 		HashMap<String, Object> outParametersPregunta = new HashMap<String, Object>();
 		HashMap<String, Object> outParametersOpcion = new HashMap<String, Object>();
+		HashMap<String, Object> outParametersUsuEva = new HashMap<String, Object>();
+		HashMap<String, Object> outParametersDetEva = new HashMap<String, Object>();
+
+		objProgramacionEvaluacion.setnCodUniApr(unidadAprendisaje
+				.getCodUniApr());
+		objProgramacionEvaluacion.setnCodCur(unidadAprendisaje.getCodCur());
+
 		if (!objProgramacionEvaluacion.getnCodProEva().equals(-1)) {
 			evaluacionService.actualizarProgramacionEvaluacion(
 					objProgramacionEvaluacion, outParametersProgramacion);
@@ -107,20 +138,63 @@ public class ProgramacionEvaluacionManagedBean {
 			Random random = new Random();
 			int tamanoListaPregunta = 0;
 			tamanoListaPregunta = lstPregunta.size();
-			if (tamanoListaPregunta > 0) {
-				Pregunta preg = lstPregunta.get(random
-						.nextInt(tamanoListaPregunta));
-				preguntaService.listarOpciones(preg, outParametersOpcion);
-				lstOpcion = (List<Opcion>) outParametersOpcion.get("lstCur");
-				
 
-			}
+			UsuarioPorEvaluacion usuarioEvaluacion = null;
+			UsuarioPorCurso usuarioPorCurso = null;
+			DetalleEvaluacion detalleEvaluacion = null;
+			int i = 0;
 			for (Evaluacion eval : lstEval) {
 				eval.setnCodProEva(objProgramacionEvaluacion.getnCodProEva());
+				eval.setvDesEva("Evaluacion de Java " + i);
 				evaluacionService.insertarEvaluacion(eval,
 						outParametersEvaluacion);
+				eval.setnCodEva((Integer) outParametersEvaluacion
+						.get("nCodEva"));
+				usuarioPorCurso = new UsuarioPorCurso();
+				usuarioPorCurso = lstUsuarioPorCurso.get(i);
+
+				usuarioEvaluacion = new UsuarioPorEvaluacion();
+				usuarioEvaluacion.setnCodEva(eval.getnCodEva());
+				usuarioEvaluacion.setnCodPer(usuarioPorCurso.getnCodPer());
+				usuarioEvaluacion.setnCodProEva(objProgramacionEvaluacion
+						.getnCodProEva());
+				usuarioEvaluacion.setnCodUsu(usuarioPorCurso.getnCodUsu());
+				evaluacionService.insertarUsuarioPorEvaluacion(
+						usuarioEvaluacion, outParametersUsuEva);
+
+				detalleEvaluacion = new DetalleEvaluacion();
+				detalleEvaluacion.setnCodEva(eval.getnCodEva());
+				detalleEvaluacion.setnCodProEva(objProgramacionEvaluacion
+						.getnCodProEva());
+
+				if (tamanoListaPregunta > 0) {
+
+					for (int j = 0; j < 10; j++) { // 10 PREGUNTAS ALEATORIAS
+													// POR ALUMNO PARA EXAMEN
+						Pregunta preg = lstPregunta.get(random
+								.nextInt(tamanoListaPregunta));
+
+						preguntaService.listarOpciones(preg,
+								outParametersOpcion);
+						lstOpcion = (List<Opcion>) outParametersOpcion
+								.get("lstCur");
+
+						for (Opcion o : lstOpcion) {
+							detalleEvaluacion.setnCodPre(preg.getCodPre());
+							detalleEvaluacion.setnCodOpc(o.getCodOpc());
+						}
+
+					}
+
+				}
+
+				evaluacionService.insertarDetalleEvaluacion(detalleEvaluacion,
+						outParametersDetEva);
+
+				i++;
 
 			}
+
 		}
 
 		return vista;
@@ -129,6 +203,13 @@ public class ProgramacionEvaluacionManagedBean {
 	public void quitarEvaluacion() {
 		lstEvalQuitar.add(objEvaluacion);
 		lstEval.remove(objEvaluacion);
+	}
+
+	public void eliminarProgramacionEvaluacion() {
+		HashMap<String, Object> outParametersProgramacion = new HashMap<String, Object>();
+		evaluacionService.eliminarProgramacionEvaluacion(
+				objProgramacionEvaluacion, outParametersProgramacion);
+
 	}
 
 	public List<ProgramacionEvaluacion> getLstProgEval() {
