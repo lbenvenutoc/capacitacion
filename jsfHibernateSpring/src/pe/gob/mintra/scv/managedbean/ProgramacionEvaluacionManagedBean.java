@@ -205,10 +205,13 @@ public class ProgramacionEvaluacionManagedBean {
 		lstEval.remove(objEvaluacion);
 	}
 
-	public void eliminarProgramacionEvaluacion() {
+	public String eliminarProgramacionEvaluacion() {
+		String vista = null;
 		HashMap<String, Object> outParametersProgramacion = new HashMap<String, Object>();
 		evaluacionService.eliminarProgramacionEvaluacion(
 				objProgramacionEvaluacion, outParametersProgramacion);
+		vista = programarEvaluacion();
+		return vista;
 
 	}
 
