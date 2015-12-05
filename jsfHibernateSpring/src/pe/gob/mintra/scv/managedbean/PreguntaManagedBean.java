@@ -87,19 +87,37 @@ public class PreguntaManagedBean {
 	}
 
 	public void actualizarOpcion() {
-		if (objOpcion.getCodOpc().equals(-1)) {
-			lstOpcion.add(objOpcion);
+		String mensaje = "";
+		int tipo = 0;
+		boolean opcionTieneErrores = false;
+		if (objOpcion.getDesOpc().equals("")
+				|| objOpcion.getDesOpc().equals(null)) {
+			mensaje = "Ingresar descripción de opción";
+			tipo = 1;
+			opcionTieneErrores = true;
 		} else {
-			for (Opcion o : lstOpcion) {
-				if (o.getCodOpc().equals(objOpcion)) {
-					o = objOpcion;
+			if (objOpcion.getCodOpc().equals(-1)) {
+				lstOpcion.add(objOpcion);
+			} else {
+				for (Opcion o : lstOpcion) {
+					if (o.getCodOpc().equals(objOpcion)) {
+						o = objOpcion;
+					}
 				}
 			}
+
+			opcionTieneErrores = false;
 		}
+		if (opcionTieneErrores == true) {
+			Utilitario.showFacesMessage(mensaje, tipo);
+		}
+
+		Utilitario.setearParametro("opcionTieneErrores", opcionTieneErrores);
+
 	}
 
 	// @Transactional(rollbackFor = Exception.class)
-	public String actualizarPregunta() {
+	public void actualizarPregunta() {
 		String vista = null;
 		HashMap<String, Object> outParametersPregunta = new HashMap<String, Object>();
 		HashMap<String, Object> outParametersOpcion = new HashMap<String, Object>();
@@ -164,10 +182,10 @@ public class PreguntaManagedBean {
 
 		}
 
-		vista = mostrarPregunta();
+		// vista = mostrarPregunta();
 		Utilitario.showFacesMessage(mensaje, tipo);
 
-		return vista;
+		// return vista;
 	}
 
 	public void quitarOpcion() {

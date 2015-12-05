@@ -140,10 +140,9 @@
 							<center>
 								<p:commandButton value="#{etiquetas.cl_admpreg_grabar}"
 									action="#{preguntaManagedBean.actualizarPregunta}"
-									update="mnsPregunta"></p:commandButton>
+									update=":frmProgEval:mnsPregunta"></p:commandButton>
 								<p:commandButton value="#{etiquetas.cl_admpreg_salir}"
-									action="#{preguntaManagedBean.administrarPregunta}"
-								></p:commandButton>
+									action="#{preguntaManagedBean.administrarPregunta}"></p:commandButton>
 							</center>
 						</p:column>
 					</p:row>
@@ -177,8 +176,8 @@
 								<p:commandButton
 									value="#{etiquetas.cl_formmulario_opcion_btn_actualizar}"
 									action="#{preguntaManagedBean.actualizarOpcion}"
-									oncomplete="dialogoNuevaOpcion.hide();"
-									update=":frmProgEval:tablaOpcion"></p:commandButton>
+									oncomplete="validarDialogoOpcion(xhr, status, args);"
+									update=":frmProgEval:tablaOpcion, :frmNuevaOpcion:mnsOpcion"></p:commandButton>
 								<p:commandButton
 									value="#{etiquetas.cl_formmulario_opcion_btn_cerrar}"
 									onclick="dialogoNuevaOpcion.hide();"></p:commandButton>
@@ -187,11 +186,29 @@
 					</p:row>
 
 				</p:panelGrid>
+				<p:messages id="mnsOpcion"></p:messages>
 			</p:dialog>
+
 		</h:form>
 
 
 		<!-- FIN PANEL NUEVA OPCION -->
+
+		<!--SCRIPS JAVASCRIPT -->
+		<script type="text/javascript">
+
+		function validarDialogoOpcion(xhr, status, args) {
+
+			if(args.opcionTieneErrores){
+				dialogoNuevaOpcion.show();
+			}else{
+				dialogoNuevaOpcion.hide();
+			}
+			
+			
+		}
+
+		</script>
 
 
 	</ui:define>

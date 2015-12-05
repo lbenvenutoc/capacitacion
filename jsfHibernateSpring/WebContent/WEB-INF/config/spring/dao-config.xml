@@ -9,10 +9,16 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd"
 
 	default-lazy-init="true">
-    
-    <tx:jta-transaction-manager />
-    <tx:annotation-driven />
-    
-   
-    
+
+	<tx:jta-transaction-manager />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- transaction manager, use JtaTransactionManager for global tx -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="DataSource" />
+	</bean>
+
+
+
 </beans>
