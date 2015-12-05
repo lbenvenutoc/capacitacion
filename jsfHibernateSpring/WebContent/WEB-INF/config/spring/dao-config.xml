@@ -11,12 +11,8 @@
 	default-lazy-init="true">
     
     <tx:jta-transaction-manager />
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <tx:annotation-driven />
     
-    <!-- transaction manager, use JtaTransactionManager for global tx -->	
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="DataSource" />
-	</bean>
+   
     
 </beans>

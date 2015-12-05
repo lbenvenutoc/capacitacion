@@ -3,14 +3,17 @@ package pe.gob.mintra.scv.managedbean;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 
 import pe.gob.mintra.scv.model.Opcion;
 import pe.gob.mintra.scv.model.Pregunta;
 import pe.gob.mintra.scv.model.UnidadAprendisaje;
 import pe.gob.mintra.scv.service.PreguntaService;
+import pe.gob.mintra.scv.util.Utilitario;
 
 @Controller
 @Scope("session")
@@ -95,51 +98,75 @@ public class PreguntaManagedBean {
 		}
 	}
 
+	// @Transactional(rollbackFor = Exception.class)
 	public String actualizarPregunta() {
 		String vista = null;
 		HashMap<String, Object> outParametersPregunta = new HashMap<String, Object>();
 		HashMap<String, Object> outParametersOpcion = new HashMap<String, Object>();
-		if (objPregunta.getCodPre().equals(-1)) {
-			int i = 1;
-			preguntaService.insertarPregunta(objPregunta, unidadAprendisaje,
-					outParametersPregunta);
-			objPregunta
-					.setCodPre((Integer) outParametersPregunta.get("codIns"));
-			for (Opcion opcion : lstOpcion) {
-				System.out.println("SE INSERTO PREGUNTA CON CODIGO: "
-						+ objPregunta.getCodPre());
-				opcion.setOpcCor(i);
-				preguntaService.insertarOpcion(objPregunta, opcion,
-						outParametersOpcion);
-				System.out.println("Opcion " + i + " "
-						+ outParametersOpcion.get("menErr"));
-				i++;
-			}
-		} else {
-			int i = 1;
-			preguntaService.actualizarPregunta(objPregunta,
-					outParametersPregunta);
-
-			for (Opcion opcion : lstOpcion) {
-				opcion.setOpcCor(i);
-				if (!opcion.getCodOpc().equals(-1)) {
-					preguntaService.actualizarOpcion(objPregunta, opcion,
-							outParametersOpcion);
+		String mensaje = "";
+		int tipo = 0;
+		try {
+			if (objPregunta.getDesPre().equals(null)
+					|| objPregunta.getDesPre().equals("")) {
+				mensaje = "Ingrese una descripción de pregunta";
+				tipo = 1;
+			} else if (lstOpcion.size() <= 4) {
+				mensaje = "Debe ingresar cinco (5) opciones";
+				tipo = 1;
+			} else {
+				if (objPregunta.getCodPre().equals(-1)) {
+					int i = 1;
+					preguntaService.insertarPregunta(objPregunta,
+							unidadAprendisaje, outParametersPregunta);
+					objPregunta.setCodPre((Integer) outParametersPregunta
+							.get("codIns"));
+					for (Opcion opcion : lstOpcion) {
+						System.out.println("SE INSERTO PREGUNTA CON CODIGO: "
+								+ objPregunta.getCodPre());
+						opcion.setOpcCor(i);
+						preguntaService.insertarOpcion(objPregunta, opcion,
+								outParametersOpcion);
+						System.out.println("Opcion " + i + " "
+								+ outParametersOpcion.get("menErr"));
+						i++;
+					}
 				} else {
-					preguntaService.insertarOpcion(objPregunta, opcion,
-							outParametersOpcion);
+					int i = 1;
+					preguntaService.actualizarPregunta(objPregunta,
+							outParametersPregunta);
+
+					for (Opcion opcion : lstOpcion) {
+						opcion.setOpcCor(i);
+						if (!opcion.getCodOpc().equals(-1)) {
+							preguntaService.actualizarOpcion(objPregunta,
+									opcion, outParametersOpcion);
+						} else {
+							preguntaService.insertarOpcion(objPregunta, opcion,
+									outParametersOpcion);
+						}
+
+						i++;
+					}
+
+					for (Opcion opcion : lstOpcionEliminados) {
+						preguntaService.eliminarOpcion(objPregunta, opcion,
+								outParametersOpcion);
+					}
+
 				}
+				mensaje = "Pregunta ingresada correctamente";
+				tipo = 3;
 
-				i++;
 			}
-
-			for (Opcion opcion : lstOpcionEliminados) {
-				preguntaService.eliminarOpcion(objPregunta, opcion,
-						outParametersOpcion);
-			}
+		} catch (Exception ex) {
+			mensaje = "Error genérico";
+			tipo = 1;
 
 		}
-		vista = administrarPregunta();
+
+		vista = mostrarPregunta();
+		Utilitario.showFacesMessage(mensaje, tipo);
+
 		return vista;
 	}
 
@@ -149,6 +176,7 @@ public class PreguntaManagedBean {
 	}
 
 	public void eliminarPregunta() {
+		System.out.println("eliminarPregunta");
 		HashMap<String, Object> outParameters = new HashMap<String, Object>();
 		preguntaService.eliminarPregunta(objPregunta, outParameters);
 		administrarPregunta();

@@ -54,14 +54,7 @@
                 </p:layoutUnit>
             </p:layout>
 
-            <ui:insert name="dialogs">
-                <p:ajaxStatus id="waitStatus" onstart="dgStatus.show();" oncomplete="dgStatus.hide();"/>            
-                <p:dialog id="statusDialog" widgetVar="dgStatus" width="210" modal="true" closable="false" resizable="false" showHeader="false">
-                    <h:panelGrid columns="1">                        
-                        <h:outputText value="Espere un momento..."/>
-                    </h:panelGrid> 
-                </p:dialog>
-            </ui:insert>        
+            
         </h:body>
     </f:view>
 </html>

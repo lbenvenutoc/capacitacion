@@ -111,11 +111,12 @@
 
 											<p:column
 												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_eliminar}">
-												<p:commandButton
-													action="#{preguntaManagedBean.eliminarPregunta}"
-													update=":frmAdmPreg:tablaAdmPreg" value="Eliminar">
+												<p:commandButton oncomplete="dlgConfirmacion.show();"
+													value="Eliminar">
+
 													<f:setPropertyActionListener value="#{objPreg}"
 														target="#{preguntaManagedBean.objPregunta}"></f:setPropertyActionListener>
+
 												</p:commandButton>
 											</p:column>
 
@@ -141,8 +142,39 @@
 
 
 
+
+
+
+			</h:form>
+
+			<h:form id="frmDialogConfirm">
+				<p:confirmDialog id="dlgConfirmacion" widgetVar="dlgConfirmacion"
+					header="Dar de Baja" appendToBody="true"
+					message="¿Está seguro de que desea dar de baja a la pregunta seleccionada?"
+					severity="alert" width="350px">
+
+					<center>
+						<p:commandButton id="btnConfirmar" value="Si"
+							oncomplete="dlgConfirmacion.hide()" icon="icon-pref"
+							action="#{preguntaManagedBean.eliminarPregunta}"
+							update=":frmAdmPreg:tablaAdmPreg"
+							process="@this"
+							/>
+
+						<p:commandButton value="No" oncomplete="dlgConfirmacion.hide();"
+							icon="icon-cancel" />
+
+					</center>
+
+				</p:confirmDialog>
 			</h:form>
 		</div>
+
+
+
+
+
+
 
 
 

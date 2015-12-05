@@ -139,15 +139,18 @@
 						<p:column colspan="2">
 							<center>
 								<p:commandButton value="#{etiquetas.cl_admpreg_grabar}"
-									action="#{preguntaManagedBean.actualizarPregunta}"></p:commandButton>
-								<p:commandButton value="#{etiquetas.cl_admpreg_salir}"></p:commandButton>
+									action="#{preguntaManagedBean.actualizarPregunta}"
+									update="mnsPregunta"></p:commandButton>
+								<p:commandButton value="#{etiquetas.cl_admpreg_salir}"
+									action="#{preguntaManagedBean.administrarPregunta}"
+								></p:commandButton>
 							</center>
 						</p:column>
 					</p:row>
 
 				</p:panelGrid>
 
-
+				<p:messages id="mnsPregunta"></p:messages>
 
 			</h:form>
 		</div>
