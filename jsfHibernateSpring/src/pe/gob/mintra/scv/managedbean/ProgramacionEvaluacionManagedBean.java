@@ -81,7 +81,7 @@ public class ProgramacionEvaluacionManagedBean {
 			lstEval = (List<Evaluacion>) outParameters.get("lstEva");
 		} else {
 			inicializarProgramacionEvaluacion();
-			System.out.println("NUEVO");
+			
 		}
 		vista = "pretty:programarEvaluacion";
 		return vista;
@@ -268,6 +268,9 @@ public class ProgramacionEvaluacionManagedBean {
 				}
 
 			}
+			
+			mensaje = "Programación de evaluación registrada correctamente";
+			tipo = 3;
 
 		} catch (Exception ex) {			
 			mensaje = "Error genérico";

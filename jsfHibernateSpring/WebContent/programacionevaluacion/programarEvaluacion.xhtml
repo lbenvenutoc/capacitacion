@@ -168,7 +168,8 @@
 								<p:commandButton value="#{etiquetas.cl_progeval_grabar}"
 									action="#{programacionEvaluacionManagedBean.actualizarProgramacionEvaluacion}"
 									update=":frmProgEval:mnsProgEva"></p:commandButton>
-								<p:commandButton value="#{etiquetas.cl_admeval_cancelar}"></p:commandButton>
+								<p:commandButton value="#{etiquetas.cl_admeval_cancelar}"
+								action="#{programacionEvaluacionManagedBean.programarEvaluacion}"></p:commandButton>
 							</center>
 						</p:column>
 					</p:row>
