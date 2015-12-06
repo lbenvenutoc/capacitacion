@@ -19,6 +19,7 @@ import pe.gob.mintra.scv.model.UsuarioPorCurso;
 import pe.gob.mintra.scv.model.UsuarioPorEvaluacion;
 import pe.gob.mintra.scv.service.EvaluacionService;
 import pe.gob.mintra.scv.service.PreguntaService;
+import pe.gob.mintra.scv.util.Utilitario;
 
 @Controller
 @Scope("session")
@@ -58,6 +59,7 @@ public class ProgramacionEvaluacionManagedBean {
 	}
 
 	public String programarEvaluacion() {
+		
 		inicializarProgramacionEvaluacion();
 		String vista = null;
 		HashMap<String, Object> outParameters = new HashMap<String, Object>();
@@ -71,11 +73,17 @@ public class ProgramacionEvaluacionManagedBean {
 
 	public String mostrarProgramacionEvaluacion() {
 		String vista = null;
-		vista = "pretty:programarEvaluacion";
+		
 		HashMap<String, Object> outParameters = new HashMap<String, Object>();
-		evaluacionService.listarEvaluacion(objProgramacionEvaluacion,
-				outParameters);
-		lstEval = (List<Evaluacion>) outParameters.get("lstEva");
+		if (!objProgramacionEvaluacion.getnCodProEva().equals(-1)) {
+			evaluacionService.listarEvaluacion(objProgramacionEvaluacion,
+					outParameters);
+			lstEval = (List<Evaluacion>) outParameters.get("lstEva");
+		} else {
+			inicializarProgramacionEvaluacion();
+			System.out.println("NUEVO");
+		}
+		vista = "pretty:programarEvaluacion";
 		return vista;
 	}
 
@@ -104,100 +112,171 @@ public class ProgramacionEvaluacionManagedBean {
 		}
 	}
 
-	public String actualizarProgramacionEvaluacion() {
-		String vista = null;
-		HashMap<String, Object> outParametersProgramacion = new HashMap<String, Object>();
-		HashMap<String, Object> outParametersEvaluacion = new HashMap<String, Object>();
-		HashMap<String, Object> outParametersPregunta = new HashMap<String, Object>();
-		HashMap<String, Object> outParametersOpcion = new HashMap<String, Object>();
-		HashMap<String, Object> outParametersUsuEva = new HashMap<String, Object>();
-		HashMap<String, Object> outParametersDetEva = new HashMap<String, Object>();
+	public void actualizarProgramacionEvaluacion() {
+		String mensaje = "";
+		int tipo = 0;
+		try {
 
-		objProgramacionEvaluacion.setnCodUniApr(unidadAprendisaje
-				.getCodUniApr());
-		objProgramacionEvaluacion.setnCodCur(unidadAprendisaje.getCodCur());
-
-		if (!objProgramacionEvaluacion.getnCodProEva().equals(-1)) {
-			evaluacionService.actualizarProgramacionEvaluacion(
-					objProgramacionEvaluacion, outParametersProgramacion);
-			for (Evaluacion eval : lstEvalQuitar) {
-				evaluacionService.eliminarEvaluacion(eval,
-						outParametersEvaluacion);
+			if (objProgramacionEvaluacion.getdFinProEva().equals(null)
+					|| objProgramacionEvaluacion.getdFinProEva().equals("")) {
+				mensaje = "Ingrese una fecha y hora de inicio de la programación";
+				tipo = 1;
+			} else if (objProgramacionEvaluacion.getdFfiProEva().equals(null)
+					|| objProgramacionEvaluacion.getdFfiProEva().equals("")) {
+				mensaje = "Ingrese una fecha y hora de fin de la programación";
+				tipo = 1;
+			} else if (Utilitario.parteFecha(
+					objProgramacionEvaluacion.getdFinProEva(), "dd/MM/yyyy")
+					.before(Utilitario.fechaActual())) {
+				mensaje = "La fecha de inicio no puede ser menor que la fecha actual";
+				tipo = 1;
+			} else if (!Utilitario.parteFecha(
+					objProgramacionEvaluacion.getdFinProEva(), "dd/MM/yyyy")
+					.equals(Utilitario.parteFecha(
+							objProgramacionEvaluacion.getdFfiProEva(),
+							"dd/MM/yyyy"))
+					) {
+				mensaje = "El día del examen debe ser el mismo tanto en fecha de inicio como en fecha final";
+				tipo = 1;
+			} 
+			else if(Utilitario.parteFecha(
+					objProgramacionEvaluacion.getdFinProEva(), "hh/mm/ss")
+					.equals(Utilitario.parteFecha(
+							objProgramacionEvaluacion.getdFfiProEva(),
+							"hh/mm/ss"))){
+				
+				mensaje = "La hora inicio del examen no puede ser igual que la hora final del examen";
+				tipo = 1;
+				
 			}
+			else if(Utilitario.parteFecha(
+					objProgramacionEvaluacion.getdFinProEva(), "hh/mm/ss")
+					.after(Utilitario.parteFecha(
+							objProgramacionEvaluacion.getdFfiProEva(),
+							"hh/mm/ss"))){
+				
+				mensaje = "La hora inicio del examen no puede ser mayor que la hora final del examen";
+				tipo = 1;
+				
+			}
+			else if (lstEval.size() <= 0) {
+				mensaje = "Por favor debe generar las evaluaciones para los participantes";
+				tipo = 1;
+			} else {
 
-		} else {
-			evaluacionService.insertarProgramacionEvaluacion(unidadAprendisaje,
-					objProgramacionEvaluacion, outParametersProgramacion);
-			objProgramacionEvaluacion
-					.setnCodProEva((Integer) outParametersProgramacion
-							.get("codProEva"));
+				HashMap<String, Object> outParametersProgramacion = new HashMap<String, Object>();
+				HashMap<String, Object> outParametersEvaluacion = new HashMap<String, Object>();
+				HashMap<String, Object> outParametersPregunta = new HashMap<String, Object>();
+				HashMap<String, Object> outParametersOpcion = new HashMap<String, Object>();
+				HashMap<String, Object> outParametersUsuEva = new HashMap<String, Object>();
+				HashMap<String, Object> outParametersDetEva = new HashMap<String, Object>();
 
-			preguntaService.listarPreguntas(unidadAprendisaje,
-					outParametersPregunta);
-			lstPregunta = (List<Pregunta>) outParametersPregunta.get("lstCur");
-			Random random = new Random();
-			int tamanoListaPregunta = 0;
-			tamanoListaPregunta = lstPregunta.size();
+				objProgramacionEvaluacion.setnCodUniApr(unidadAprendisaje
+						.getCodUniApr());
+				objProgramacionEvaluacion.setnCodCur(unidadAprendisaje
+						.getCodCur());
 
-			UsuarioPorEvaluacion usuarioEvaluacion = null;
-			UsuarioPorCurso usuarioPorCurso = null;
-			DetalleEvaluacion detalleEvaluacion = null;
-			int i = 0;
-			for (Evaluacion eval : lstEval) {
-				eval.setnCodProEva(objProgramacionEvaluacion.getnCodProEva());
-				eval.setvDesEva("Evaluacion de Java " + i);
-				evaluacionService.insertarEvaluacion(eval,
-						outParametersEvaluacion);
-				eval.setnCodEva((Integer) outParametersEvaluacion
-						.get("nCodEva"));
-				usuarioPorCurso = new UsuarioPorCurso();
-				usuarioPorCurso = lstUsuarioPorCurso.get(i);
+				if (!objProgramacionEvaluacion.getnCodProEva().equals(-1)) {
+					evaluacionService.actualizarProgramacionEvaluacion(
+							objProgramacionEvaluacion,
+							outParametersProgramacion);
+					for (Evaluacion eval : lstEvalQuitar) {
+						evaluacionService.eliminarEvaluacion(eval,
+								outParametersEvaluacion);
+					}
 
-				usuarioEvaluacion = new UsuarioPorEvaluacion();
-				usuarioEvaluacion.setnCodEva(eval.getnCodEva());
-				usuarioEvaluacion.setnCodPer(usuarioPorCurso.getnCodPer());
-				usuarioEvaluacion.setnCodProEva(objProgramacionEvaluacion
-						.getnCodProEva());
-				usuarioEvaluacion.setnCodUsu(usuarioPorCurso.getnCodUsu());
-				evaluacionService.insertarUsuarioPorEvaluacion(
-						usuarioEvaluacion, outParametersUsuEva);
+				} else {
+					evaluacionService.insertarProgramacionEvaluacion(
+							unidadAprendisaje, objProgramacionEvaluacion,
+							outParametersProgramacion);
+					objProgramacionEvaluacion
+							.setnCodProEva((Integer) outParametersProgramacion
+									.get("codProEva"));
 
-				detalleEvaluacion = new DetalleEvaluacion();
-				detalleEvaluacion.setnCodEva(eval.getnCodEva());
-				detalleEvaluacion.setnCodProEva(objProgramacionEvaluacion
-						.getnCodProEva());
+					preguntaService.listarPreguntas(unidadAprendisaje,
+							outParametersPregunta);
+					lstPregunta = (List<Pregunta>) outParametersPregunta
+							.get("lstCur");
+					Random random = new Random();
+					int tamanoListaPregunta = 0;
+					tamanoListaPregunta = lstPregunta.size();
 
-				if (tamanoListaPregunta > 0) {
+					UsuarioPorEvaluacion usuarioEvaluacion = null;
+					UsuarioPorCurso usuarioPorCurso = null;
+					DetalleEvaluacion detalleEvaluacion = null;
+					int i = 0;
+					for (Evaluacion eval : lstEval) {
+						eval.setnCodProEva(objProgramacionEvaluacion
+								.getnCodProEva());
+						eval.setvDesEva("Evaluacion de Java " + i);
+						evaluacionService.insertarEvaluacion(eval,
+								outParametersEvaluacion);
+						eval.setnCodEva((Integer) outParametersEvaluacion
+								.get("nCodEva"));
+						usuarioPorCurso = new UsuarioPorCurso();
+						usuarioPorCurso = lstUsuarioPorCurso.get(i);
 
-					for (int j = 0; j < 10; j++) { // 10 PREGUNTAS ALEATORIAS
-													// POR ALUMNO PARA EXAMEN
-						Pregunta preg = lstPregunta.get(random
-								.nextInt(tamanoListaPregunta));
+						usuarioEvaluacion = new UsuarioPorEvaluacion();
+						usuarioEvaluacion.setnCodEva(eval.getnCodEva());
+						usuarioEvaluacion.setnCodPer(usuarioPorCurso
+								.getnCodPer());
+						usuarioEvaluacion
+								.setnCodProEva(objProgramacionEvaluacion
+										.getnCodProEva());
+						usuarioEvaluacion.setnCodUsu(usuarioPorCurso
+								.getnCodUsu());
+						evaluacionService.insertarUsuarioPorEvaluacion(
+								usuarioEvaluacion, outParametersUsuEva);
 
-						preguntaService.listarOpciones(preg,
-								outParametersOpcion);
-						lstOpcion = (List<Opcion>) outParametersOpcion
-								.get("lstCur");
+						detalleEvaluacion = new DetalleEvaluacion();
+						detalleEvaluacion.setnCodEva(eval.getnCodEva());
+						detalleEvaluacion
+								.setnCodProEva(objProgramacionEvaluacion
+										.getnCodProEva());
 
-						for (Opcion o : lstOpcion) {
-							detalleEvaluacion.setnCodPre(preg.getCodPre());
-							detalleEvaluacion.setnCodOpc(o.getCodOpc());
+						if (tamanoListaPregunta > 0) {
+
+							for (int j = 0; j < 10; j++) { // 10 PREGUNTAS
+															// ALEATORIAS
+															// POR ALUMNO PARA
+															// EXAMEN
+								Pregunta preg = lstPregunta.get(random
+										.nextInt(tamanoListaPregunta));
+
+								preguntaService.listarOpciones(preg,
+										outParametersOpcion);
+								lstOpcion = (List<Opcion>) outParametersOpcion
+										.get("lstCur");
+
+								for (Opcion o : lstOpcion) {
+									detalleEvaluacion.setnCodPre(preg
+											.getCodPre());
+									detalleEvaluacion.setnCodOpc(o.getCodOpc());
+								}
+
+							}
+
 						}
+
+						evaluacionService.insertarDetalleEvaluacion(
+								detalleEvaluacion, outParametersDetEva);
+
+						i++;
 
 					}
 
 				}
 
-				evaluacionService.insertarDetalleEvaluacion(detalleEvaluacion,
-						outParametersDetEva);
-
-				i++;
-
 			}
 
+		} catch (Exception ex) {			
+			mensaje = "Error genérico";
+			tipo = 1;
+
+		} finally {
+			Utilitario.showFacesMessage(mensaje, tipo);
 		}
 
-		return vista;
 	}
 
 	public void quitarEvaluacion() {

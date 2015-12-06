@@ -82,7 +82,7 @@
 									</p:column>
 									<p:column>
 										<p:calendar locale="es" showOn="button"
-											pattern="dd/MM/yyyy hh:mm:ss" readonlyInput="true"
+											pattern="dd/MM/yyyy HH:mm:ss" readonlyInput="true"
 											value="#{programacionEvaluacionManagedBean.objProgramacionEvaluacion.dFinProEva}"
 											maxlength="10" size="10">
 										</p:calendar>
@@ -96,7 +96,7 @@
 
 									</p:column>
 									<p:column>
-										<p:calendar locale="es" pattern="dd/MM/yyyy hh:mm:ss"
+										<p:calendar locale="es" pattern="dd/MM/yyyy HH:mm:ss"
 											showOn="button" readonlyInput="true"
 											value="#{programacionEvaluacionManagedBean.objProgramacionEvaluacion.dFfiProEva}"
 											maxlength="10" size="10">
@@ -166,13 +166,16 @@
 						<p:column>
 							<center>
 								<p:commandButton value="#{etiquetas.cl_progeval_grabar}"
-									action="#{programacionEvaluacionManagedBean.actualizarProgramacionEvaluacion}"></p:commandButton>
+									action="#{programacionEvaluacionManagedBean.actualizarProgramacionEvaluacion}"
+									update=":frmProgEval:mnsProgEva"></p:commandButton>
 								<p:commandButton value="#{etiquetas.cl_admeval_cancelar}"></p:commandButton>
 							</center>
 						</p:column>
 					</p:row>
 
 				</p:panelGrid>
+				
+				<p:messages id="mnsProgEva"></p:messages>
 
 
 

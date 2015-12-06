@@ -180,12 +180,11 @@ public class PreguntaManagedBean {
 			mensaje = "Error genérico";
 			tipo = 1;
 
+		}finally{
+			Utilitario.showFacesMessage(mensaje, tipo);
 		}
 
-		// vista = mostrarPregunta();
-		Utilitario.showFacesMessage(mensaje, tipo);
 
-		// return vista;
 	}
 
 	public void quitarOpcion() {

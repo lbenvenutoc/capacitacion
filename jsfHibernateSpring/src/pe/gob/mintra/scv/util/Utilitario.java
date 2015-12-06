@@ -84,6 +84,19 @@ public class Utilitario {
 		return fecAct;
 
 	}
+	
+	public static Date parteFecha(Date fecha,String format) {
+		Date fecAct = new Date();
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			fecAct = sdf.parse(sdf.format(fecha));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		return fecAct;
+
+	}
 
 	public static void refrescarVista() {
 		FacesContext context = FacesContext.getCurrentInstance();
