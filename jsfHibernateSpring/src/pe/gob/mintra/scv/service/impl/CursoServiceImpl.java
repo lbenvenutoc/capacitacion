@@ -18,51 +18,7 @@ public class CursoServiceImpl implements CursoService{
     @Autowired
     private CursoDao cursoDao;
     
-	public CursoDao getCursoDao() {
-		return cursoDao;
-	}
-
-	public void setCursoDao(CursoDao cursoDao) {
-		this.cursoDao = cursoDao;
-	}
-
-
-
-	//@Transactional(readOnly = true)
-    @Override
-    public List<Curso> listarCursos() {
-        return cursoDao.listarCursos();
-    }
-    
-    
-    
-    //@Transactional
-    //@PreAuthorize("hasAnyRole('administradores','usuarios')")
-    @Override
-    public void grabarCurso(Curso objCurso) {
-    	cursoDao.grabarCurso(objCurso);
-    }
-    
-    //@Transactional(readOnly = true)
-    @Override
-    public Curso obtenerCurso(Curso objCurso) {
-        return cursoDao.obtenerCurso(objCurso);
-    }
-    
-    //@Transactional
-    //@PreAuthorize("hasRole('administradores')")
-    @Override
-    public void actualizarCurso(Curso objCurso) {
-    	cursoDao.actualizarCurso(objCurso);
-    }
-    
-    //@Transactional
-    //@PreAuthorize("hasRole('administradores')")
-    @Override
-    public void eliminarCurso(Curso objCurso) {
-    	cursoDao.eliminarCurso(objCurso);
-    }
-    
+	
     
     
     

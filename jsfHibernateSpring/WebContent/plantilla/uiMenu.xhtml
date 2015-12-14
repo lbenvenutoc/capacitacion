@@ -1,27 +1,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"      
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
-    <ui:composition>
-        <h:form style="height: 100%; width: 100%;" >
-            <p:menu style="margin: auto; width: 180px;">  
-                <p:submenu label="#{etiquetas.cl_submenu_curso}">  
-                    <p:menuitem action="#{cursoManagedBean.listarCursos}" value="#{etiquetas.cl_menuitem_curso_listado}" icon="ui-icon-home" />  
-                    <p:menuitem action="#{cursoManagedBean.nuevoCurso}" value="#{etiquetas.cl_menuitem_curso_nuevo}" icon="ui-icon-home"/>  
-                    <p:menuitem action="#{programacionEvaluacionManagedBean.programarEvaluacion}" value="#{etiquetas.cl_menuitem_admeval}" icon="ui-icon-home"/> 
-                    <p:menuitem action="#{preguntaManagedBean.administrarPregunta}" value="#{etiquetas.cl_menuitem_admpreg}" icon="ui-icon-home"/> 
-                     <p:menuitem action="#{programacionEvaluacionManagedBean.rendirEvaluacion}" value="#{etiquetas.cl_menuitem_evaluacion}" icon="ui-icon-home"/>
-                     <p:menuitem action="#{foroManagedBean.listarForo}" value="Mantenimiento Foro" icon="ui-icon-home"/>   
-                     <p:menuitem action="#{tipoForoManagedBean.listarTipoForo}" value="Mantenimiento Tipo Foro" icon="ui-icon-home"/>
-                     <p:menuitem action="#{foroManagedBean.usuarioXForo}" 
-                     value="Usuario X Foro" icon="ui-icon-home"/>
-                </p:submenu>                  
-                <p:submenu label="Frameworks">  
-                    <p:menuitem value="PrimeFaces" url="http://www.primefaces.org" icon="ui-icon-home" target="_blank"/>                      
-                    <p:menuitem value="Spring" url="http://spring.io/" icon="ui-icon-home" target="_blank"/>  
-                    <p:menuitem value="Log4j" url="http://logging.apache.org/log4j/1.2/" icon="ui-icon-home" target="_blank"/>  
-                </p:submenu>  
-            </p:menu>                                                
-        </h:form> 
-    </ui:composition>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<h:form style="height: 100%; width: 100%;">
+		<p:menu style="margin: auto; width: 180px;">
+			<p:submenu label="#{etiquetas.cl_submenu_curso}">
+				<p:menuitem
+					action="#{programacionEvaluacionManagedBean.programarEvaluacion}"
+					value="#{etiquetas.cl_menuitem_admeval}" icon="ui-icon-home" />
+				<p:menuitem action="#{preguntaManagedBean.administrarPregunta}"
+					value="#{etiquetas.cl_menuitem_admpreg}" icon="ui-icon-home" />
+				<p:menuitem
+					action="#{programacionEvaluacionManagedBean.rendirEvaluacion}"
+					value="#{etiquetas.cl_menuitem_evaluacion}" icon="ui-icon-home" />
+				<p:menuitem action="#{foroManagedBean.listarForo}"
+					value="Mantenimiento Foro" icon="ui-icon-home" />
+				<p:menuitem action="#{tipoForoManagedBean.listarTipoForo}"
+					value="Mantenimiento Tipo Foro" icon="ui-icon-home" />
+				<p:menuitem action="#{foroManagedBean.usuarioXForo}"
+					value="Usuario X Foro" icon="ui-icon-home" />
+			</p:submenu>
+			<p:submenu label="Frameworks">
+				<p:menuitem value="PrimeFaces" url="http://www.primefaces.org"
+					icon="ui-icon-home" target="_blank" />
+				<p:menuitem value="Spring" url="http://spring.io/"
+					icon="ui-icon-home" target="_blank" />
+				<p:menuitem value="Log4j" url="http://logging.apache.org/log4j/1.2/"
+					icon="ui-icon-home" target="_blank" />
+			</p:submenu>
+		</p:menu>
+	</h:form>
+</ui:composition>
 </html>

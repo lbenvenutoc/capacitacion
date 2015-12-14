@@ -5,6 +5,12 @@ import java.io.Serializable;
 
 public class Curso implements Serializable {
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6370353372526182828L;
+
 	private Integer codigoCurso;
 
 	private String nombreCurso;

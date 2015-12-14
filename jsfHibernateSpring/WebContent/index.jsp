@@ -6,7 +6,7 @@
     	
   <body>
   
-    	<jsp:forward page="listarCurso" />
+    	<jsp:forward page="mostrarPrincipal" />
     	
   </body>
 </html>
