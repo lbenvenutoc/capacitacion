@@ -28,4 +28,10 @@ public class CursoServiceImpl implements CursoService {
 		
 	}
 
+	@Override
+	public void actualizarCurso(Curso curso, Map<String, Object> outParameters) {
+		cursoDao.actualizarCurso(curso, outParameters);
+		
+	}
+
 }

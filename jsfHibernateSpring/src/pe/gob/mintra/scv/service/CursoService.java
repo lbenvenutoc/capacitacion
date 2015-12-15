@@ -11,6 +11,9 @@ public interface CursoService {
 	public void insertarCurso(
 			Curso curso,
 			Map<String, Object> outParameters);
+	public void actualizarCurso(
+			Curso curso,
+			Map<String, Object> outParameters);
     
 
 }

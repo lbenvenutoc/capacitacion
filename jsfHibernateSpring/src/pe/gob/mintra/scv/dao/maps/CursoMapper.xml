@@ -10,26 +10,45 @@
 		<result column="N_ESTCUR" property="nEstCur" />
 	</resultMap>
 
-	<select id="listarCurso" statementType="CALLABLE"
-		resultMap="ResultMapCurso">
+	<select id="listarCurso" statementType="CALLABLE" resultMap="ResultMapCurso">
 		{call PKG_CURSO.SP_LSTCUR(
-		#{curso.vNomCur},		
+		#{curso.vNomCur},
 		#{outParameters.lstCur,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapCurso},
 		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
 		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
 		)}
 	</select>
-	
+
 	<select id="insertarCurso" statementType="CALLABLE">
-		{call PKG_CURSO.SP_INSCUR(
+		{call
+		PKG_CURSO.SP_INSCUR(
 		#{curso.vNomCur},
 		#{curso.vRutPres},
 		#{curso.vRutSil},
 		#{curso.vRutCro},
-		#{curso.dFecIniCur},	
-		#{curso.dFecFinCur},			
+		#{curso.dFecIniCur},
+		#{curso.dFecFinCur},
+		#{curso.nEstCur},
 		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
-		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+	<select id="actualizarCurso" statementType="CALLABLE">
+		{call
+		PKG_CURSO.SP_ACTCUR(
+		#{curso.nCodCur},
+		#{curso.vNomCur},
+		#{curso.vRutPres},
+		#{curso.vRutSil},
+		#{curso.vRutCro},
+		#{curso.dFecIniCur},
+		#{curso.dFecFinCur},
+		#{curso.nEstCur},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
 		)}
 	</select>
 

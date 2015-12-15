@@ -18,12 +18,14 @@ public class Curso implements Serializable {
 	private Date dFecIniCur;
 	private Date dFecFinCur;
 	private Integer nEstCur;
+	private boolean estaHabilitado;
 
 	public Curso() {
 		nCodCur = -1;
 		vRutPres = "";
 		vRutSil = "";
 		vRutCro = "";
+		estaHabilitado = true;
 	}
 
 	public Integer getnCodCur() {
@@ -89,5 +91,14 @@ public class Curso implements Serializable {
 	public void setnEstCur(Integer nEstCur) {
 		this.nEstCur = nEstCur;
 	}
+
+	public boolean isEstaHabilitado() {
+		return estaHabilitado;
+	}
+
+	public void setEstaHabilitado(boolean estaHabilitado) {
+		this.estaHabilitado = estaHabilitado;
+	}
+	
 
 }

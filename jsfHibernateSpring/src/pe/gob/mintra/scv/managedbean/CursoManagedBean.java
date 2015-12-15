@@ -75,15 +75,22 @@ public class CursoManagedBean implements Serializable {
 		HashMap<String, Object> outParametersCurso = new HashMap<String, Object>();
 		String vista = null;
 
+		if (objCurso.isEstaHabilitado()) {
+			objCurso.setnEstCur(1);
+		} else {
+			objCurso.setnEstCur(0);
+		}
+
 		if (objCurso.getnCodCur().equals(-1)) {
 			cursoService.insertarCurso(objCurso, outParametersCurso);
 			vista = buscarCurso();
 		} else {
-
+			cursoService.actualizarCurso(objCurso, outParametersCurso);
+			vista = mostrarCurso();
 		}
 
 		return vista;
-		
+
 	}
 
 	public String buscarCurso() {
@@ -91,6 +98,13 @@ public class CursoManagedBean implements Serializable {
 		HashMap<String, Object> outParametersCurso = new HashMap<String, Object>();
 		cursoService.listarCurso(objCursoParam, outParametersCurso);
 		lstCurso = (List<Curso>) outParametersCurso.get("lstCur");
+		for (Curso c : lstCurso) {
+			if (c.getnEstCur() == 1) {
+				c.setEstaHabilitado(true);
+			} else {
+				c.setEstaHabilitado(false);
+			}
+		}
 		objCurso = new Curso();
 		vista = "pretty:mostrarAdministrarCurso";
 		return vista;
