@@ -2,71 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="pe.gob.mintra.scv.dao.CursoDao">
 
-	<resultMap id="BaseResultMap" type="Curso">
-
-		<id column="idcurso" property="codigoCurso" />
-		<result column="nombrecurso" property="nombreCurso" />
-		<result column="descripcioncurso" property="descripcionCurso" />
-		<result column="tipocurso" property="tipoCurso" />
-		<result column="modalidadpago" property="modalidadPago" />
-		<result column="duracion" property="duracion" />
-		<result column="prerequisitos" property="preRequisitos" />
-		<result column="creditos" property="creditos" />
-
+	<resultMap id="ResultMapCurso" type="Curso">
+		<id column="N_CODCUR" property="nCodCur" />
+		<result column="V_NOMCUR" property="vNomCur" />
+		<result column="D_FECINICUR" property="dFecIniCur" />
+		<result column="D_FECFINCUR" property="dFecFinCur" />
+		<result column="N_ESTCUR" property="nEstCur" />
 	</resultMap>
 
-	<select id="listarCursos" resultMap="BaseResultMap">
-		select idcurso,
-		nombrecurso,
-		descripcioncurso,
-		tipocurso,
-		modalidadpago,
-		duracion,
-		prerequisitos,
-		creditos
-		from curso
+	<select id="listarCurso" statementType="CALLABLE"
+		resultMap="ResultMapCurso">
+		{call PKG_CURSO.SP_LSTCUR(
+		#{curso.vNomCur},		
+		#{outParameters.lstCur,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapCurso},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
 	</select>
 	
-	<select id="obtenerCurso" resultMap="BaseResultMap" parameterType="Curso">
-		select idcurso,
-		nombrecurso,
-		descripcioncurso,
-		tipocurso,
-		modalidadpago,
-		duracion,
-		prerequisitos,
-		creditos
-		from curso
-		where idcurso=#{codigoCurso}
+	<select id="insertarCurso" statementType="CALLABLE">
+		{call PKG_CURSO.SP_INSCUR(
+		#{curso.vNomCur},
+		#{curso.vRutPres},
+		#{curso.vRutSil},
+		#{curso.vRutCro},
+		#{curso.dFecIniCur},	
+		#{curso.dFecFinCur},			
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
 	</select>
-	
-	<update id="actualizarCurso" parameterType="Curso">
-	    update curso
-	    <set>
-			<if test="nombreCurso != null">
-				nombrecurso=#{nombreCurso},
-			</if>
-			<if test="descripcionCurso != null">
-				descripcioncurso=#{descripcionCurso},
-			</if>
-			<if test="tipoCurso != null">
-				tipocurso=#{tipoCurso},
-			</if>
-			<if test="modalidadPago != null">
-				modalidadpago=#{modalidadPago},
-			</if>
-			<if test="duracion != null">
-				duracion=#{duracion},
-			</if>
-			<if test="preRequisitos != null">
-				prerequisitos=#{preRequisitos},
-			</if>
-			<if test="creditos != null">
-				creditos=#{creditos},
-			</if>
-		</set>
-		where idcurso=#{codigoCurso}
-	</update>
 
 
 

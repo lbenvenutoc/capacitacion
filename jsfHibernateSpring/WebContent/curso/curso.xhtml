@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/plantilla/uiMaestro.xhtml">
+	<ui:define name="app">
+		<div align="center">
+
+			<h:form id="frmRegistrarCurso">
+
+				<p:panel header="#{etiquetas['cl_cursos_titulo_registro']}"
+					style="width: 50%; position: absolute; top: 15%; right: 25%;">
+					<p:panelGrid>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{etiquetas.cl_cursos_registro_nombre}: "></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{cursoManagedBean.objCurso.vNomCur}"></p:inputText>
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{etiquetas.cl_cursos_registro_fecini}: "></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:calendar value="#{cursoManagedBean.objCurso.dFecIniCur}"
+									locale="es" pattern="dd/MM/yyyy"></p:calendar>
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{etiquetas.cl_cursos_registro_fecfin}: "></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:calendar value="#{cursoManagedBean.objCurso.dFecFinCur}"
+									locale="es" pattern="dd/MM/yyyy"></p:calendar>
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column colspan="2" style="text-align: center;">
+								<p:commandButton
+									value="#{etiquetas.cl_cursos_registro_boton_grabar}"
+									action="#{cursoManagedBean.grabarCurso}"></p:commandButton>
+								<p:commandButton
+									value="#{etiquetas.cl_cursos_registro_boton_regresar}"
+									action="#{cursoManagedBean.buscarCurso}"></p:commandButton>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+					<p:messages id="message"></p:messages>
+				</p:panel>
+
+			</h:form>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+</html>
+

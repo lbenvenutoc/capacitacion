@@ -5,29 +5,36 @@
 <ui:composition>
 	<h:form style="height: 100%; width: 100%;">
 		<p:menu style="margin: auto; width: 180px;">
-			<p:submenu label="#{etiquetas.cl_submenu_curso}">
+			<p:submenu label="#{etiquetas.cl_cursos_titulo_listado}">
+
+				<p:menuitem
+					action="#{cursoManagedBean.mostrarAdministrarCurso}"
+					value="#{etiquetas.cl_cursos_titulo_listado}" icon="ui-icon-home" />
+
+			</p:submenu>
+			<p:submenu label="#{etiquetas.cl_submenu_pregunta}">
+				<p:menuitem action="#{preguntaManagedBean.administrarPregunta}"
+					value="#{etiquetas.cl_menuitem_admpreg}" icon="ui-icon-home" />
+
+			</p:submenu>
+			<p:submenu label="#{etiquetas.cl_submenu_evaluacion}">
 				<p:menuitem
 					action="#{programacionEvaluacionManagedBean.programarEvaluacion}"
 					value="#{etiquetas.cl_menuitem_admeval}" icon="ui-icon-home" />
-				<p:menuitem action="#{preguntaManagedBean.administrarPregunta}"
-					value="#{etiquetas.cl_menuitem_admpreg}" icon="ui-icon-home" />
+
+			</p:submenu>
+			<p:submenu label="#{etiquetas.cl_submenu_reneva}">
 				<p:menuitem
 					action="#{programacionEvaluacionManagedBean.rendirEvaluacion}"
 					value="#{etiquetas.cl_menuitem_evaluacion}" icon="ui-icon-home" />
+			</p:submenu>
+			<p:submenu label="#{etiquetas.cl_submenu_foro}">
 				<p:menuitem action="#{foroManagedBean.listarForo}"
 					value="Mantenimiento Foro" icon="ui-icon-home" />
 				<p:menuitem action="#{tipoForoManagedBean.listarTipoForo}"
 					value="Mantenimiento Tipo Foro" icon="ui-icon-home" />
 				<p:menuitem action="#{foroManagedBean.usuarioXForo}"
 					value="Usuario X Foro" icon="ui-icon-home" />
-			</p:submenu>
-			<p:submenu label="Frameworks">
-				<p:menuitem value="PrimeFaces" url="http://www.primefaces.org"
-					icon="ui-icon-home" target="_blank" />
-				<p:menuitem value="Spring" url="http://spring.io/"
-					icon="ui-icon-home" target="_blank" />
-				<p:menuitem value="Log4j" url="http://logging.apache.org/log4j/1.2/"
-					icon="ui-icon-home" target="_blank" />
 			</p:submenu>
 		</p:menu>
 	</h:form>

@@ -1,104 +1,93 @@
 package pe.gob.mintra.scv.model;
 
 import java.io.Serializable;
-
+import java.util.Date;
 
 public class Curso implements Serializable {
-
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6370353372526182828L;
 
-	private Integer codigoCurso;
-
-	private String nombreCurso;
-
-	private String descripcionCurso;
-
-	private String tipoCurso;
-
-	private String modalidadPago;
-
-	private String duracion;
-
-	private String preRequisitos;
-
-	private Integer creditos;
+	private Integer nCodCur;
+	private String vNomCur;
+	private String vRutPres;
+	private String vRutSil;
+	private String vRutCro;
+	private Date dFecIniCur;
+	private Date dFecFinCur;
+	private Integer nEstCur;
 
 	public Curso() {
-		codigoCurso = -1;
+		nCodCur = -1;
+		vRutPres = "";
+		vRutSil = "";
+		vRutCro = "";
 	}
 
-	public Integer getCodigoCurso() {
-		return codigoCurso;
+	public Integer getnCodCur() {
+		return nCodCur;
 	}
 
-	public void setCodigoCurso(Integer codigoCurso) {
-		this.codigoCurso = codigoCurso;
+	public void setnCodCur(Integer nCodCur) {
+		this.nCodCur = nCodCur;
 	}
 
-	public String getDescripcionCurso() {
-		return descripcionCurso;
+	public String getvNomCur() {
+		return vNomCur;
 	}
 
-	public void setDescripcionCurso(String descripcionCurso) {
-		this.descripcionCurso = descripcionCurso;
+	public void setvNomCur(String vNomCur) {
+		this.vNomCur = vNomCur;
 	}
 
-	public String getNombreCurso() {
-		return nombreCurso;
+	public String getvRutPres() {
+		return vRutPres;
 	}
 
-	public void setNombreCurso(String nombreCurso) {
-		this.nombreCurso = nombreCurso;
+	public void setvRutPres(String vRutPres) {
+		this.vRutPres = vRutPres;
 	}
 
-	public String getTipoCurso() {
-		return tipoCurso;
+	public String getvRutSil() {
+		return vRutSil;
 	}
 
-	public void setTipoCurso(String tipoCurso) {
-		this.tipoCurso = tipoCurso;
+	public void setvRutSil(String vRutSil) {
+		this.vRutSil = vRutSil;
 	}
 
-	public String getModalidadPago() {
-		return modalidadPago;
+	public String getvRutCro() {
+		return vRutCro;
 	}
 
-	public void setModalidadPago(String modalidadPago) {
-		this.modalidadPago = modalidadPago;
+	public void setvRutCro(String vRutCro) {
+		this.vRutCro = vRutCro;
 	}
 
-	public String getDuracion() {
-		return duracion;
+	public Date getdFecIniCur() {
+		return dFecIniCur;
 	}
 
-	public void setDuracion(String duracion) {
-		this.duracion = duracion;
+	public void setdFecIniCur(Date dFecIniCur) {
+		this.dFecIniCur = dFecIniCur;
 	}
 
-	public String getPreRequisitos() {
-		return preRequisitos;
+	public Date getdFecFinCur() {
+		return dFecFinCur;
 	}
 
-	public void setPreRequisitos(String preRequisitos) {
-		this.preRequisitos = preRequisitos;
+	public void setdFecFinCur(Date dFecFinCur) {
+		this.dFecFinCur = dFecFinCur;
 	}
 
-	public Integer getCreditos() {
-		return creditos;
+	public Integer getnEstCur() {
+		return nEstCur;
 	}
 
-	public void setCreditos(Integer creditos) {
-		this.creditos = creditos;
-	}
-
-	@Override
-	public String toString() {
-		return "Curso{" + "codigoCurso=" + codigoCurso + ", descripcionCurso="
-				+ descripcionCurso + '}';
+	public void setnEstCur(Integer nEstCur) {
+		this.nEstCur = nEstCur;
 	}
 
 }

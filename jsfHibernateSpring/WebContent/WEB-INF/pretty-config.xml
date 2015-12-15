@@ -10,7 +10,16 @@
 	</url-mapping>
 
 
-
+	<!-- CURSO -->	
+	<url-mapping id="mostrarAdministrarCurso">
+		<pattern value="/mostrarAdministrarCurso" />
+		<view-id value="/faces/curso/administrarCurso.xhtml" />
+	</url-mapping>
+	<url-mapping id="mostrarCurso">
+		<pattern value="/mostrarCurso" />
+		<view-id value="/faces/curso/curso.xhtml" />
+	</url-mapping>
+	
 
 	<!-- PROGRAMACION DE EVALUACION -->
 

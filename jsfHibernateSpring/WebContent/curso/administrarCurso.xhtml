@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/plantilla/uiMaestro.xhtml">
+	<ui:define name="app">
+		<div align="center">
+			<h1>#{etiquetas.cl_cursos_titulo_listado}</h1>
+
+
+			<h:form id="frmBuscarCurso">
+				<p:panelGrid style="border: 0">
+					<p:row>
+						<p:column>
+							<p:outputLabel
+								value="#{etiquetas.cl_busqueda_cursos_descripcion}"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:inputText value="#{cursoManagedBean.objCursoParam.vNomCur}"></p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:commandButton
+								value="#{etiquetas.cl_busqueda_cursos_boton_buscar}"
+								action="#{cursoManagedBean.buscarCurso}"
+								update=":frmListaCursos:tablaCursos"></p:commandButton>
+
+							<p:commandButton
+								value="#{etiquetas.cl_busqueda_cursos_boton_nuevo}"
+								action="#{cursoManagedBean.mostrarCurso}"
+								></p:commandButton>
+						</p:column>
+						<p:column>
+
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:form>
+
+
+			<h:form id="frmListaCursos">
+
+				<p:panelGrid style="border: 0">
+					<p:row>
+						<p:column>
+							<p:dataTable id="tablaCursos"
+								value="#{cursoManagedBean.lstCurso}" var="objCurso"
+								paginator="true" paginatorPosition="bottom" rows="20">
+
+								<p:column
+									headerText="#{etiquetas.cl_cabecera_tabla_cursos_codigo}">#{objCurso.nCodCur}</p:column>
+								<p:column
+									headerText="#{etiquetas.cl_cabecera_tabla_cursos_descripcion}">#{objCurso.vNomCur}</p:column>
+								<p:column
+									headerText="#{etiquetas.cl_cabecera_tabla_cursos_fecini}">
+									<p:calendar value="#{objCurso.dFecIniCur}" locale="es"
+										pattern="dd/MM/yyyy" disabled="true"></p:calendar>
+								</p:column>
+								<p:column
+									headerText="#{etiquetas.cl_cabecera_tabla_cursos_fecfin}">
+									<p:calendar value="#{objCurso.dFecFinCur}" locale="es"
+										pattern="dd/MM/yyyy" disabled="true"></p:calendar>
+								</p:column>
+								<p:column
+									headerText="#{etiquetas.cl_cabecera_tablaadmeval_actualizar}">
+									<p:commandButton action="#{cursoManagedBean.mostrarCurso}"
+										value="Actualizar">
+										<f:setPropertyActionListener value="#{objCurso}"
+											target="#{cursoManagedBean.objCurso}"></f:setPropertyActionListener>
+									</p:commandButton>
+								</p:column>
+
+							</p:dataTable>
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+			</h:form>
+		</div>
+
+
+
+	</ui:define>
+</ui:composition>
+
+</html>
+
