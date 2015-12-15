@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import pe.gob.mintra.scv.dao.PreguntaDao;
 import pe.gob.mintra.scv.model.Opcion;
 import pe.gob.mintra.scv.model.Pregunta;
-import pe.gob.mintra.scv.model.UnidadAprendisaje;
+import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.service.PreguntaService;
 
 @Service("preguntaService")
@@ -18,7 +18,7 @@ public class PreguntaServiceImpl implements PreguntaService {
 	private PreguntaDao preguntaDao;
 
 	@Override
-	public void listarPreguntas(UnidadAprendisaje unidadAprendisaje,
+	public void listarPreguntas(UnidadAprendizaje unidadAprendisaje,
 			Map<String, Object> outParameters) {
 		preguntaDao.listarPreguntas(unidadAprendisaje, outParameters);
 
@@ -33,7 +33,7 @@ public class PreguntaServiceImpl implements PreguntaService {
 
 	@Override
 	public void insertarPregunta(Pregunta pregunta,
-			UnidadAprendisaje unidadAprendisaje,
+			UnidadAprendizaje unidadAprendisaje,
 			Map<String, Object> outParameters) {
 		preguntaDao
 				.insertarPregunta(pregunta, unidadAprendisaje, outParameters);

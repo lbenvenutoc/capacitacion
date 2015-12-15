@@ -43,13 +43,14 @@
 									locale="es" pattern="dd/MM/yyyy"></p:calendar>
 							</p:column>
 						</p:row>
-						
+
 						<p:row>
 							<p:column>
 								<p:outputLabel value="#{etiquetas.cl_cursos_registro_estado}"></p:outputLabel>
 							</p:column>
 							<p:column>
-								  <p:selectBooleanCheckbox value="#{cursoManagedBean.objCurso.estaHabilitado}" />
+								<p:selectBooleanCheckbox
+									value="#{cursoManagedBean.objCurso.estaHabilitado}" />
 							</p:column>
 						</p:row>
 
@@ -58,6 +59,9 @@
 								<p:commandButton
 									value="#{etiquetas.cl_cursos_registro_boton_grabar}"
 									action="#{cursoManagedBean.grabarCurso}"></p:commandButton>
+								<p:commandButton rendered="#{cursoManagedBean.muestraUnidad}"
+									value="#{etiquetas.cl_cursos_registro_boton_unidad}"
+									action="#{cursoManagedBean.mostrarAdministracionUnidad}"></p:commandButton>
 								<p:commandButton
 									value="#{etiquetas.cl_cursos_registro_boton_regresar}"
 									action="#{cursoManagedBean.buscarCurso}"></p:commandButton>

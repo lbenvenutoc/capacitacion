@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pe.gob.mintra.scv.model.Opcion;
 import pe.gob.mintra.scv.model.Pregunta;
-import pe.gob.mintra.scv.model.UnidadAprendisaje;
+import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.service.PreguntaService;
 import pe.gob.mintra.scv.util.Utilitario;
 
@@ -26,13 +26,13 @@ public class PreguntaManagedBean {
 	private List<Opcion> lstOpcion;
 	private Pregunta objPregunta;
 	private Opcion objOpcion;
-	private UnidadAprendisaje unidadAprendisaje;
+	private UnidadAprendizaje unidadAprendisaje;
 	private List<Opcion> lstOpcionEliminados;
 
 	public PreguntaManagedBean() {
 		inicializarPregunta();
 		inicializarOpcion();
-		unidadAprendisaje = new UnidadAprendisaje();
+		unidadAprendisaje = new UnidadAprendizaje();
 		unidadAprendisaje.setCodCur(1);
 		unidadAprendisaje.setCodUniApr(1);
 		lstOpcionEliminados = new ArrayList<Opcion>();
@@ -231,11 +231,11 @@ public class PreguntaManagedBean {
 		this.objOpcion = objOpcion;
 	}
 
-	public UnidadAprendisaje getUnidadAprendisaje() {
+	public UnidadAprendizaje getUnidadAprendisaje() {
 		return unidadAprendisaje;
 	}
 
-	public void setUnidadAprendisaje(UnidadAprendisaje unidadAprendisaje) {
+	public void setUnidadAprendisaje(UnidadAprendizaje unidadAprendisaje) {
 		this.unidadAprendisaje = unidadAprendisaje;
 	}
 

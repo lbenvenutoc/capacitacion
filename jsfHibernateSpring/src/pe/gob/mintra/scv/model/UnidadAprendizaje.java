@@ -2,7 +2,7 @@ package pe.gob.mintra.scv.model;
 
 import java.io.Serializable;
 
-public class UnidadAprendisaje implements Serializable {
+public class UnidadAprendizaje implements Serializable {
 
 	/**
 	 * 
@@ -10,6 +10,14 @@ public class UnidadAprendisaje implements Serializable {
 	private static final long serialVersionUID = 3236290877235270795L;
 	private Integer codCur;
 	private Integer codUniApr;
+	private boolean estaActivado;
+
+	private String desUni;
+
+	public UnidadAprendizaje() {
+		codUniApr = -1;
+		estaActivado = true;
+	}
 
 	public Integer getCodCur() {
 		return codCur;
@@ -25,6 +33,22 @@ public class UnidadAprendisaje implements Serializable {
 
 	public void setCodUniApr(Integer codUniApr) {
 		this.codUniApr = codUniApr;
+	}
+
+	public boolean isEstaActivado() {
+		return estaActivado;
+	}
+
+	public void setEstaActivado(boolean estaActivado) {
+		this.estaActivado = estaActivado;
+	}
+
+	public String getDesUni() {
+		return desUni;
+	}
+
+	public void setDesUni(String desUni) {
+		this.desUni = desUni;
 	}
 
 }

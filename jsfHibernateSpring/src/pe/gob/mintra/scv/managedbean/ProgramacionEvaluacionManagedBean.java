@@ -14,7 +14,7 @@ import pe.gob.mintra.scv.model.Evaluacion;
 import pe.gob.mintra.scv.model.Opcion;
 import pe.gob.mintra.scv.model.Pregunta;
 import pe.gob.mintra.scv.model.ProgramacionEvaluacion;
-import pe.gob.mintra.scv.model.UnidadAprendisaje;
+import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.model.UsuarioPorCurso;
 import pe.gob.mintra.scv.model.UsuarioPorEvaluacion;
 import pe.gob.mintra.scv.service.EvaluacionService;
@@ -32,7 +32,7 @@ public class ProgramacionEvaluacionManagedBean {
 
 	private List<ProgramacionEvaluacion> lstProgEval;
 	private List<Evaluacion> lstEvalQuitar;
-	private UnidadAprendisaje unidadAprendisaje;
+	private UnidadAprendizaje unidadAprendisaje;
 	private ProgramacionEvaluacion objProgramacionEvaluacion;
 	private Evaluacion objEvaluacion;
 	private List<Evaluacion> lstEval;
@@ -41,7 +41,7 @@ public class ProgramacionEvaluacionManagedBean {
 	private List<UsuarioPorCurso> lstUsuarioPorCurso;
 
 	public ProgramacionEvaluacionManagedBean() {
-		unidadAprendisaje = new UnidadAprendisaje();
+		unidadAprendisaje = new UnidadAprendizaje();
 		unidadAprendisaje.setCodCur(1);
 		unidadAprendisaje.setCodUniApr(1);
 		inicializarProgramacionEvaluacion();

@@ -9,7 +9,7 @@ import pe.gob.mintra.scv.dao.EvaluacionDao;
 import pe.gob.mintra.scv.model.DetalleEvaluacion;
 import pe.gob.mintra.scv.model.Evaluacion;
 import pe.gob.mintra.scv.model.ProgramacionEvaluacion;
-import pe.gob.mintra.scv.model.UnidadAprendisaje;
+import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.model.UsuarioPorEvaluacion;
 import pe.gob.mintra.scv.service.EvaluacionService;
 
@@ -21,7 +21,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
 	@Override
 	public void listarProgramacionEvaluacion(
-			UnidadAprendisaje unidadAprendisaje,
+			UnidadAprendizaje unidadAprendisaje,
 			Map<String, Object> outParameters) {
 		evaluacionDao.listarProgramacionEvaluacion(unidadAprendisaje,
 				outParameters);
@@ -60,7 +60,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
 	@Override
 	public void insertarProgramacionEvaluacion(
-			UnidadAprendisaje unidadAprendisaje,
+			UnidadAprendizaje unidadAprendisaje,
 			ProgramacionEvaluacion programacionEvaluacion,
 			Map<String, Object> outParameters) {
 		evaluacionDao.insertarProgramacionEvaluacion(unidadAprendisaje,
@@ -69,7 +69,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	}
 
 	@Override
-	public void listarUsuarioPorCurso(UnidadAprendisaje unidadAprendisaje,
+	public void listarUsuarioPorCurso(UnidadAprendizaje unidadAprendisaje,
 			Map<String, Object> outParameters) {
 		evaluacionDao.listarUsuarioPorCurso(unidadAprendisaje, outParameters);
 

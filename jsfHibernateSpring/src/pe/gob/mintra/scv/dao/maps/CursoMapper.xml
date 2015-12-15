@@ -9,6 +9,12 @@
 		<result column="D_FECFINCUR" property="dFecFinCur" />
 		<result column="N_ESTCUR" property="nEstCur" />
 	</resultMap>
+	
+	<resultMap id="ResultMapUnidad" type="Unidad">
+		<id column="N_CODCUR" property="codCur" />
+		<id column="N_CODUNIAPR" property="codUniApr" />
+		<result column="V_DESUNI" property="desUni" />		
+	</resultMap>
 
 	<select id="listarCurso" statementType="CALLABLE" resultMap="ResultMapCurso">
 		{call PKG_CURSO.SP_LSTCUR(
@@ -49,6 +55,15 @@
 		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
 		#{outParameters.menErr,
 		jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	
+	<select id="listarUnidad" statementType="CALLABLE" resultMap="ResultMapCurso">
+		{call PKG_CURSO.SP_LSTUNI(
+		#{curso.nCodCur},
+		#{outParameters.lstUni,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapUnidad},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
 		)}
 	</select>
 

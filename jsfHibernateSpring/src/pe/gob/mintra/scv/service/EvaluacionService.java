@@ -4,13 +4,13 @@ import java.util.Map;
 import pe.gob.mintra.scv.model.DetalleEvaluacion;
 import pe.gob.mintra.scv.model.Evaluacion;
 import pe.gob.mintra.scv.model.ProgramacionEvaluacion;
-import pe.gob.mintra.scv.model.UnidadAprendisaje;
+import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.model.UsuarioPorEvaluacion;
 
 public interface EvaluacionService {
 
 	public void listarProgramacionEvaluacion(
-			UnidadAprendisaje unidadAprendisaje,
+			UnidadAprendizaje unidadAprendisaje,
 			Map<String, Object> outParameters);
 
 	public void listarEvaluacion(ProgramacionEvaluacion programacionEvaluacion,
@@ -27,11 +27,11 @@ public interface EvaluacionService {
 			Map<String, Object> outParameters);
 
 	public void insertarProgramacionEvaluacion(
-			UnidadAprendisaje unidadAprendisaje,
+			UnidadAprendizaje unidadAprendisaje,
 			ProgramacionEvaluacion programacionEvaluacion,
 			Map<String, Object> outParameters);
 
-	public void listarUsuarioPorCurso(UnidadAprendisaje unidadAprendisaje,
+	public void listarUsuarioPorCurso(UnidadAprendizaje unidadAprendisaje,
 			Map<String, Object> outParameters);
 
 	public void insertarUsuarioPorEvaluacion(

@@ -2,6 +2,7 @@ package pe.gob.mintra.scv.service;
 
 import java.util.Map;
 
+
 import pe.gob.mintra.scv.model.Curso;
 
 
@@ -14,6 +15,11 @@ public interface CursoService {
 	public void actualizarCurso(
 			Curso curso,
 			Map<String, Object> outParameters);
+	
+	public void listarUnidad(
+			Curso curso,
+			Map<String, Object> outParameters);
+    
     
 
 }

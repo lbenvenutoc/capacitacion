@@ -15,8 +15,7 @@ public class CursoServiceImpl implements CursoService {
 	@Autowired
 	private CursoDao cursoDao;
 
-	public void listarCurso(Curso curso,
-			Map<String, Object> outParameters) {
+	public void listarCurso(Curso curso, Map<String, Object> outParameters) {
 
 		cursoDao.listarCurso(curso, outParameters);
 
@@ -25,13 +24,19 @@ public class CursoServiceImpl implements CursoService {
 	@Override
 	public void insertarCurso(Curso curso, Map<String, Object> outParameters) {
 		cursoDao.insertarCurso(curso, outParameters);
-		
+
 	}
 
 	@Override
 	public void actualizarCurso(Curso curso, Map<String, Object> outParameters) {
 		cursoDao.actualizarCurso(curso, outParameters);
-		
+
+	}
+
+	@Override
+	public void listarUnidad(Curso curso, Map<String, Object> outParameters) {
+		cursoDao.listarUnidad(curso, outParameters);
+
 	}
 
 }

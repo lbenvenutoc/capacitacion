@@ -6,18 +6,18 @@ import org.apache.ibatis.annotations.Param;
 
 import pe.gob.mintra.scv.model.Opcion;
 import pe.gob.mintra.scv.model.Pregunta;
-import pe.gob.mintra.scv.model.UnidadAprendisaje;
+import pe.gob.mintra.scv.model.UnidadAprendizaje;
 
 public interface PreguntaService {
 
-	public void listarPreguntas(UnidadAprendisaje unidadAprendisaje,
+	public void listarPreguntas(UnidadAprendizaje unidadAprendisaje,
 			Map<String, Object> outParameters);
 
 	public void listarOpciones(Pregunta pregunta,
 			Map<String, Object> outParameters);
 
 	public void insertarPregunta(Pregunta pregunta,
-			UnidadAprendisaje unidadAprendisaje,
+			UnidadAprendizaje unidadAprendisaje,
 			Map<String, Object> outParameters);
 
 	public void insertarOpcion(Pregunta pregunta, Opcion opcion,

@@ -17,6 +17,7 @@
 			alias="UsuarioPorCurso" />
 		<typeAlias type="pe.gob.mintra.scv.model.DetalleEvaluacion"
 			alias="DetalleEvaluacion" />
+		<typeAlias type="pe.gob.mintra.scv.model.UnidadAprendizaje" alias="Unidad" />
 
 	</typeAliases>
 

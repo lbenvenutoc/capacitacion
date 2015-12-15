@@ -20,6 +20,16 @@
 		<view-id value="/faces/curso/curso.xhtml" />
 	</url-mapping>
 	
+	<!-- UNIDAD DE APRENDIZAJE -->	
+	<url-mapping id="mostrarAdministrarUnidad">
+		<pattern value="/mostrarAdministrarUnidad" />
+		<view-id value="/faces/curso/administrarUnidad.xhtml" />
+	</url-mapping>
+	<url-mapping id="mostrarUnidad">
+		<pattern value="/mostrarUnidad" />
+		<view-id value="/faces/curso/unidad.xhtml" />
+	</url-mapping>
+	
 
 	<!-- PROGRAMACION DE EVALUACION -->
 

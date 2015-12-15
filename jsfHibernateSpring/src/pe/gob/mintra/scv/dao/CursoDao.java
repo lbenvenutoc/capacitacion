@@ -22,5 +22,9 @@ public interface CursoDao {
 	public void actualizarCurso(
 			@Param("curso") Curso curso,
 			@Param("outParameters") Map<String, Object> outParameters);
+	
+	public void listarUnidad(
+			@Param("curso") Curso curso,
+			@Param("outParameters") Map<String, Object> outParameters);
     
 }

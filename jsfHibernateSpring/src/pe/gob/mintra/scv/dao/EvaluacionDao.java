@@ -7,13 +7,13 @@ import org.apache.ibatis.annotations.Param;
 import pe.gob.mintra.scv.model.DetalleEvaluacion;
 import pe.gob.mintra.scv.model.Evaluacion;
 import pe.gob.mintra.scv.model.ProgramacionEvaluacion;
-import pe.gob.mintra.scv.model.UnidadAprendisaje;
+import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.model.UsuarioPorEvaluacion;
 
 public interface EvaluacionDao {
 
 	public void listarProgramacionEvaluacion(
-			@Param("unidadAprendisaje") UnidadAprendisaje unidadAprendisaje,
+			@Param("unidadAprendisaje") UnidadAprendizaje unidadAprendisaje,
 			@Param("outParameters") Map<String, Object> outParameters);
 
 	public void listarEvaluacion(
@@ -31,12 +31,12 @@ public interface EvaluacionDao {
 			@Param("outParameters") Map<String, Object> outParameters);
 
 	public void insertarProgramacionEvaluacion(
-			@Param("unidadAprendisaje") UnidadAprendisaje unidadAprendisaje,
+			@Param("unidadAprendisaje") UnidadAprendizaje unidadAprendisaje,
 			@Param("programacionEvaluacion") ProgramacionEvaluacion programacionEvaluacion,
 			@Param("outParameters") Map<String, Object> outParameters);
 
 	public void listarUsuarioPorCurso(
-			@Param("unidadAprendisaje") UnidadAprendisaje unidadAprendisaje,
+			@Param("unidadAprendisaje") UnidadAprendizaje unidadAprendisaje,
 			@Param("outParameters") Map<String, Object> outParameters);
 
 	public void insertarUsuarioPorEvaluacion(

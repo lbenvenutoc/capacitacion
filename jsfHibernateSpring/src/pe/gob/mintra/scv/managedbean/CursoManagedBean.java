@@ -26,6 +26,7 @@ import org.springframework.stereotype.Controller;
 
 import pe.gob.mintra.scv.model.Curso;
 import pe.gob.mintra.scv.model.Pregunta;
+import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.service.CursoService;
 import pe.gob.mintra.scv.util.Constante;
 
@@ -47,6 +48,11 @@ public class CursoManagedBean implements Serializable {
 	private Curso objCurso;
 	private Curso objCursoParam;
 
+	private UnidadAprendizaje objUnidad;
+	private List<UnidadAprendizaje> lstUnidad;
+
+	public boolean muestraUnidad = false;
+
 	public CursoManagedBean() {
 		inicializarCurso();
 	}
@@ -55,11 +61,13 @@ public class CursoManagedBean implements Serializable {
 		objCurso = new Curso();
 		objCursoParam = new Curso();
 		lstCurso = new ArrayList<Curso>();
+
+		objUnidad = new UnidadAprendizaje();
+		lstUnidad = new ArrayList<UnidadAprendizaje>();
 	}
 
 	public String mostrarAdministrarCurso() {
 		String vista = null;
-		// buscarCurso();
 		inicializarCurso();
 		vista = "pretty:mostrarAdministrarCurso";
 		return vista;
@@ -67,6 +75,15 @@ public class CursoManagedBean implements Serializable {
 
 	public String mostrarCurso() {
 		String vista = null;
+		HashMap<String, Object> outParametersUnidad = new HashMap<String, Object>();
+		cursoService.listarUnidad(objCurso, outParametersUnidad);
+		lstUnidad = (List<UnidadAprendizaje>) outParametersUnidad.get("lstUni");
+
+		if (!lstUnidad.isEmpty()) {
+			muestraUnidad = true;
+		} else {
+			muestraUnidad = false;
+		}
 		vista = "pretty:mostrarCurso";
 		return vista;
 	}
@@ -83,12 +100,14 @@ public class CursoManagedBean implements Serializable {
 
 		if (objCurso.getnCodCur().equals(-1)) {
 			cursoService.insertarCurso(objCurso, outParametersCurso);
-			vista = buscarCurso();
+			muestraUnidad = true;
+			// vista = buscarCurso();
 		} else {
 			cursoService.actualizarCurso(objCurso, outParametersCurso);
-			vista = mostrarCurso();
+			// vista = mostrarCurso();
 		}
 
+		vista = mostrarCurso();
 		return vista;
 
 	}
@@ -109,6 +128,12 @@ public class CursoManagedBean implements Serializable {
 		vista = "pretty:mostrarAdministrarCurso";
 		return vista;
 
+	}
+
+	public String mostrarAdministracionUnidad() {
+		String vista = null;
+		vista = "pretty:mostrarAdministrarUnidad";
+		return vista;
 	}
 
 	public Curso getObjCurso() {
@@ -133,6 +158,30 @@ public class CursoManagedBean implements Serializable {
 
 	public void setObjCursoParam(Curso objCursoParam) {
 		this.objCursoParam = objCursoParam;
+	}
+
+	public UnidadAprendizaje getObjUnidad() {
+		return objUnidad;
+	}
+
+	public void setObjUnidad(UnidadAprendizaje objUnidad) {
+		this.objUnidad = objUnidad;
+	}
+
+	public List<UnidadAprendizaje> getLstUnidad() {
+		return lstUnidad;
+	}
+
+	public void setLstUnidad(List<UnidadAprendizaje> lstUnidad) {
+		this.lstUnidad = lstUnidad;
+	}
+
+	public boolean isMuestraUnidad() {
+		return muestraUnidad;
+	}
+
+	public void setMuestraUnidad(boolean muestraUnidad) {
+		this.muestraUnidad = muestraUnidad;
 	}
 
 }
