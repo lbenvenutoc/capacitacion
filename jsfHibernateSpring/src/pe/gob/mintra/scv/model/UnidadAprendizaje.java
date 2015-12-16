@@ -10,6 +10,7 @@ public class UnidadAprendizaje implements Serializable {
 	private static final long serialVersionUID = 3236290877235270795L;
 	private Integer codCur;
 	private Integer codUniApr;
+	private Integer estUniApr;
 	private boolean estaActivado;
 
 	private String desUni;
@@ -50,5 +51,14 @@ public class UnidadAprendizaje implements Serializable {
 	public void setDesUni(String desUni) {
 		this.desUni = desUni;
 	}
+
+	public Integer getEstUniApr() {
+		return estUniApr;
+	}
+
+	public void setEstUniApr(Integer estUniApr) {
+		this.estUniApr = estUniApr;
+	}
+	
 
 }

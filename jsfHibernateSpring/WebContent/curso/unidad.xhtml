@@ -31,10 +31,20 @@
 									value="#{etiquetas.cl_unidad_registro_nomunidad}: "></p:outputLabel>
 							</p:column>
 							<p:column>
-								<p:inputText value="#{cursoManagedBean.objUnidad.desUni}"></p:inputText>									
+								<p:inputText value="#{cursoManagedBean.objUnidad.desUni}"></p:inputText>
 							</p:column>
 						</p:row>
-						
+
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{etiquetas.cl_unidad_registro_estado}: "></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:selectBooleanCheckbox
+									value="#{cursoManagedBean.objUnidad.estaActivado}" />
+							</p:column>
+						</p:row>
+
 
 						<p:row>
 							<p:column colspan="2" style="text-align: center;">

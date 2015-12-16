@@ -14,6 +14,7 @@
 		<id column="N_CODCUR" property="codCur" />
 		<id column="N_CODUNIAPR" property="codUniApr" />
 		<result column="V_DESUNI" property="desUni" />
+		<result column="N_ESTUNIAPR" property="estUniApr" />
 	</resultMap>
 
 	<select id="listarCurso" statementType="CALLABLE" resultMap="ResultMapCurso">
@@ -74,6 +75,7 @@
 		PKG_CURSO.SP_INSUNI(
 		#{curso.nCodCur},
 		#{unidad.desUni},
+		#{unidad.estUniApr},
 		#{outParameters.codUniApr, jdbcType=INTEGER,mode=OUT},
 		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
 		#{outParameters.menErr,
@@ -87,6 +89,7 @@
 		#{unidad.codCur},
 		#{unidad.codUniApr},
 		#{unidad.desUni},
+		#{unidad.estUniApr},
 		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
 		#{outParameters.menErr,
 		jdbcType=VARCHAR,mode=OUT}
