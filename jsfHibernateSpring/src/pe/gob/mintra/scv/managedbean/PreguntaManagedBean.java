@@ -118,7 +118,7 @@ public class PreguntaManagedBean {
 
 	// @Transactional(rollbackFor = Exception.class)
 	public void actualizarPregunta() {
-		String vista = null;
+		
 		HashMap<String, Object> outParametersPregunta = new HashMap<String, Object>();
 		HashMap<String, Object> outParametersOpcion = new HashMap<String, Object>();
 		String mensaje = "";

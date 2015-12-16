@@ -59,21 +59,23 @@ public class ProgramacionEvaluacionManagedBean {
 	}
 
 	public String programarEvaluacion() {
-		
+
 		inicializarProgramacionEvaluacion();
+
 		String vista = null;
 		HashMap<String, Object> outParameters = new HashMap<String, Object>();
 		evaluacionService.listarProgramacionEvaluacion(unidadAprendisaje,
 				outParameters);
 		lstProgEval = (List<ProgramacionEvaluacion>) outParameters
 				.get("lstProEva");
+
 		vista = "pretty:administrarEvaluacion";
 		return vista;
 	}
 
 	public String mostrarProgramacionEvaluacion() {
 		String vista = null;
-		
+
 		HashMap<String, Object> outParameters = new HashMap<String, Object>();
 		if (!objProgramacionEvaluacion.getnCodProEva().equals(-1)) {
 			evaluacionService.listarEvaluacion(objProgramacionEvaluacion,
@@ -81,7 +83,7 @@ public class ProgramacionEvaluacionManagedBean {
 			lstEval = (List<Evaluacion>) outParameters.get("lstEva");
 		} else {
 			inicializarProgramacionEvaluacion();
-			
+
 		}
 		vista = "pretty:programarEvaluacion";
 		return vista;
@@ -113,8 +115,16 @@ public class ProgramacionEvaluacionManagedBean {
 	}
 
 	public void actualizarProgramacionEvaluacion() {
+		System.out.println("actualizarProgramacionEvaluacion");
+		HashMap<String, Object> outParametersProgramacion = new HashMap<String, Object>();
+		HashMap<String, Object> outParametersEvaluacion = new HashMap<String, Object>();
+		HashMap<String, Object> outParametersPregunta = new HashMap<String, Object>();
+		HashMap<String, Object> outParametersOpcion = new HashMap<String, Object>();
+		HashMap<String, Object> outParametersUsuEva = new HashMap<String, Object>();
+		HashMap<String, Object> outParametersDetEva = new HashMap<String, Object>();
 		String mensaje = "";
 		int tipo = 0;
+
 		try {
 
 			if (objProgramacionEvaluacion.getdFinProEva().equals(null)
@@ -134,42 +144,33 @@ public class ProgramacionEvaluacionManagedBean {
 					objProgramacionEvaluacion.getdFinProEva(), "dd/MM/yyyy")
 					.equals(Utilitario.parteFecha(
 							objProgramacionEvaluacion.getdFfiProEva(),
-							"dd/MM/yyyy"))
-					) {
+							"dd/MM/yyyy"))) {
 				mensaje = "El día del examen debe ser el mismo tanto en fecha de inicio como en fecha final";
 				tipo = 1;
-			} 
-			else if(Utilitario.parteFecha(
+			} else if (Utilitario.parteFecha(
 					objProgramacionEvaluacion.getdFinProEva(), "hh/mm/ss")
 					.equals(Utilitario.parteFecha(
 							objProgramacionEvaluacion.getdFfiProEva(),
-							"hh/mm/ss"))){
-				
+							"hh/mm/ss"))) {
+
 				mensaje = "La hora inicio del examen no puede ser igual que la hora final del examen";
 				tipo = 1;
-				
-			}
-			else if(Utilitario.parteFecha(
+
+			} else if (Utilitario.parteFecha(
 					objProgramacionEvaluacion.getdFinProEva(), "hh/mm/ss")
 					.after(Utilitario.parteFecha(
 							objProgramacionEvaluacion.getdFfiProEva(),
-							"hh/mm/ss"))){
-				
+							"hh/mm/ss"))) {
+
 				mensaje = "La hora inicio del examen no puede ser mayor que la hora final del examen";
 				tipo = 1;
-				
-			}
-			else if (lstEval.size() <= 0) {
+
+			} else if (lstEval.size() <= 0) {
 				mensaje = "Por favor debe generar las evaluaciones para los participantes";
 				tipo = 1;
 			} else {
 
-				HashMap<String, Object> outParametersProgramacion = new HashMap<String, Object>();
-				HashMap<String, Object> outParametersEvaluacion = new HashMap<String, Object>();
-				HashMap<String, Object> outParametersPregunta = new HashMap<String, Object>();
-				HashMap<String, Object> outParametersOpcion = new HashMap<String, Object>();
-				HashMap<String, Object> outParametersUsuEva = new HashMap<String, Object>();
-				HashMap<String, Object> outParametersDetEva = new HashMap<String, Object>();
+				System.out.println("PASO VALIDACIONES");
 
 				objProgramacionEvaluacion.setnCodUniApr(unidadAprendisaje
 						.getCodUniApr());
@@ -177,12 +178,16 @@ public class ProgramacionEvaluacionManagedBean {
 						.getCodCur());
 
 				if (!objProgramacionEvaluacion.getnCodProEva().equals(-1)) {
+					System.out.println("ACTUALIZA");
 					evaluacionService.actualizarProgramacionEvaluacion(
 							objProgramacionEvaluacion,
 							outParametersProgramacion);
 					for (Evaluacion eval : lstEvalQuitar) {
 						evaluacionService.eliminarEvaluacion(eval,
 								outParametersEvaluacion);
+
+						System.out.println(outParametersEvaluacion
+								.get("menErr"));
 					}
 
 				} else {
@@ -267,12 +272,12 @@ public class ProgramacionEvaluacionManagedBean {
 
 				}
 
-			}
-			
-			mensaje = "Programación de evaluación registrada correctamente";
-			tipo = 3;
+				mensaje = "Programación de evaluación registrada correctamente";
+				tipo = 3;
 
-		} catch (Exception ex) {			
+			}
+
+		} catch (Exception ex) {
 			mensaje = "Error genérico";
 			tipo = 1;
 
