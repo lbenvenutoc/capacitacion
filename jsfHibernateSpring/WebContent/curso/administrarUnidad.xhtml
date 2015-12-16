@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/plantilla/uiMaestro.xhtml">
+	<ui:define name="app">
+		<div align="center">
+			<h1>#{etiquetas.cl_unidad_adm_titulo}</h1>
+
+
+			<h:form id="frmVistaCurso">
+				<p:panelGrid style="border: 0">
+					<p:row>
+						<p:column>
+							<p:outputLabel
+								value="#{etiquetas.cl_unidad_adm_busqueda_codcurso}"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:outputLabel value="#{cursoManagedBean.objCurso.nCodCur}"></p:outputLabel>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel
+								value="#{etiquetas.cl_unidad_adm_busqueda_nomcurso}"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:outputLabel value="#{cursoManagedBean.objCurso.vNomCur}"></p:outputLabel>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							
+							<p:commandButton
+								value="#{etiquetas.cl_unidad_adm_busqueda_boton_nuevo}"
+								action="#{cursoManagedBean.mostrarUnidad}"></p:commandButton>
+						</p:column>
+						<p:column>
+
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:form>
+
+
+			<h:form id="frmListaUnidad">
+
+				<p:panelGrid style="border: 0">
+					<p:row>
+						<p:column>
+							<p:dataTable id="tablaUnidad"
+								value="#{cursoManagedBean.lstUnidad}" var="objUnidad"
+								paginator="true" paginatorPosition="bottom" rows="20">
+								
+								<p:column
+									headerText="#{etiquetas.cl_unidad_adm_tabla_cab_nombreunidad}">#{objUnidad.desUni}</p:column>
+								
+								<p:column
+									headerText="#{etiquetas.cl_unidad_adm_tabla_cab_actualizar}">
+									<p:commandButton action="#{cursoManagedBean.mostrarUnidad}"
+										value="Actualizar">
+										<f:setPropertyActionListener value="#{objUnidad}"
+											target="#{cursoManagedBean.objUnidad}"></f:setPropertyActionListener>
+									</p:commandButton>
+								</p:column>
+
+							</p:dataTable>
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+			</h:form>
+		</div>
+
+
+
+	</ui:define>
+</ui:composition>
+
+</html>
+
