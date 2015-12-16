@@ -100,6 +100,7 @@ public class CursoManagedBean implements Serializable {
 
 		if (objCurso.getnCodCur().equals(-1)) {
 			cursoService.insertarCurso(objCurso, outParametersCurso);
+			objCurso.setnCodCur((Integer) outParametersCurso.get("nCodCur"));
 			muestraUnidad = true;
 			// vista = buscarCurso();
 		} else {
@@ -132,7 +133,40 @@ public class CursoManagedBean implements Serializable {
 
 	public String mostrarAdministracionUnidad() {
 		String vista = null;
+		objUnidad = new UnidadAprendizaje();
 		vista = "pretty:mostrarAdministrarUnidad";
+		return vista;
+	}
+
+	public String mostrarUnidad() {
+		String vista = null;
+
+		if (!objUnidad.getCodUniApr().equals(-1)) {
+
+			objUnidad.setCodCur(objCurso.getnCodCur());
+
+		}
+
+		vista = "pretty:mostrarUnidad";
+		return vista;
+	}
+
+	public String grabarUnidad() {
+		String vista = null;
+		HashMap<String, Object> outParametersUnidad = new HashMap<String, Object>();
+
+		if (objUnidad.getCodUniApr().equals(-1)) {
+			cursoService.insertarUnidad(objCurso, objUnidad,
+					outParametersUnidad);
+			
+			System.out.println(outParametersUnidad.get("menErr"));
+
+		} else {
+			cursoService.actualizarUnidad(objUnidad, outParametersUnidad);
+		}
+
+		vista = mostrarAdministracionUnidad();
+
 		return vista;
 	}
 

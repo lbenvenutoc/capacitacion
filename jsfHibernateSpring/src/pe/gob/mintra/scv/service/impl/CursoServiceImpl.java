@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import pe.gob.mintra.scv.dao.CursoDao;
 import pe.gob.mintra.scv.model.Curso;
+import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.service.CursoService;
 
 @Service("cursoService")
@@ -36,6 +37,20 @@ public class CursoServiceImpl implements CursoService {
 	@Override
 	public void listarUnidad(Curso curso, Map<String, Object> outParameters) {
 		cursoDao.listarUnidad(curso, outParameters);
+
+	}
+
+	@Override
+	public void insertarUnidad(Curso curso, UnidadAprendizaje unidad,
+			Map<String, Object> outParameters) {
+		cursoDao.insertarUnidad(curso, unidad, outParameters);
+
+	}
+
+	@Override
+	public void actualizarUnidad(UnidadAprendizaje unidad,
+			Map<String, Object> outParameters) {
+		cursoDao.actualizarUnidad(unidad, outParameters);
 
 	}
 
