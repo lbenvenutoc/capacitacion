@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pe.gob.mintra.scv.dao.AsignacionDao">
+
+
+	<resultMap id="ResultMapProgramacionAsignacion" type="ProgramacionAsignacion">
+		<id column="N_CODPROASI" property="nCodProAsi" />
+		<result column="V_NOMCUR" property="vNomCur" />
+		<result column="V_DESUNI" property="vDesUni" />
+		<result column="D_FINPROASI" property="dFinProAsi" />
+		<result column="D_FFIPROASI" property="dFfiProAsi" />
+		<result column="N_CANASI" property="nCanAsi" />
+	</resultMap>
+	
+	<resultMap id="ResultMapAsignacion" type="Asignacion">
+		<result column="N_CODASI" property="nCodAsi" />
+		<result column="N_CODPROASI" property="nCodProAsi" />
+		<result column="V_DESPER" property="vDesPer" />
+	</resultMap>
+	
+	
+	<select id="listarProgramacionAsignacion" statementType="CALLABLE"
+		resultMap="ResultMapProgramacionAsignacion">
+		{call PKG_ASIGNACION.SP_LSTPROASI(
+		#{unidadAprendisaje.codCur},
+		#{unidadAprendisaje.codUniApr},
+		#{outParameters.lstProAsi,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapProgramacionAsignacion},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	
+	<select id="insertarProgramacionAsignacion" statementType="CALLABLE">
+		{call
+		PKG_ASIGNACION.SP_INSPROASI(
+		#{programacionAsignacion.vDesProAsi},
+	    #{programacionAsignacion.dFinProAsi},
+		#{programacionAsignacion.dFfiProAsi},
+		#{programacionAsignacion.vRutProAsi},
+		#{unidadAprendisaje.codCur},
+		#{unidadAprendisaje.codUniApr},
+		#{outParameters.codProAsi, jdbcType=INTEGER,mode=OUT},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>	
+	
+	<select id="actualizarProgramacionAsignacion" statementType="CALLABLE">
+		{call
+		PKG_ASIGNACION.SP_ACTPROASI(
+		#{programacionAsignacion.nCodProAsi},
+		#{programacionAsignacion.vDesProAsi},
+	    #{programacionAsignacion.dFinProAsi},
+		#{programacionAsignacion.dFfiProAsi},
+		#{programacionAsignacion.vRutProAsi},
+		#{outParameters.codErr,
+		jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	
+	<select id="eliminarProgramacionAsignacion" statementType="CALLABLE">
+		{call
+		PKG_ASIGNACION.SP_ELIPROASI(
+		#{programacionAsignacion.nCodProAsi},		
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	
+		<select id="listarAsignacion" statementType="CALLABLE"
+		resultMap="ResultMapAsignacion">
+		{call PKG_ASIGNACION.SP_LSTASI(
+		#{programacionAsignacion.nCodProAsi},
+		#{outParameters.lstAsi,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapAsignacion},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+
+</mapper>

@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/plantilla/uiMaestro.xhtml">
+	<ui:define name="app">
+		<div align="center">
+			<h1>#{etiquetas.cl_progasig_titulo}</h1>
+			<h:form id="frmProgAsig">
+
+				<p:panelGrid style="border: 0">
+
+					<p:row>
+						<p:column>
+
+							<p:panelGrid style="border: 0">
+								<f:facet name="header">
+									<p:row>
+										<p:column colspan="2">
+											<p:outputLabel value="#{etiquetas.cl_progeval_curso_titulo}"></p:outputLabel>
+										</p:column>
+									</p:row>
+								</f:facet>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel value="#{etiquetas.cl_bsuqueda_curso_codigo}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="aa"></p:outputLabel>
+									</p:column>
+
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="#{etiquetas.cl_bsuqueda_curso_descripcion}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="bb"></p:outputLabel>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel value="#{etiquetas.cl_bsuqueda_curso_unidad}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="cc"></p:outputLabel>
+									</p:column>
+
+								</p:row>
+
+							</p:panelGrid>
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:panelGrid style="border: 0">
+								<f:facet name="header">
+									<p:row>
+										<p:column colspan="2">
+											<p:outputLabel value="#{etiquetas.cl_progasig_asignacion}"></p:outputLabel>
+										</p:column>
+									</p:row>
+								</f:facet>
+								<p:row>
+									<p:column>
+										<p:outputLabel value="#{etiquetas.cl_progasig_asignacion_descripcion}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:inputTextarea
+											value="#{programacionAsignacionManagedBean.objProgramacionAsignacion.vDesProAsi}"
+											rows="5"></p:inputTextarea>
+									</p:column>
+
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="#{etiquetas.cl_progasig_asignacion_fechaini}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:calendar locale="es" showOn="button" pattern="dd/MM/yyyy"
+											readonlyInput="true"
+											value="#{programacionAsignacionManagedBean.objProgramacionAsignacion.dFinProAsi}"
+											maxlength="10" size="10">
+										</p:calendar>
+									</p:column>
+
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="#{etiquetas.cl_progasig_asignacion_fechafin}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:calendar locale="es" pattern="dd/MM/yyyy" showOn="button"
+											readonlyInput="true"
+											value="#{programacionAsignacionManagedBean.objProgramacionAsignacion.dFfiProAsi}"
+											maxlength="10" size="10">
+										</p:calendar>
+
+									</p:column>
+								</p:row>
+
+
+							</p:panelGrid>
+
+						</p:column>
+					</p:row>
+
+
+
+					<p:row>
+						<p:column>
+							<center>
+								<p:commandButton value="#{etiquetas.cl_progasig_generarasig}"
+									action="#{programacionAsignacionManagedBean.generarAsignacion}"
+									update=":frmProgAsig:tablaAsignacion"></p:commandButton>
+							</center>
+
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+
+							<p:panelGrid style="border: 0">
+
+								<p:row>
+									<p:column>
+										<p:dataTable id="tablaAsignacion" var="objAsignacion"
+											value="#{programacionAsignacionManagedBean.lstAsig}"
+											paginator="true" paginatorPosition="bottom" rows="20">
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaprogasig_participante}">
+												#{objAsignacion.vDesPer}
+												</p:column>
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaprogasig_quitar}">
+
+												<p:commandButton
+													action="#{programacionEvaluacionManagedBean.quitarAsignacion}"
+													value="Eliminar" update=":frmProgAsig:tablaAsignacion">
+													<f:setPropertyActionListener value="#{objAsignacion}"
+														target="#{programacionEvaluacionManagedBean.objAsignacion}"></f:setPropertyActionListener>
+												</p:commandButton>
+											</p:column>
+
+
+										</p:dataTable>
+									</p:column>
+								</p:row>
+
+							</p:panelGrid>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<center>
+								<p:commandButton value="#{etiquetas.cl_progeval_grabar}"
+									action="#{programacionEvaluacionManagedBean.actualizarProgramacionEvaluacion}"
+									update=":frmProgAsig:mnsProgAsi"></p:commandButton>
+								<p:commandButton value="#{etiquetas.cl_admeval_cancelar}"
+									action="#{programacionEvaluacionManagedBean.programarEvaluacion}"></p:commandButton>
+							</center>
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+
+				<p:messages id="mnsProgAsi"></p:messages>
+
+
+
+			</h:form>
+		</div>
+
+
+
+	</ui:define>
+</ui:composition>
+
+</html>
+

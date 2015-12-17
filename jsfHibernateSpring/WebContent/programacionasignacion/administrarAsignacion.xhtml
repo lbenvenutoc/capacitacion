@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/plantilla/uiMaestro.xhtml">
+	<ui:define name="app">
+		<div align="center">
+			<h1>#{etiquetas.cl_admasig_titulo}</h1>
+			<h:form id="frmAdmAsig">
+
+				<p:panelGrid style="border: 0">
+
+					<p:row>
+						<p:column>
+
+							<p:panelGrid style="border: 0">
+								<f:facet name="header">
+									<p:row>
+										<p:column colspan="2">
+											<p:outputLabel value="#{etiquetas.cl_bsuqueda_curso_titulo}"></p:outputLabel>
+										</p:column>
+									</p:row>
+								</f:facet>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel value="#{etiquetas.cl_bsuqueda_curso_codigo}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="aa"></p:outputLabel>
+									</p:column>
+
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="#{etiquetas.cl_bsuqueda_curso_descripcion}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="bb"></p:outputLabel>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel value="#{etiquetas.cl_bsuqueda_curso_unidad}"></p:outputLabel>
+
+									</p:column>
+									<p:column>
+										<p:outputLabel value="cc"></p:outputLabel>
+									</p:column>
+
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:commandButton value="#{etiquetas.cl_bsuqueda_curso_buscar}"></p:commandButton>
+									</p:column>
+									<p:column>
+										<p:commandButton
+											value="#{etiquetas.cl_bsuqueda_curso_limpiar}"></p:commandButton>
+									</p:column>
+
+								</p:row>
+							</p:panelGrid>
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<center>
+								<p:commandButton value="#{etiquetas.cl_admasig_nuevo}"
+									action="#{programacionAsignacionManagedBean.mostrarProgramacionAsignacion}"></p:commandButton>
+							</center>
+
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+
+							<p:panelGrid style="border: 0">
+
+								<p:row>
+									<p:column>
+										<p:dataTable id="tablaAdmAsig"
+											value="#{programacionAsignacionManagedBean.lstProgAsig}"
+											var="objAdmAsig" paginator="true" paginatorPosition="bottom"
+											rows="20">
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmasig_curso}">#{objAdmAsig.vNomCur}</p:column>
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmasig_unidad}">#{objAdmAsig.vDesUni}</p:column>
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmasig_cantasig}">#{objAdmAsig.nCanAsig}</p:column>
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmasig_fecini}">
+
+												<p:calendar value="#{objAdmAsig.dFinProAsi}" locale="es"
+													pattern="dd/MM/yyyy hh:mm:ss" disabled="true"></p:calendar>
+
+											</p:column>
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmasig_fecfin}">
+												<p:calendar value="#{objAdmAsig.dFfiProAsi}" locale="es"
+													pattern="dd/MM/yyyy hh:mm:ss" disabled="true"></p:calendar>
+											</p:column>
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmasig_actualizar}">
+												<p:commandButton
+													action="#{programacionAsignacionManagedBean.mostrarProgramacionAsignacion}"
+													value="Actualizar">
+													<f:setPropertyActionListener value="#{objAdmEval}"
+														target="#{programacionAsignacionManagedBean.objProgramacionAsignacion}"></f:setPropertyActionListener>
+												</p:commandButton>
+											</p:column>
+
+											<p:column
+												headerText="#{etiquetas.cl_cabecera_tablaadmeval_eliminar}">
+
+												<p:commandButton value="Eliminar" oncomplete="dlgConfirmacion.show();">
+													<f:setPropertyActionListener value="#{objAdmEval}"
+														target="#{programacionAsignacionManagedBean.objProgramacionAsignacion}"></f:setPropertyActionListener>
+												</p:commandButton>
+
+											</p:column>
+
+										</p:dataTable>
+									</p:column>
+								</p:row>
+
+							</p:panelGrid>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<center>
+								<p:commandButton value="#{etiquetas.cl_admeval_cancelar}"></p:commandButton>
+							</center>
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+
+
+
+			</h:form>
+
+			<h:form id="frmDialogConfirm">
+				<p:confirmDialog id="dlgConfirmacion" widgetVar="dlgConfirmacion"
+					header="Dar de Baja" appendToBody="true"
+					message="¿Está seguro de que desea dar de baja a la programación de asignaciones seleccionada?"
+					severity="alert" width="350px">
+
+					<center>
+						<p:commandButton id="btnConfirmar" value="Si"
+							oncomplete="dlgConfirmacion.hide()" icon="icon-pref"
+							action="#{programacionAsignacionManagedBean.eliminarprogramacionAsignacion}"
+							update=":frmAdmAsig:tablaAdmAsig" process="@this" />
+
+						<p:commandButton value="No" oncomplete="dlgConfirmacion.hide();"
+							icon="icon-cancel" />
+
+					</center>
+
+				</p:confirmDialog>
+			</h:form>
+		</div>
+
+
+
+	</ui:define>
+</ui:composition>
+
+</html>
+
