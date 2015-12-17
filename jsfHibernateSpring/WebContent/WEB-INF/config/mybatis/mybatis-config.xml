@@ -18,6 +18,10 @@
 		<typeAlias type="pe.gob.mintra.scv.model.DetalleEvaluacion"
 			alias="DetalleEvaluacion" />
 		<typeAlias type="pe.gob.mintra.scv.model.UnidadAprendizaje" alias="Unidad" />
+		<typeAlias type="pe.gob.mintra.scv.model.ProgramacionAsignacion"
+			alias="ProgramacionAsignacion" />
+		<typeAlias type="pe.gob.mintra.scv.model.Asignacion"
+			alias="Asignacion" />
 
 	</typeAliases>
 
@@ -28,6 +32,7 @@
 		<mapper resource="pe/gob/mintra/scv/dao/maps/CursoMapper.xml" />
 		<mapper resource="pe/gob/mintra/scv/dao/maps/PreguntaMapper.xml" />
 		<mapper resource="pe/gob/mintra/scv/dao/maps/EvaluacionMapper.xml" />
+		<mapper resource="pe/gob/mintra/scv/dao/maps/AsignacionMapper.xml" />
 
 	</mappers>
 </configuration>

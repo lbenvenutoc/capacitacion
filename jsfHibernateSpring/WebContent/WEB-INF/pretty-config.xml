@@ -8,7 +8,17 @@
 		<pattern value="/mostrarPrincipal" />
 		<view-id value="/faces/principal.xhtml" />
 	</url-mapping>
-
+	
+	<!-- PROGRAMACION DE ASIGNACION -->
+	<url-mapping id="administrarAsignacion">
+		<pattern value="/administrarAsignacion" />
+		<view-id value="/faces/programacionasignacion/administrarAsignacion.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="programarAsignacion">
+		<pattern value="/programarAsignacion" />
+		<view-id value="/faces/programacionasignacion/programarAsignacion.xhtml" />
+	</url-mapping>
 
 	<!-- CURSO -->	
 	<url-mapping id="mostrarAdministrarCurso">
