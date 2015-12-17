@@ -42,8 +42,8 @@ public class ProgramacionEvaluacionManagedBean {
 
 	public ProgramacionEvaluacionManagedBean() {
 		unidadAprendisaje = new UnidadAprendizaje();
-		unidadAprendisaje.setCodCur(1);
-		unidadAprendisaje.setCodUniApr(1);
+		unidadAprendisaje.setCodCur(23);
+		unidadAprendisaje.setCodUniApr(25);
 		inicializarProgramacionEvaluacion();
 		lstPregunta = new ArrayList<Pregunta>();
 		lstOpcion = new ArrayList<Opcion>();

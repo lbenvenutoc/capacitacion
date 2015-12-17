@@ -33,8 +33,8 @@ public class PreguntaManagedBean {
 		inicializarPregunta();
 		inicializarOpcion();
 		unidadAprendisaje = new UnidadAprendizaje();
-		unidadAprendisaje.setCodCur(1);
-		unidadAprendisaje.setCodUniApr(1);
+		unidadAprendisaje.setCodCur(23);
+		unidadAprendisaje.setCodUniApr(25);
 		lstOpcionEliminados = new ArrayList<Opcion>();
 	}
 

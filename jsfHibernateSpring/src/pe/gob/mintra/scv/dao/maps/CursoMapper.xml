@@ -5,6 +5,7 @@
 	<resultMap id="ResultMapCurso" type="Curso">
 		<id column="N_CODCUR" property="nCodCur" />
 		<result column="V_NOMCUR" property="vNomCur" />
+		<result column="V_DESCUR" property="vDesCur" />
 		<result column="D_FECINICUR" property="dFecIniCur" />
 		<result column="D_FECFINCUR" property="dFecFinCur" />
 		<result column="N_ESTCUR" property="nEstCur" />
@@ -30,11 +31,13 @@
 		{call
 		PKG_CURSO.SP_INSCUR(
 		#{curso.vNomCur},
+		#{curso.vDesCur},
 		#{curso.vRutPres},
 		#{curso.vRutSil},
 		#{curso.vRutCro},
 		#{curso.dFecIniCur},
 		#{curso.dFecFinCur},
+		#{curso.nEstCur},
 		#{outParameters.nCodCur,
 		jdbcType=INTEGER,mode=OUT},
 		#{outParameters.codErr,
@@ -49,6 +52,7 @@
 		PKG_CURSO.SP_ACTCUR(
 		#{curso.nCodCur},
 		#{curso.vNomCur},
+		#{curso.vDesCur},
 		#{curso.vRutPres},
 		#{curso.vRutSil},
 		#{curso.vRutCro},

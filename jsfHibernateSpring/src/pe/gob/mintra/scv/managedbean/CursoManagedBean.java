@@ -75,15 +75,15 @@ public class CursoManagedBean implements Serializable {
 
 	public String mostrarCurso() {
 		String vista = null;
-		HashMap<String, Object> outParametersUnidad = new HashMap<String, Object>();
-		cursoService.listarUnidad(objCurso, outParametersUnidad);
-		lstUnidad = (List<UnidadAprendizaje>) outParametersUnidad.get("lstUni");
 
-		if (!lstUnidad.isEmpty()) {
-			muestraUnidad = true;
-		} else {
+		if (objCurso.getnCodCur().equals(-1)) {
 			muestraUnidad = false;
+		} else {
+
+			muestraUnidad = true;
+
 		}
+
 		vista = "pretty:mostrarCurso";
 		return vista;
 	}
@@ -101,12 +101,13 @@ public class CursoManagedBean implements Serializable {
 		if (objCurso.getnCodCur().equals(-1)) {
 			cursoService.insertarCurso(objCurso, outParametersCurso);
 			objCurso.setnCodCur((Integer) outParametersCurso.get("nCodCur"));
-			muestraUnidad = true;
-			// vista = buscarCurso();
+
 		} else {
 			cursoService.actualizarCurso(objCurso, outParametersCurso);
-			// vista = mostrarCurso();
+
 		}
+
+		muestraUnidad = true;
 
 		vista = mostrarCurso();
 		return vista;
@@ -132,8 +133,11 @@ public class CursoManagedBean implements Serializable {
 	}
 
 	public String mostrarAdministracionUnidad() {
-		String vista = null;
 		objUnidad = new UnidadAprendizaje();
+		HashMap<String, Object> outParametersUnidad = new HashMap<String, Object>();
+		String vista = null;
+		cursoService.listarUnidad(objCurso, outParametersUnidad);
+		lstUnidad = (List<UnidadAprendizaje>) outParametersUnidad.get("lstUni");
 		vista = "pretty:mostrarAdministrarUnidad";
 		return vista;
 	}

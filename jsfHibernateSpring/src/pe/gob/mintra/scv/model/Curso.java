@@ -12,6 +12,7 @@ public class Curso implements Serializable {
 
 	private Integer nCodCur;
 	private String vNomCur;
+	private String vDesCur;
 	private String vRutPres;
 	private String vRutSil;
 	private String vRutCro;
@@ -26,6 +27,7 @@ public class Curso implements Serializable {
 		vRutSil = "";
 		vRutCro = "";
 		estaHabilitado = true;
+		nEstCur = 1;
 	}
 
 	public Integer getnCodCur() {
@@ -99,6 +101,13 @@ public class Curso implements Serializable {
 	public void setEstaHabilitado(boolean estaHabilitado) {
 		this.estaHabilitado = estaHabilitado;
 	}
-	
+
+	public String getvDesCur() {
+		return vDesCur;
+	}
+
+	public void setvDesCur(String vDesCur) {
+		this.vDesCur = vDesCur;
+	}
 
 }
