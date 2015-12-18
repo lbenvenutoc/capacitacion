@@ -130,7 +130,7 @@
 												headerText="#{etiquetas.cl_cabecera_tablaadmeval_eliminar}">
 
 												<p:commandButton value="Eliminar" oncomplete="dlgConfirmacion.show();">
-													<f:setPropertyActionListener value="#{objAdmEval}"
+													<f:setPropertyActionListener value="#{objAdmAsig}"
 														target="#{programacionAsignacionManagedBean.objProgramacionAsignacion}"></f:setPropertyActionListener>
 												</p:commandButton>
 
@@ -168,7 +168,7 @@
 					<center>
 						<p:commandButton id="btnConfirmar" value="Si"
 							oncomplete="dlgConfirmacion.hide()" icon="icon-pref"
-							action="#{programacionAsignacionManagedBean.eliminarprogramacionAsignacion}"
+							action="#{programacionAsignacionManagedBean.eliminarProgramacionAsignacion}"
 							update=":frmAdmAsig:tablaAdmAsig" process="@this" />
 
 						<p:commandButton value="No" oncomplete="dlgConfirmacion.hide();"

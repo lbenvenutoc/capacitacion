@@ -3,21 +3,15 @@ package pe.gob.mintra.scv.managedbean;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import pe.gob.mintra.scv.model.Asignacion;
-import pe.gob.mintra.scv.model.DetalleEvaluacion;
-import pe.gob.mintra.scv.model.Evaluacion;
-import pe.gob.mintra.scv.model.Opcion;
-import pe.gob.mintra.scv.model.Pregunta;
 import pe.gob.mintra.scv.model.ProgramacionAsignacion;
 import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.model.UsuarioPorCurso;
-import pe.gob.mintra.scv.model.UsuarioPorEvaluacion;
 import pe.gob.mintra.scv.service.AsignacionService;
 import pe.gob.mintra.scv.service.EvaluacionService;
 import pe.gob.mintra.scv.util.Utilitario;
@@ -101,6 +95,9 @@ public class ProgramacionAsignacionManagedBean {
 				a.setnCodUsu(uc.getnCodUsu());
 				a.setnCodPer(uc.getnCodPer());
 				a.setvDesPer(uc.getvDesPer());
+				if (!objProgramacionAsignacion.getnCodProAsi().equals(-1)) {
+					a.setnCodProAsi(objProgramacionAsignacion.getnCodProAsi());
+				}
 				lstAsig.add(a);
 			}
 
@@ -142,19 +139,25 @@ public class ProgramacionAsignacionManagedBean {
 					asignacionService.insertarAsignacion(asig,
 							outParametersAsig);
 
-					System.out.println(outParametersAsig.get("menErr"));
-
 				}
 
 			} else {
 				asignacionService.actualizarProgramacionAsignacion(
 						objProgramacionAsignacion, outParametersProgAsig);
 
-				for (Asignacion asig : lstAsigQuitar) {
-					asignacionService.eliminarAsignacion(asig,
+				for (Asignacion asigQuitar : lstAsigQuitar) {
+
+					asignacionService.eliminarAsignacion(asigQuitar,
 							outParametersAsig);
 
 				}
+				for (Asignacion asigInsertar : lstAsig) {
+
+					asignacionService.insertarAsignacion(asigInsertar,
+							outParametersAsig);
+
+				}
+
 			}
 
 		} catch (Exception ex) {
@@ -165,6 +168,16 @@ public class ProgramacionAsignacionManagedBean {
 		} finally {
 			Utilitario.showFacesMessage(mensaje, tipo);
 		}
+
+	}
+
+	public String eliminarProgramacionAsignacion() {
+		String vista = null;
+		HashMap<String, Object> outParametersProgAsig = new HashMap<String, Object>();
+		asignacionService.eliminarProgramacionAsignacion(
+				objProgramacionAsignacion, outParametersProgAsig);
+		vista = administrarAsignacion();
+		return vista;
 
 	}
 

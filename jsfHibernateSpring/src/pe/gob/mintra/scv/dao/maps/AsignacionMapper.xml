@@ -97,6 +97,19 @@
 		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
 		)}
 	</select>	
+	
+	<select id="eliminarAsignacion" statementType="CALLABLE">
+		{call
+		PKG_ASIGNACION.SP_ELIASI(
+		#{asignacion.nCodAsi},
+		#{asignacion.nCodUsu},
+		#{asignacion.nCodPer},
+		#{asignacion.nCodProAsi},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
 
 
 </mapper>
