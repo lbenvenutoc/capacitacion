@@ -15,11 +15,14 @@ public class Asignacion implements Serializable {
 	private Integer nCodProAsi;
 	private String vDesAsi;
 	private String vRutAsi;
-	private Double vCalAsi;
+	private Double nCalAsi;
 	private String vDesPer;
 
 	public Asignacion() {
 		nCodAsi = -1;
+		vDesAsi = "";
+		vRutAsi = "";
+		nCalAsi = 0.0;
 	}
 
 	public Integer getnCodAsi() {
@@ -70,12 +73,12 @@ public class Asignacion implements Serializable {
 		this.vRutAsi = vRutAsi;
 	}
 
-	public Double getvCalAsi() {
-		return vCalAsi;
+	public Double getnCalAsi() {
+		return nCalAsi;
 	}
 
-	public void setvCalAsi(Double vCalAsi) {
-		this.vCalAsi = vCalAsi;
+	public void setnCalAsi(Double nCalAsi) {
+		this.nCalAsi = nCalAsi;
 	}
 
 	public String getvDesPer() {

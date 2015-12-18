@@ -7,6 +7,7 @@
 		<id column="N_CODPROASI" property="nCodProAsi" />
 		<result column="V_NOMCUR" property="vNomCur" />
 		<result column="V_DESUNI" property="vDesUni" />
+		<result column="V_DESPROASI" property="vDesProAsi" />
 		<result column="D_FINPROASI" property="dFinProAsi" />
 		<result column="D_FFIPROASI" property="dFfiProAsi" />
 		<result column="N_CANASI" property="nCanAsi" />
@@ -14,6 +15,8 @@
 	
 	<resultMap id="ResultMapAsignacion" type="Asignacion">
 		<result column="N_CODASI" property="nCodAsi" />
+		<result column="N_CODUSU" property="nCodUsu" />
+		<result column="N_CODPER" property="nCodPer" />
 		<result column="N_CODPROASI" property="nCodProAsi" />
 		<result column="V_DESPER" property="vDesPer" />
 	</resultMap>
@@ -70,7 +73,7 @@
 		)}
 	</select>
 	
-		<select id="listarAsignacion" statementType="CALLABLE"
+	<select id="listarAsignacion" statementType="CALLABLE"
 		resultMap="ResultMapAsignacion">
 		{call PKG_ASIGNACION.SP_LSTASI(
 		#{programacionAsignacion.nCodProAsi},
@@ -79,6 +82,21 @@
 		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
 		)}
 	</select>
+	
+	<select id="insertarAsignacion" statementType="CALLABLE">
+		{call
+		PKG_ASIGNACION.SP_INSASI(
+		#{asignacion.nCodProAsi},
+		#{asignacion.nCodUsu},
+	    #{asignacion.nCodPer},
+	    #{asignacion.vDesAsi},
+	    #{asignacion.vRutAsi},
+	    #{asignacion.nCalAsi},
+		#{outParameters.codAsi, jdbcType=INTEGER,mode=OUT},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>	
 
 
 </mapper>

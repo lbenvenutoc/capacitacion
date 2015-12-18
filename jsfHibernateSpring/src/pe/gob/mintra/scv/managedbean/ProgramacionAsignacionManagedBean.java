@@ -3,18 +3,24 @@ package pe.gob.mintra.scv.managedbean;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import pe.gob.mintra.scv.model.Asignacion;
+import pe.gob.mintra.scv.model.DetalleEvaluacion;
 import pe.gob.mintra.scv.model.Evaluacion;
+import pe.gob.mintra.scv.model.Opcion;
+import pe.gob.mintra.scv.model.Pregunta;
 import pe.gob.mintra.scv.model.ProgramacionAsignacion;
 import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.model.UsuarioPorCurso;
+import pe.gob.mintra.scv.model.UsuarioPorEvaluacion;
 import pe.gob.mintra.scv.service.AsignacionService;
 import pe.gob.mintra.scv.service.EvaluacionService;
+import pe.gob.mintra.scv.util.Utilitario;
 
 @Controller
 @Scope("session")
@@ -28,6 +34,7 @@ public class ProgramacionAsignacionManagedBean {
 	private List<ProgramacionAsignacion> lstProgAsig;
 	private ProgramacionAsignacion objProgramacionAsignacion;
 	private List<Asignacion> lstAsig;
+	private List<Asignacion> lstAsigQuitar;
 	private Asignacion objAsignacion;
 	private List<UsuarioPorCurso> lstUsuarioPorCurso;
 
@@ -43,11 +50,13 @@ public class ProgramacionAsignacionManagedBean {
 
 		objProgramacionAsignacion = new ProgramacionAsignacion();
 		lstProgAsig = new ArrayList<ProgramacionAsignacion>();
+
 	}
 
 	public void inicializarAsignacion() {
 		objAsignacion = new Asignacion();
 		lstAsig = new ArrayList<Asignacion>();
+		lstAsigQuitar = new ArrayList<Asignacion>();
 	}
 
 	public String administrarAsignacion() {
@@ -68,7 +77,7 @@ public class ProgramacionAsignacionManagedBean {
 		if (!objProgramacionAsignacion.getnCodProAsi().equals(-1)) {
 			asignacionService.listarAsignacion(objProgramacionAsignacion,
 					outParameters);
-			lstAsig = (List<Asignacion>) outParameters.get("lstAsig");
+			lstAsig = (List<Asignacion>) outParameters.get("lstAsi");
 		} else {
 			inicializarProgramacionAsignacion();
 
@@ -89,11 +98,74 @@ public class ProgramacionAsignacionManagedBean {
 
 			for (UsuarioPorCurso uc : lstUsuarioPorCurso) {
 				a = new Asignacion();
+				a.setnCodUsu(uc.getnCodUsu());
+				a.setnCodPer(uc.getnCodPer());
 				a.setvDesPer(uc.getvDesPer());
 				lstAsig.add(a);
 			}
 
 		}
+	}
+
+	public void quitarAsignacion() {
+		lstAsigQuitar.add(objAsignacion);
+		lstAsig.remove(objAsignacion);
+	}
+
+	public void actualizarProgramacionAsignacion() {
+		HashMap<String, Object> outParametersProgAsig = new HashMap<String, Object>();
+		HashMap<String, Object> outParametersAsig = new HashMap<String, Object>();
+		String mensaje = "";
+		int tipo = 0;
+
+		try {
+
+			if (objProgramacionAsignacion.getnCodProAsi().equals(-1)) {
+				objProgramacionAsignacion.setnCodCur(unidadAprendisaje
+						.getCodCur());
+				objProgramacionAsignacion.setnCodUniApr(unidadAprendisaje
+						.getCodUniApr());
+				asignacionService.insertarProgramacionAsignacion(
+						objProgramacionAsignacion, unidadAprendisaje,
+						outParametersProgAsig);
+
+				System.out.println(outParametersProgAsig.get("menErr"));
+
+				objProgramacionAsignacion
+						.setnCodProAsi((Integer) outParametersProgAsig
+								.get("codProAsi"));
+
+				for (Asignacion asig : lstAsig) {
+					asig.setnCodProAsi(objProgramacionAsignacion
+							.getnCodProAsi());
+
+					asignacionService.insertarAsignacion(asig,
+							outParametersAsig);
+
+					System.out.println(outParametersAsig.get("menErr"));
+
+				}
+
+			} else {
+				asignacionService.actualizarProgramacionAsignacion(
+						objProgramacionAsignacion, outParametersProgAsig);
+
+				for (Asignacion asig : lstAsigQuitar) {
+					asignacionService.eliminarAsignacion(asig,
+							outParametersAsig);
+
+				}
+			}
+
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			mensaje = "Error genérico";
+			tipo = 1;
+
+		} finally {
+			Utilitario.showFacesMessage(mensaje, tipo);
+		}
+
 	}
 
 	public List<ProgramacionAsignacion> getLstProgAsig() {

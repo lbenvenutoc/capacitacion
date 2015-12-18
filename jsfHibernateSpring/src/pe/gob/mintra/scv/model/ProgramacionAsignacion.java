@@ -14,6 +14,7 @@ public class ProgramacionAsignacion implements Serializable {
 
 	private Integer nCodProAsi;
 	private Integer nCodUsu;
+	private Integer nCodCur;
 	private Integer nCodUniApr;
 	private Date dFinProAsi;
 	private Date dFfiProAsi;
@@ -28,6 +29,7 @@ public class ProgramacionAsignacion implements Serializable {
 		nCodProAsi = -1;
 		dFinProAsi = Utilitario.fechaActual();
 		dFfiProAsi = Utilitario.fechaActual();
+		vRutProAsi = "";
 	}
 
 	public Integer getnCodProAsi() {
@@ -117,7 +119,13 @@ public class ProgramacionAsignacion implements Serializable {
 	public void setnCanAsi(Integer nCanAsi) {
 		this.nCanAsi = nCanAsi;
 	}
-	
-	
+
+	public Integer getnCodCur() {
+		return nCodCur;
+	}
+
+	public void setnCodCur(Integer nCodCur) {
+		this.nCodCur = nCodCur;
+	}
 
 }

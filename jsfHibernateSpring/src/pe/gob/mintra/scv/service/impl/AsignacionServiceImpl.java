@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.gob.mintra.scv.dao.AsignacionDao;
+import pe.gob.mintra.scv.model.Asignacion;
 import pe.gob.mintra.scv.model.ProgramacionAsignacion;
 import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.service.AsignacionService;
-
 
 @Service("asignacionService")
 public class AsignacionServiceImpl implements AsignacionService {
@@ -37,11 +37,11 @@ public class AsignacionServiceImpl implements AsignacionService {
 
 	@Override
 	public void insertarProgramacionAsignacion(
-			UnidadAprendizaje unidadAprendisaje,
 			ProgramacionAsignacion programacionAsignacion,
+			UnidadAprendizaje unidadAprendisaje,
 			Map<String, Object> outParameters) {
-		asignacionDao.insertarProgramacionAsignacion(unidadAprendisaje,
-				programacionAsignacion, outParameters);
+		asignacionDao.insertarProgramacionAsignacion(programacionAsignacion,
+				unidadAprendisaje, outParameters);
 
 	}
 
@@ -58,7 +58,21 @@ public class AsignacionServiceImpl implements AsignacionService {
 	public void listarAsignacion(ProgramacionAsignacion programacionAsignacion,
 			Map<String, Object> outParameters) {
 		asignacionDao.listarAsignacion(programacionAsignacion, outParameters);
-		
+
+	}
+
+	@Override
+	public void insertarAsignacion(Asignacion asignacion,
+			Map<String, Object> outParameters) {
+		asignacionDao.insertarAsignacion(asignacion, outParameters);
+
+	}
+
+	@Override
+	public void eliminarAsignacion(Asignacion asignacion,
+			Map<String, Object> outParameters) {
+		asignacionDao.eliminarAsignacion(asignacion, outParameters);
+
 	}
 
 }

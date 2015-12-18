@@ -100,7 +100,7 @@
 												headerText="#{etiquetas.cl_cabecera_tablaadmasig_unidad}">#{objAdmAsig.vDesUni}</p:column>
 
 											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmasig_cantasig}">#{objAdmAsig.nCanAsig}</p:column>
+												headerText="#{etiquetas.cl_cabecera_tablaadmasig_cantasig}">#{objAdmAsig.nCanAsi}</p:column>
 
 											<p:column
 												headerText="#{etiquetas.cl_cabecera_tablaadmasig_fecini}">
@@ -121,7 +121,7 @@
 												<p:commandButton
 													action="#{programacionAsignacionManagedBean.mostrarProgramacionAsignacion}"
 													value="Actualizar">
-													<f:setPropertyActionListener value="#{objAdmEval}"
+													<f:setPropertyActionListener value="#{objAdmAsig}"
 														target="#{programacionAsignacionManagedBean.objProgramacionAsignacion}"></f:setPropertyActionListener>
 												</p:commandButton>
 											</p:column>
