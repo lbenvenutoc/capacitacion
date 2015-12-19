@@ -9,7 +9,7 @@
 		<result column="D_FECINICUR" property="dFecIniCur" />
 		<result column="D_FECFINCUR" property="dFecFinCur" />
 		<result column="N_ESTCUR" property="nEstCur" />
-		<result column="V_RUTPRE" property="vRutPre" />
+		<result column="V_RUTPRES" property="vRutPres" />
 		<result column="V_RUTSIL" property="vRutSil" />
 		<result column="V_RUTCRO" property="vRutCro" />
 	</resultMap>

@@ -67,3 +67,35 @@
 		!important;
 }
 
+.ico-edipresentacion {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-edipresentacion.png")
+		!important;
+}
+
+.ico-verpresentacion {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-verpresentacion.png")
+		!important;
+}
+
+.ico-edicronograma {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-edicronograma.png")
+		!important;
+}
+
+.ico-vercronograma {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-vercronograma.png")
+		!important;
+}
+

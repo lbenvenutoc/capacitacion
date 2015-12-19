@@ -17,6 +17,30 @@ public class Propiedad {
 
 	@Value("${agnd.subirarchivo.silabo.identificador}")
 	private String silaboIdentificador;
+	
+	@Value("${agnd.subirarchivo.presentacion.extension}")
+	private String presentacionExtension;
+
+	@Value("${agnd.subirarchivo.presentacion.tamanoarchivo}")
+	private String presentacionTamanio;
+
+	@Value("${agnd.subirarchivo.presentacion.ruta}")
+	private String presentacionRuta;
+
+	@Value("${agnd.subirarchivo.presentacion.identificador}")
+	private String presentacionIdentificador;
+	
+	@Value("${agnd.subirarchivo.cronograma.extension}")
+	private String cronogramaExtension;
+
+	@Value("${agnd.subirarchivo.cronograma.tamanoarchivo}")
+	private String cronogramaTamanio;
+
+	@Value("${agnd.subirarchivo.cronograma.ruta}")
+	private String cronogramaRuta;
+
+	@Value("${agnd.subirarchivo.cronograma.identificador}")
+	private String cronogramaIdentificador;
 
 	public String getSilaboExtension() {
 		return silaboExtension;
@@ -49,5 +73,73 @@ public class Propiedad {
 	public void setSilaboIdentificador(String silaboIdentificador) {
 		this.silaboIdentificador = silaboIdentificador;
 	}
+
+	public String getPresentacionExtension() {
+		return presentacionExtension;
+	}
+
+	public void setPresentacionExtension(String presentacionExtension) {
+		this.presentacionExtension = presentacionExtension;
+	}
+
+	public String getPresentacionTamanio() {
+		return presentacionTamanio;
+	}
+
+	public void setPresentacionTamanio(String presentacionTamanio) {
+		this.presentacionTamanio = presentacionTamanio;
+	}
+
+	public String getPresentacionRuta() {
+		return presentacionRuta;
+	}
+
+	public void setPresentacionRuta(String presentacionRuta) {
+		this.presentacionRuta = presentacionRuta;
+	}
+
+	public String getPresentacionIdentificador() {
+		return presentacionIdentificador;
+	}
+
+	public void setPresentacionIdentificador(String presentacionIdentificador) {
+		this.presentacionIdentificador = presentacionIdentificador;
+	}
+
+	public String getCronogramaExtension() {
+		return cronogramaExtension;
+	}
+
+	public void setCronogramaExtension(String cronogramaExtension) {
+		this.cronogramaExtension = cronogramaExtension;
+	}
+
+	public String getCronogramaTamanio() {
+		return cronogramaTamanio;
+	}
+
+	public void setCronogramaTamanio(String cronogramaTamanio) {
+		this.cronogramaTamanio = cronogramaTamanio;
+	}	
+
+	public String getCronogramaRuta() {
+		return cronogramaRuta;
+	}
+
+	public void setCronogramaRuta(String cronogramaRuta) {
+		this.cronogramaRuta = cronogramaRuta;
+	}
+
+	public String getCronogramaIdentificador() {
+		return cronogramaIdentificador;
+	}
+
+	public void setCronogramaIdentificador(String cronogramaIdentificador) {
+		this.cronogramaIdentificador = cronogramaIdentificador;
+	}
+	
+	
+	
+	
 
 }

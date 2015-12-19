@@ -40,6 +40,7 @@ public class CursoManagedBean implements Serializable {
 	private List<UnidadAprendizaje> lstUnidad;
 
 	public boolean muestraUnidad = false;
+	private String tipoDocumentoSubir;
 
 	@Autowired
 	private Propiedad propiedad;
@@ -56,6 +57,7 @@ public class CursoManagedBean implements Serializable {
 
 		objUnidad = new UnidadAprendizaje();
 		lstUnidad = new ArrayList<UnidadAprendizaje>();
+		tipoDocumentoSubir = "";
 	}
 
 	public String mostrarAdministrarCurso() {
@@ -182,17 +184,77 @@ public class CursoManagedBean implements Serializable {
 		return vista;
 	}
 
-	public void subirSilabo(FileUploadEvent event) {
+	public void subirArchivo(FileUploadEvent event) {
 
+		HashMap<String, Object> outParametersCurso = new HashMap<String, Object>();
 		String nombreArchivo = "";
-		nombreArchivo = objCurso.getnCodCur()
-				+ propiedad.getSilaboIdentificador();
-		nombreArchivo += "." + propiedad.getSilaboExtension();
+		String identificador = "";
+		String extension = "";
+		String ruta = "";
 
 		try {
+
+			if (tipoDocumentoSubir.equals("SIL")) {
+				identificador = propiedad.getSilaboIdentificador();
+				extension = propiedad.getSilaboExtension();
+				ruta = propiedad.getSilaboRuta();
+			} else if (tipoDocumentoSubir.equals("PRE")) {
+				identificador = propiedad.getPresentacionIdentificador();
+				extension = propiedad.getPresentacionExtension();
+				ruta = propiedad.getPresentacionRuta();
+			} else {
+				identificador = propiedad.getCronogramaIdentificador();
+				extension = propiedad.getCronogramaExtension();
+				ruta = propiedad.getCronogramaRuta();
+			}
+
+			nombreArchivo = objCurso.getnCodCur() + identificador + "."
+					+ extension;
+
+			if (tipoDocumentoSubir.equals("SIL")) {
+				objCurso.setvRutSil(nombreArchivo);
+			} else if (tipoDocumentoSubir.equals("PRE")) {
+				objCurso.setvRutPres(nombreArchivo);
+			} else {
+				objCurso.setvRutCro(nombreArchivo);
+			}
+
+			cursoService.actualizarCurso(objCurso, outParametersCurso);
+
 			Utilitario.copiarArchivo(nombreArchivo, event.getFile()
-					.getInputstream(), propiedad.getSilaboRuta());
+					.getInputstream(), ruta);
+
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		buscarCurso();
+
+	}
+
+	public void mostrarArchivo() {
+		String ruta = "";
+		String extension = "";
+		String nombreArchivo = "";
+		try {
+			if (tipoDocumentoSubir.equals("SIL")) {
+				extension = propiedad.getSilaboExtension();
+				ruta = propiedad.getSilaboRuta();
+				nombreArchivo = objCurso.getvRutSil();
+			} else if (tipoDocumentoSubir.equals("PRE")) {
+				extension = propiedad.getPresentacionExtension();
+				ruta = propiedad.getPresentacionRuta();
+				nombreArchivo = objCurso.getvRutPres();
+			} else {
+				extension = propiedad.getCronogramaExtension();
+				ruta = propiedad.getCronogramaRuta();
+				nombreArchivo = objCurso.getvRutCro();
+			}
+			Utilitario.mostrarArchivo(ruta, nombreArchivo, extension);
+
+		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
@@ -253,6 +315,14 @@ public class CursoManagedBean implements Serializable {
 
 	public void setPropiedad(Propiedad propiedad) {
 		this.propiedad = propiedad;
+	}
+
+	public String getTipoDocumentoSubir() {
+		return tipoDocumentoSubir;
+	}
+
+	public void setTipoDocumentoSubir(String tipoDocumentoSubir) {
+		this.tipoDocumentoSubir = tipoDocumentoSubir;
 	}
 
 }
