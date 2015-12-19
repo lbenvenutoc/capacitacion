@@ -3,6 +3,8 @@ package pe.gob.mintra.scv.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import pe.gob.mintra.scv.util.Utilitario;
+
 public class Curso implements Serializable {
 
 	/**
@@ -28,6 +30,8 @@ public class Curso implements Serializable {
 		vRutCro = "";
 		estaHabilitado = true;
 		nEstCur = 1;
+		dFecIniCur = Utilitario.fechaActual();
+		dFecFinCur = Utilitario.fechaActual();
 	}
 
 	public Integer getnCodCur() {

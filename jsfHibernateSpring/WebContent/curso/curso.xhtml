@@ -70,8 +70,8 @@
 						<p:row>
 							<p:column colspan="2" style="text-align: center;">
 								<p:commandButton
-									value="#{etiquetas.cl_cursos_registro_boton_grabar}"
-									action="#{cursoManagedBean.grabarCurso}" update="btnUnidad"></p:commandButton>
+									value="#{etiquetas.cl_cursos_registro_boton_grabar}"									
+									action="#{cursoManagedBean.grabarCurso}" update="btnUnidad, message"></p:commandButton>
 								<p:commandButton rendered="#{cursoManagedBean.muestraUnidad}"
 									id="btnUnidad"
 									value="#{etiquetas.cl_cursos_registro_boton_unidad}"

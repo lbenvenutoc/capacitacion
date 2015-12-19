@@ -85,25 +85,56 @@ public class CursoManagedBean implements Serializable {
 	public String grabarCurso() {
 		HashMap<String, Object> outParametersCurso = new HashMap<String, Object>();
 		String vista = null;
+		String mensaje = "";
+		int tipo = 0;
 
-		if (objCurso.isEstaHabilitado()) {
-			objCurso.setnEstCur(1);
-		} else {
-			objCurso.setnEstCur(0);
+		try {
+
+			if (objCurso.getvNomCur().equals(null)
+					|| objCurso.getvNomCur().equals("")) {
+				mensaje = "Ingrese el nombre de curso";
+				tipo = 1;
+			} else if (objCurso.getvDesCur().equals(null)
+					|| objCurso.getvDesCur().equals("")) {
+				mensaje = "Ingrese la descripcion de curso";
+				tipo = 1;
+			} else if (objCurso.getdFecIniCur().after(objCurso.getdFecFinCur())) {
+				mensaje = "La fecha final no puede ser mayor que la fecha inicial";
+				tipo = 1;
+			} else {
+
+				if (objCurso.isEstaHabilitado()) {
+					objCurso.setnEstCur(1);
+				} else {
+					objCurso.setnEstCur(0);
+				}
+
+				if (objCurso.getnCodCur().equals(-1)) {
+					cursoService.insertarCurso(objCurso, outParametersCurso);
+					objCurso.setnCodCur((Integer) outParametersCurso
+							.get("nCodCur"));
+
+				} else {
+					cursoService.actualizarCurso(objCurso, outParametersCurso);
+
+				}
+
+				muestraUnidad = true;
+
+				vista = mostrarCurso();
+				
+				mensaje = "Curso registrado correctamente";
+				tipo = 3;
+
+			}
+
+		} catch (Exception e) {
+			mensaje = "Error genérico";
+			tipo = 1;
+		}finally{
+			Utilitario.showFacesMessage(mensaje, tipo);
 		}
 
-		if (objCurso.getnCodCur().equals(-1)) {
-			cursoService.insertarCurso(objCurso, outParametersCurso);
-			objCurso.setnCodCur((Integer) outParametersCurso.get("nCodCur"));
-
-		} else {
-			cursoService.actualizarCurso(objCurso, outParametersCurso);
-
-		}
-
-		muestraUnidad = true;
-
-		vista = mostrarCurso();
 		return vista;
 
 	}
