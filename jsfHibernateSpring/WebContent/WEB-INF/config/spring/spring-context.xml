@@ -22,6 +22,8 @@
 
 	<context:annotation-config />
 	<context:component-scan base-package="pe.gob.mintra.scv" />
+	
+	<context:property-placeholder location="classpath:scv.properties, classpath:database.properties" />
 
 
 	<!-- Conexion a Base de Datos -->

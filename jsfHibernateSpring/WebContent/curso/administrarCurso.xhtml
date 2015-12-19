@@ -74,7 +74,8 @@
 										icon="ico-versilabo" title="Ver Silabo">
 
 									</p:commandButton>
-									<p:commandButton icon="ico-edisilabo" title="Actualizar Silabo" onclick="dialogoUploadSilabo.show();">
+									<p:commandButton icon="ico-edisilabo" title="Actualizar Silabo"
+										onclick="dialogoUploadSilabo.show();">
 
 									</p:commandButton>
 
@@ -91,11 +92,19 @@
 			<h:form id="frmUploadSilabo">
 
 				<p:dialog id="dialogoUploadSilabo"
-					header="Subir Silabo PDF" widgetVar="dialogoUploadSilabo"
-					showEffect="fade" hideEffect="fade" resizable="false">
+					header="Subir Silabo"
+					widgetVar="dialogoUploadSilabo" showEffect="fade" hideEffect="fade"
+					resizable="false">
 
-					<p:fileUpload />
-
+					<p:fileUpload oncomplete="dialogoUploadSilabo.hide();"
+						mode="advanced"
+						dragDropSupport="false" uploadLabel="Subir" cancelLabel="Cancelar"
+						label="Seleccionar"
+						invalidFileMessage="Debe seleccionar solo archivos con extensión #{cursoManagedBean.propiedad.extension}"
+						invalidSizeMessage="El archivo seleccionado pesa mas de  #{cursoManagedBean.propiedad.tamanio} MB"
+						update=":frmUploadSilabo" fileLimit="1"
+						allowTypes="/(\.|\/)(#{cursoManagedBean.propiedad.extension})$/"
+						sizeLimit="#{cursoManagedBean.propiedad.tamanio}" />
 
 
 				</p:dialog>

@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import pe.gob.mintra.scv.model.Curso;
 import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.service.CursoService;
+import pe.gob.mintra.scv.util.Propiedad;
 
 /**
  * 
@@ -38,13 +38,17 @@ public class CursoManagedBean implements Serializable {
 
 	public boolean muestraUnidad = false;
 
-	private UploadedFile archivoSilabo;
+	@Autowired
+	private Propiedad propiedad;
 
 	public CursoManagedBean() {
 		inicializarCurso();
 	}
 
 	public void inicializarCurso() {
+
+		
+
 		objCurso = new Curso();
 		objCursoParam = new Curso();
 		lstCurso = new ArrayList<Curso>();
@@ -70,6 +74,8 @@ public class CursoManagedBean implements Serializable {
 			muestraUnidad = true;
 
 		}
+		
+		
 
 		vista = "pretty:mostrarCurso";
 		return vista;
@@ -93,8 +99,6 @@ public class CursoManagedBean implements Serializable {
 			cursoService.actualizarCurso(objCurso, outParametersCurso);
 
 		}
-
-		
 
 		muestraUnidad = true;
 
@@ -227,12 +231,13 @@ public class CursoManagedBean implements Serializable {
 		this.muestraUnidad = muestraUnidad;
 	}
 
-	public UploadedFile getArchivoSilabo() {
-		return archivoSilabo;
+	public Propiedad getPropiedad() {
+		return propiedad;
 	}
 
-	public void setArchivoSilabo(UploadedFile archivoSilabo) {
-		this.archivoSilabo = archivoSilabo;
+	public void setPropiedad(Propiedad propiedad) {
+		this.propiedad = propiedad;
 	}
+	
 
 }
