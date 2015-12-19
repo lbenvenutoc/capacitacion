@@ -1,0 +1,28 @@
+.ui-widget{
+                    font-size: 12px !important;
+                }
+                html, body{                    
+
+                }
+                table{                    
+                    width: 100%;                    
+                }
+                input, textarea, label, .combo{
+                    width: 95% !important;                    
+                }
+                                
+                .ui-widget-overlay {                    
+                    opacity: 0.3 !important;
+                }
+
+
+
+/*      ICONOS        */
+
+.ico-nuevo {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-nuevo.png")
+		!important;
+}

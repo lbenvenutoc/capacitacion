@@ -5,29 +5,12 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" >
     <f:view contentType="text/html" locale="es">
-        <h:head>            
+        <h:head>      
+        	<h:outputStylesheet name="scv.css" library="css" />      
             <f:facet name="first">            
                 <title>#{etiquetas.cl_titulo}</title>
             </f:facet>           
-            <style type="text/css">
-                .ui-widget{
-                    font-size: 12px !important;
-                }
-                html, body{                    
-
-                }
-                table{                    
-                    width: 100%;                    
-                }
-                input, textarea, label, .combo{
-                    width: 95% !important;                    
-                }
-                                
-                .ui-widget-overlay {                    
-                    opacity: 0.3 !important;
-                }
-
-            </style>
+            
             <ui:insert name="resources-app"/>                              
         </h:head>
         <h:body>

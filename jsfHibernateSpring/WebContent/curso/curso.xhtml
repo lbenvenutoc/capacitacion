@@ -55,6 +55,8 @@
 							</p:column>
 						</p:row>
 
+						
+
 						<p:row>
 							<p:column>
 								<p:outputLabel value="#{etiquetas.cl_cursos_registro_estado}"></p:outputLabel>
@@ -71,7 +73,8 @@
 									value="#{etiquetas.cl_cursos_registro_boton_grabar}"
 									action="#{cursoManagedBean.grabarCurso}" update="btnUnidad"></p:commandButton>
 								<p:commandButton rendered="#{cursoManagedBean.muestraUnidad}"
-									id="btnUnidad" value="#{etiquetas.cl_cursos_registro_boton_unidad}"
+									id="btnUnidad"
+									value="#{etiquetas.cl_cursos_registro_boton_unidad}"
 									action="#{cursoManagedBean.mostrarAdministracionUnidad}"></p:commandButton>
 								<p:commandButton
 									value="#{etiquetas.cl_cursos_registro_boton_regresar}"
