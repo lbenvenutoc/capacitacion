@@ -26,3 +26,44 @@
 	background-image: url("./../../resources/imagenes/iconos/ico-nuevo.png")
 		!important;
 }
+
+.ico-editar {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-editar.png")
+		!important;
+}
+
+.ico-eliminar {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-eliminar.png")
+		!important;
+}
+
+.ico-buscar {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-buscar.png")
+		!important;
+}
+
+.ico-versilabo {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-versilabo.png")
+		!important;
+}
+
+.ico-edisilabo {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-edisilabo.png")
+		!important;
+}
+
