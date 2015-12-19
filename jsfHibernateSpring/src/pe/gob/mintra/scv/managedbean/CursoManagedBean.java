@@ -1,11 +1,13 @@
 package pe.gob.mintra.scv.managedbean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.primefaces.event.FileUploadEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import pe.gob.mintra.scv.model.Curso;
 import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.service.CursoService;
 import pe.gob.mintra.scv.util.Propiedad;
+import pe.gob.mintra.scv.util.Utilitario;
 
 /**
  * 
@@ -47,8 +50,6 @@ public class CursoManagedBean implements Serializable {
 
 	public void inicializarCurso() {
 
-		
-
 		objCurso = new Curso();
 		objCursoParam = new Curso();
 		lstCurso = new ArrayList<Curso>();
@@ -74,8 +75,6 @@ public class CursoManagedBean implements Serializable {
 			muestraUnidad = true;
 
 		}
-		
-		
 
 		vista = "pretty:mostrarCurso";
 		return vista;
@@ -183,6 +182,23 @@ public class CursoManagedBean implements Serializable {
 		return vista;
 	}
 
+	public void subirSilabo(FileUploadEvent event) {
+
+		String nombreArchivo = "";
+		nombreArchivo = objCurso.getnCodCur()
+				+ propiedad.getSilaboIdentificador();
+		nombreArchivo += "." + propiedad.getSilaboExtension();
+
+		try {
+			Utilitario.copiarArchivo(nombreArchivo, event.getFile()
+					.getInputstream(), propiedad.getSilaboRuta());
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
 	public Curso getObjCurso() {
 		return objCurso;
 	}
@@ -238,6 +254,5 @@ public class CursoManagedBean implements Serializable {
 	public void setPropiedad(Propiedad propiedad) {
 		this.propiedad = propiedad;
 	}
-	
 
 }

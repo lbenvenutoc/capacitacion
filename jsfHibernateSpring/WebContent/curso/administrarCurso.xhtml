@@ -75,8 +75,9 @@
 
 									</p:commandButton>
 									<p:commandButton icon="ico-edisilabo" title="Actualizar Silabo"
-										onclick="dialogoUploadSilabo.show();">
-
+										oncomplete="dialogoUploadSilabo.show();">
+										<f:setPropertyActionListener value="#{objCurso}"
+											target="#{cursoManagedBean.objCurso}"></f:setPropertyActionListener>
 									</p:commandButton>
 
 								</p:column>
@@ -91,20 +92,20 @@
 
 			<h:form id="frmUploadSilabo">
 
-				<p:dialog id="dialogoUploadSilabo"
-					header="Subir Silabo"
+				<p:dialog id="dialogoUploadSilabo" header="Subir Silabo"
 					widgetVar="dialogoUploadSilabo" showEffect="fade" hideEffect="fade"
 					resizable="false">
 
 					<p:fileUpload oncomplete="dialogoUploadSilabo.hide();"
 						mode="advanced"
+						fileUploadListener="#{cursoManagedBean.subirSilabo}"
 						dragDropSupport="false" uploadLabel="Subir" cancelLabel="Cancelar"
 						label="Seleccionar"
-						invalidFileMessage="Debe seleccionar solo archivos con extensión #{cursoManagedBean.propiedad.extension}"
-						invalidSizeMessage="El archivo seleccionado pesa mas de  #{cursoManagedBean.propiedad.tamanio} MB"
+						invalidFileMessage="Debe seleccionar solo archivos con extensión #{cursoManagedBean.propiedad.silaboExtension}"
+						invalidSizeMessage="El archivo seleccionado pesa mas de  #{cursoManagedBean.propiedad.silaboTamanio} MB"
 						update=":frmUploadSilabo" fileLimit="1"
-						allowTypes="/(\.|\/)(#{cursoManagedBean.propiedad.extension})$/"
-						sizeLimit="#{cursoManagedBean.propiedad.tamanio}" />
+						allowTypes="/(\.|\/)(#{cursoManagedBean.propiedad.silaboExtension})$/"
+						sizeLimit="#{cursoManagedBean.propiedad.silaboTamanio}" />
 
 
 				</p:dialog>

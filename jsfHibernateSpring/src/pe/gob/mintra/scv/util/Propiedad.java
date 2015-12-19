@@ -6,37 +6,48 @@ import org.springframework.stereotype.Component;
 @Component
 public class Propiedad {
 
-	@Value("${agnd.subirarchivo.extension}")
-	private String extension;
+	@Value("${agnd.subirarchivo.silabo.extension}")
+	private String silaboExtension;
 
-	@Value("${agnd.subirarchivo.tamanoarchivo}")
-	private String tamanio;
+	@Value("${agnd.subirarchivo.silabo.tamanoarchivo}")
+	private String silaboTamanio;
 
-	@Value("${agnd.subirarchivo.mensaje}")
-	private String mensaje;
+	@Value("${agnd.subirarchivo.silabo.ruta}")
+	private String silaboRuta;
 
-	public String getExtension() {
-		return extension;
+	@Value("${agnd.subirarchivo.silabo.identificador}")
+	private String silaboIdentificador;
+
+	public String getSilaboExtension() {
+		return silaboExtension;
 	}
 
-	public void setExtension(String extension) {
-		this.extension = extension;
+	public void setSilaboExtension(String silaboExtension) {
+		this.silaboExtension = silaboExtension;
 	}
 
-	public String getTamanio() {
-		return tamanio;
+	public String getSilaboTamanio() {
+		return silaboTamanio;
 	}
 
-	public void setTamanio(String tamanio) {
-		this.tamanio = tamanio;
+	public void setSilaboTamanio(String silaboTamanio) {
+		this.silaboTamanio = silaboTamanio;
 	}
 
-	public String getMensaje() {
-		return mensaje;
+	public String getSilaboRuta() {
+		return silaboRuta;
 	}
 
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
+	public void setSilaboRuta(String silaboRuta) {
+		this.silaboRuta = silaboRuta;
+	}
+
+	public String getSilaboIdentificador() {
+		return silaboIdentificador;
+	}
+
+	public void setSilaboIdentificador(String silaboIdentificador) {
+		this.silaboIdentificador = silaboIdentificador;
 	}
 
 }
