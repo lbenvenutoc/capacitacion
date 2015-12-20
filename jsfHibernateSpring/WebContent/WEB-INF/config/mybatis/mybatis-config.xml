@@ -22,6 +22,8 @@
 			alias="ProgramacionAsignacion" />
 		<typeAlias type="pe.gob.mintra.scv.model.Asignacion"
 			alias="Asignacion" />
+			<typeAlias type="pe.gob.mintra.scv.model.TipoForo" alias="TipoForo" />
+			<typeAlias type="pe.gob.mintra.scv.model.Foro" alias="Foro" />
 
 	</typeAliases>
 
@@ -33,6 +35,8 @@
 		<mapper resource="pe/gob/mintra/scv/dao/maps/PreguntaMapper.xml" />
 		<mapper resource="pe/gob/mintra/scv/dao/maps/EvaluacionMapper.xml" />
 		<mapper resource="pe/gob/mintra/scv/dao/maps/AsignacionMapper.xml" />
+		<mapper resource="pe/gob/mintra/scv/dao/maps/TipoForoMapper.xml" />
+		<mapper resource="pe/gob/mintra/scv/dao/maps/ForoMapper.xml" />
 
 	</mappers>
 </configuration>

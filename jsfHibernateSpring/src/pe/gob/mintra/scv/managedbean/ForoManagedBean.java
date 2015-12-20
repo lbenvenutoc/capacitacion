@@ -6,8 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import pe.gob.mintra.scv.model.Foro;
+import pe.gob.mintra.scv.model.TipoForo;
+import pe.gob.mintra.scv.service.ForoService;
 
 @Controller
 @Scope("session")
@@ -17,12 +22,46 @@ public class ForoManagedBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private List<Map<String, String>> lst = new ArrayList<Map<String, String>>();
+	@Autowired
+	private ForoService foroService;
 	
-	private String textoBienvenida;
+	private Foro foro;
+	private Foro objForo;
+	private List<Foro> lstForo;
+	
+	private String textoBienvenida;	
 
-	
-	
+	public ForoService getForoService() {
+		return foroService;
+	}
+
+	public void setForoService(ForoService foroService) {
+		this.foroService = foroService;
+	}
+
+	public Foro getForo() {
+		return foro;
+	}
+
+	public void setForo(Foro foro) {
+		this.foro = foro;
+	}
+
+	public Foro getObjForo() {
+		return objForo;
+	}
+
+	public void setObjForo(Foro objForo) {
+		this.objForo = objForo;
+	}
+
+	public List<Foro> getLstForo() {
+		return lstForo;
+	}
+
+	public void setLstForo(List<Foro> lstForo) {
+		this.lstForo = lstForo;
+	}
 
 	public String getTextoBienvenida() {
 		textoBienvenida = "Aprovechemos la oportunidad para realizar una breve presentacion personal" +
@@ -34,25 +73,11 @@ public class ForoManagedBean implements Serializable {
 		this.textoBienvenida = textoBienvenida;
 	}
 
-	public List<Map<String, String>> getLst() {
-		return lst;
-	}
-
-	public void setLst(List<Map<String, String>> lst) {
-		this.lst = lst;
-	}
-
 	public ForoManagedBean() {
-		Map<String, String> mapa = new HashMap<String, String>();
-		mapa.put("desc", "Foro para presentacion de participantes del modulo 5");
-		mapa.put("tipo", "Foro de Presentacion");
-		mapa.put("fini", "11/10/2015");
-		mapa.put("ffin", "12/12/2015");
-		mapa.put("activo", "activo");
-		lst.add(mapa);
+		objForo = new Foro();
 	}
 
-	public String listarForo() {
+	public String listar() {
 		String vista = null;
 		vista = "pretty:listarForo";
 		return vista;
@@ -64,18 +89,41 @@ public class ForoManagedBean implements Serializable {
 		return vista;
 	}
 	
-	public String prepareEditar() {
+	public String prepareEditar(Foro f) {
 		String vista = null;
 		vista = "pretty:editarForo";
 		return vista;
 	}
 	
-	public String verForo() {
+	
+	
+	public String prepareVer(Foro f) {
 		String vista = null;
 		vista = "pretty:verForo";
 		return vista;
 	}
 	
+	//METODOS
+	public void buscar() {
+		HashMap<String, Object> outParametersForo = new HashMap<String, Object>();
+		foroService.listarForo(objForo, outParametersForo);
+		lstForo = (List<Foro>) outParametersForo.get("lstCur");		
+		objForo = new Foro();
+	}
+	
+	public String crear(){
+		HashMap<String, Object> outParametersForo = new HashMap<String, Object>();
+		foroService.insertarForo(objForo, outParametersForo);
+		objForo.setnCodForo((Integer) outParametersForo.get("nCodForo"));
+		return listar();
+	}
+	
+	public String editar(){
+		HashMap<String, Object> outParametersForo = new HashMap<String, Object>();
+		foroService.actualizarForo(objForo, outParametersForo);
+		return listar();
+	}
+
 	public String usuarioXForo() {
 		String vista = null;
 		vista = "pretty:usuarioXForo";

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pe.gob.mintra.scv.dao.ForoDao">
+
+	<resultMap id="ResultMapForo" type="Foro">
+		<id column="N_CODFOR" property="nCodForo" />
+		<result column="V_DESFOR" property="vDesForo" />
+		<result column="N_CODTIPFOR" property="nCodTipForo" />
+		<result column="D_FECINIFOR" property="dFechaIni" />
+		<result column="D_FECFINFOR" property="dFechaFin" />
+		<result column="N_ESTFOR" property="nEstForo" />
+	</resultMap>
+
+	<select id="listarForo" statementType="CALLABLE" resultMap="ResultMapForo">
+		{call PKG_FORO.SP_LST_FORO(
+		#{foro.vDesForo},
+		#{outParameters.lstCur,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapForo},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+	<select id="insertarForo" statementType="CALLABLE">
+		{call
+		PKG_TIPOFORO.SP_INS_FORO(
+		#{foro.vDesForo},
+		#{foro.nCodTipForo},
+		#{foro.dFechaIni},
+		#{foro.dFechaFin},
+		#{foro.nEstForo},
+		#{outParameters.nCodForo,jdbcType=INTEGER,mode=OUT},
+		#{outParameters.codErr,jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+	<select id="actualizarForo" statementType="CALLABLE">
+		{call
+		PKG_FORO.SP_ACT_FORO(
+		#{foro.nCodForo},
+		#{foro.vDesForo},
+		#{foro.nCodTipForo},
+		#{foro.dFechaIni},
+		#{foro.dFechaFin},
+		#{foro.nEstForo},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+</mapper>

@@ -20,18 +20,18 @@ public class TipoForoServiceImpl implements TipoForoService {
 	private TipoForoDao tipoForoDao;
 
 	@Override
-	public void listarTipoForo(TipoForo curso, Map<String, Object> outParameters) {
-		tipoForoDao.listarTipoForo(curso, outParameters);		
+	public void listarTipoForo(TipoForo tipoforo, Map<String, Object> outParameters) {
+		tipoForoDao.listarTipoForo(tipoforo, outParameters);		
 	}
 
 	@Override
-	public void insertarTipoForo(TipoForo curso, Map<String, Object> outParameters) {
-		tipoForoDao.insertarTipoForo(curso, outParameters);	
+	public void insertarTipoForo(TipoForo tipoforo, Map<String, Object> outParameters) {
+		tipoForoDao.insertarTipoForo(tipoforo, outParameters);	
 	}
 
 	@Override
-	public void actualizarTipoForo(TipoForo curso, Map<String, Object> outParameters) {
-		tipoForoDao.actualizarTipoForo(curso, outParameters);		
+	public void actualizarTipoForo(TipoForo tipoforo, Map<String, Object> outParameters) {
+		tipoForoDao.actualizarTipoForo(tipoforo, outParameters);		
 	}
 	
 }

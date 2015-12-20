@@ -6,8 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import pe.gob.mintra.scv.model.Curso;
+import pe.gob.mintra.scv.model.TipoForo;
+import pe.gob.mintra.scv.service.CursoService;
+import pe.gob.mintra.scv.service.TipoForoService;
 
 @Controller
 @Scope("session")
@@ -17,51 +23,97 @@ public class TipoForoManagedBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private List<Map<String, String>> lst = new ArrayList<Map<String, String>>();
 
+	@Autowired
+	private TipoForoService tipoForoService;
 	
+	private TipoForo tipoForo;
+	private TipoForo objTipoForo;
+	private List<TipoForo> lstTipoForo;
 	
 
-	public List<Map<String, String>> getLst() {
-		return lst;
+	public TipoForo getObjTipoForo() {
+		return objTipoForo;
 	}
 
-	public void setLst(List<Map<String, String>> lst) {
-		this.lst = lst;
+	public void setObjTipoForo(TipoForo objTipoForo) {
+		this.objTipoForo = objTipoForo;
+	}
+
+	public TipoForo getTipoForo() {
+		return tipoForo;
+	}
+
+	public void setTipoForo(TipoForo tipoForo) {
+		this.tipoForo = tipoForo;
+	}
+
+	public List<TipoForo> getLstTipoForo() {
+		return lstTipoForo;
+	}
+
+	public void setLstTipoForo(List<TipoForo> lstTipoForo) {
+		this.lstTipoForo = lstTipoForo;
 	}
 
 	public TipoForoManagedBean() {
-		Map<String, String> mapa = new HashMap<String, String>();
-		mapa.put("desc", "Foro para presentacion de participantes del modulo 5");
-		mapa.put("tipo", "Foro de Presentacion");
-		mapa.put("fini", "11/10/2015");
-		mapa.put("ffin", "12/12/2015");
-		mapa.put("activo", "activo");
-		lst.add(mapa);
+		objTipoForo = new TipoForo();
 	}
 
-	public String listarTipoForo() {
+	//REDIRECCIONES
+	
+	public String listar() {
 		String vista = null;
+		objTipoForo = new TipoForo();
+		lstTipoForo = null;
 		vista = "pretty:listarTipoForo";
 		return vista;
 	}
 
 	public String prepareCrear() {
+		objTipoForo = new TipoForo();
 		String vista = null;
 		vista = "pretty:crearTipoForo";
 		return vista;
 	}
 	
-	public String prepareEditar() {
+	public String prepareEditar(TipoForo tf) {
+		try {
+			String vista = null;
+			objTipoForo=tf;
+			vista = "pretty:editarTipoForo";
+			return vista;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public String prepareVer(TipoForo tf) {
 		String vista = null;
-		vista = "pretty:editarTipoForo";
+		objTipoForo=tf;
+		vista = "pretty:verTipoForo";
 		return vista;
 	}
 	
-	public String verTipoForo() {
-		String vista = null;
-		vista = "pretty:verTipoForo";
-		return vista;
+	//METODOS
+	public void buscar() {
+		HashMap<String, Object> outParametersTipoForo = new HashMap<String, Object>();
+		tipoForoService.listarTipoForo(objTipoForo, outParametersTipoForo);
+		lstTipoForo = (List<TipoForo>) outParametersTipoForo.get("lstCur");		
+		objTipoForo = new TipoForo();
+	}
+	
+	public String crear(){
+		HashMap<String, Object> outParametersTipoForo = new HashMap<String, Object>();
+		tipoForoService.insertarTipoForo(objTipoForo, outParametersTipoForo);
+		objTipoForo.setnCodTipoForo((Integer) outParametersTipoForo.get("nCodTipoForo"));
+		return listar();
+	}
+	
+	public String editar(){
+		HashMap<String, Object> outParametersTipoForo = new HashMap<String, Object>();
+		tipoForoService.actualizarTipoForo(objTipoForo, outParametersTipoForo);
+		return listar();
 	}
 
 }

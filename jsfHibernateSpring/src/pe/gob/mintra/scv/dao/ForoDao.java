@@ -5,18 +5,18 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import pe.gob.mintra.scv.model.Curso;
-import pe.gob.mintra.scv.model.TipoForo;
+import pe.gob.mintra.scv.model.Foro;
 import pe.gob.mintra.scv.model.UnidadAprendizaje;
 
-public interface TipoForoDao {
+public interface ForoDao {
 
-	public void listarTipoForo(@Param("tipoforo") TipoForo tipoforo,
+	public void listarForo(@Param("foro") Foro foro,
 			@Param("outParameters") Map<String, Object> outParameters);
 
-	public void insertarTipoForo(@Param("tipoforo") TipoForo tipoforo,
+	public void insertarForo(@Param("foro") Foro foro,
 			@Param("outParameters") Map<String, Object> outParameters);
 
-	public void actualizarTipoForo(@Param("tipoforo") TipoForo tipoforo,
+	public void actualizarForo(@Param("foro") Foro foro,
 			@Param("outParameters") Map<String, Object> outParameters);	
 
 }
