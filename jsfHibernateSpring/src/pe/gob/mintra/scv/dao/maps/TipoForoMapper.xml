@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pe.gob.mintra.scv.dao.CursoDao">
+
+	<resultMap id="ResultMapTipoForo" type="TipoForo">
+		<id column="N_CODTIPFOR" property="nCodTipoForo" />
+		<result column="V_DESTIPFOR" property="vDesTipoForo" />
+	</resultMap>
+
+	<select id="listarTipoForo" statementType="CALLABLE" resultMap="ResultMapTipoForo">
+		{call PKG_TIPOFORO.SP_LST_TIPOFORO(
+		#{tipoforo.vDesTipoForo},
+		#{outParameters.lstCur,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapTipoForo},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+	<select id="insertarTipoForo" statementType="CALLABLE">
+		{call
+		PKG_TIPOFORO.SP_INS_TIPOFORO(
+		#{curso.vDesCur},
+		#{outParameters.nCodCur,
+		jdbcType=INTEGER,mode=OUT},
+		#{outParameters.codErr,
+		jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+	<select id="actualizarTipoForo" statementType="CALLABLE">
+		{call
+		PKG_TIPOFORO.SP_ACT_TIPOFORO(
+		#{curso.nCodCur},
+		#{curso.vDesCur},		
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,
+		jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+	
+</mapper>
