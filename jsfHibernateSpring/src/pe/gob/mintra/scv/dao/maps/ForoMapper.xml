@@ -12,7 +12,8 @@
 	</resultMap>
 
 	<select id="listarForo" statementType="CALLABLE" resultMap="ResultMapForo">
-		{call PKG_FORO.SP_LST_FORO(
+		{call 
+		PKG_FORO.SP_LST_FORO(
 		#{foro.vDesForo},
 		#{outParameters.lstCur,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapForo},
 		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
@@ -22,9 +23,9 @@
 
 	<select id="insertarForo" statementType="CALLABLE">
 		{call
-		PKG_TIPOFORO.SP_INS_FORO(
+		PKG_FORO.SP_INS_FORO(
+		#{foro.nCodTipForo},		
 		#{foro.vDesForo},
-		#{foro.nCodTipForo},
 		#{foro.dFechaIni},
 		#{foro.dFechaFin},
 		#{foro.nEstForo},
@@ -38,8 +39,8 @@
 		{call
 		PKG_FORO.SP_ACT_FORO(
 		#{foro.nCodForo},
-		#{foro.vDesForo},
 		#{foro.nCodTipForo},
+		#{foro.vDesForo},		
 		#{foro.dFechaIni},
 		#{foro.dFechaFin},
 		#{foro.nEstForo},

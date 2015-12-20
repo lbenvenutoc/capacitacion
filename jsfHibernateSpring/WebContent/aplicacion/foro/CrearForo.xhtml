@@ -15,8 +15,12 @@
 					<p:panelGrid columns="2">
 						<p:outputLabel value="Tipo de Foro:"></p:outputLabel>
 						<p:panelGrid columns="2">
-							<p:selectOneMenu style="width:150px">
-								<f:selectItem itemLabel="---"></f:selectItem>
+							<p:selectOneMenu style="width:150px"
+								value="#{foroManagedBean.objForo.nCodTipForo}">
+								<f:selectItem itemLabel="---" itemValue="-1" />
+								<f:selectItems var="item" itemValue="#{item.nCodTipoForo}"
+									itemLabel="#{item.vDesTipoForo}"
+									value="#{foroManagedBean.lstTipoForo}" />
 							</p:selectOneMenu>
 							<p:commandButton value="Nuevo"
 								oncomplete="PF('CreateViewDialog').show()" update="@form"
@@ -24,16 +28,21 @@
 						</p:panelGrid>
 
 						<p:outputLabel value="Descripcion:"></p:outputLabel>
-						<p:inputTextarea cols="7" rows="5"></p:inputTextarea>
+						<p:inputTextarea value="#{foroManagedBean.objForo.vDesForo}"
+							cols="7" rows="5"></p:inputTextarea>
 
 						<p:outputLabel value="Fecha Inicio:"></p:outputLabel>
-						<p:calendar id="fechainicio" showOn="button"
+						<p:calendar id="fechainicio" locale="es" readonlyInput="true"
+							maxlength="10" size="10" showOn="button"
+							value="#{foroManagedBean.objForo.dFechaIni}"
 							pattern="#{etiquetas.FormatoFecha}">
 							<f:convertDateTime pattern="#{etiquetas.FormatoFecha}" />
 						</p:calendar>
 
 						<p:outputLabel value="Fecha Fin:"></p:outputLabel>
-						<p:calendar id="fechafin" showOn="button"
+						<p:calendar id="fechafin" locale="es" readonlyInput="true"
+							maxlength="10" size="10" showOn="button"
+							value="#{foroManagedBean.objForo.dFechaFin}"
 							pattern="#{etiquetas.FormatoFecha}">
 							<f:convertDateTime pattern="#{etiquetas.FormatoFecha}" />
 						</p:calendar>
@@ -47,7 +56,8 @@
 						<p:column>
 							<p:commandButton action="#{foroManagedBean.listar}"
 								value="Cancelar" style="float:right"></p:commandButton>
-							<p:commandButton action="#" value="Guardar" style="float:right"></p:commandButton>
+							<p:commandButton action="#{foroManagedBean.crear()}"
+								value="Guardar" style="float:right"></p:commandButton>
 						</p:column>
 					</p:panelGrid>
 				</p:fieldset>

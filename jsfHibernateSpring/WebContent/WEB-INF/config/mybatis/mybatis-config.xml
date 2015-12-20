@@ -20,8 +20,7 @@
 		<typeAlias type="pe.gob.mintra.scv.model.UnidadAprendizaje" alias="Unidad" />
 		<typeAlias type="pe.gob.mintra.scv.model.ProgramacionAsignacion"
 			alias="ProgramacionAsignacion" />
-		<typeAlias type="pe.gob.mintra.scv.model.Asignacion"
-			alias="Asignacion" />
+		<typeAlias type="pe.gob.mintra.scv.model.Asignacion" alias="Asignacion" />
 			<typeAlias type="pe.gob.mintra.scv.model.TipoForo" alias="TipoForo" />
 			<typeAlias type="pe.gob.mintra.scv.model.Foro" alias="Foro" />
 

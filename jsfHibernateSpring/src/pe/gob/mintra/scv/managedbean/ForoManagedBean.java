@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import pe.gob.mintra.scv.model.Foro;
 import pe.gob.mintra.scv.model.TipoForo;
 import pe.gob.mintra.scv.service.ForoService;
+import pe.gob.mintra.scv.service.TipoForoService;
 
 @Controller
 @Scope("session")
@@ -24,12 +25,23 @@ public class ForoManagedBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private ForoService foroService;
+	@Autowired
+	private TipoForoService tipoForoService;
 	
 	private Foro foro;
 	private Foro objForo;
 	private List<Foro> lstForo;
+	private List<TipoForo> lstTipoForo;
 	
 	private String textoBienvenida;	
+
+	public List<TipoForo> getLstTipoForo() {
+		return lstTipoForo;
+	}
+
+	public void setLstTipoForo(List<TipoForo> lstTipoForo) {
+		this.lstTipoForo = lstTipoForo;
+	}
 
 	public ForoService getForoService() {
 		return foroService;
@@ -84,9 +96,19 @@ public class ForoManagedBean implements Serializable {
 	}
 
 	public String prepareCrear() {
-		String vista = null;
-		vista = "pretty:crearForo";
-		return vista;
+		try {
+			String vista = null;
+			vista = "pretty:crearForo";
+			HashMap<String, Object> outParameters = new HashMap<String, Object>();
+			TipoForo tfp = new TipoForo();
+			tfp.setvDesTipoForo("F");
+			tipoForoService.listarTipoForo(tfp, outParameters);
+			lstTipoForo = (List<TipoForo>) outParameters.get("lstCur");		
+			return vista;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	public String prepareEditar(Foro f) {
@@ -113,6 +135,7 @@ public class ForoManagedBean implements Serializable {
 	
 	public String crear(){
 		HashMap<String, Object> outParametersForo = new HashMap<String, Object>();
+		objForo.setnEstForo(1);
 		foroService.insertarForo(objForo, outParametersForo);
 		objForo.setnCodForo((Integer) outParametersForo.get("nCodForo"));
 		return listar();
