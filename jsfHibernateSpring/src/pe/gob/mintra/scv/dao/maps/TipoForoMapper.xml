@@ -19,7 +19,7 @@
 	<select id="insertarTipoForo" statementType="CALLABLE">
 		{call
 		PKG_TIPOFORO.SP_INS_TIPOFORO(
-		#{curso.vDesCur},
+		#{tipoforo.vDesCur},
 		#{outParameters.nCodCur,
 		jdbcType=INTEGER,mode=OUT},
 		#{outParameters.codErr,
@@ -32,8 +32,8 @@
 	<select id="actualizarTipoForo" statementType="CALLABLE">
 		{call
 		PKG_TIPOFORO.SP_ACT_TIPOFORO(
-		#{curso.nCodCur},
-		#{curso.vDesCur},		
+		#{tipoforo.nCodCur},
+		#{tipoforo.vDesCur},		
 		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
 		#{outParameters.menErr,
 		jdbcType=VARCHAR,mode=OUT}
