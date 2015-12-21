@@ -122,7 +122,7 @@ public class CursoManagedBean implements Serializable {
 				muestraUnidad = true;
 
 				vista = mostrarCurso();
-				
+
 				mensaje = "Curso registrado correctamente";
 				tipo = 3;
 
@@ -131,7 +131,7 @@ public class CursoManagedBean implements Serializable {
 		} catch (Exception e) {
 			mensaje = "Error genérico";
 			tipo = 1;
-		}finally{
+		} finally {
 			Utilitario.showFacesMessage(mensaje, tipo);
 		}
 
@@ -188,29 +188,51 @@ public class CursoManagedBean implements Serializable {
 
 	public String grabarUnidad() {
 		String vista = null;
+		String mensaje = "";
+		int tipo = 0;
 		HashMap<String, Object> outParametersUnidad = new HashMap<String, Object>();
 
-		if (objUnidad.isEstaActivado()) {
-			objUnidad.setEstUniApr(1);
-		} else {
-			objUnidad.setEstUniApr(0);
+		try {
+
+			if (objUnidad.getDesUni().equals(null)
+					|| objUnidad.getDesUni().equals("")) {
+				mensaje = "Ingrese la descripción de la unidad";
+				tipo = 1;
+
+			} else {
+				if (objUnidad.isEstaActivado()) {
+					objUnidad.setEstUniApr(1);
+				} else {
+					objUnidad.setEstUniApr(0);
+				}
+
+				if (objUnidad.getCodUniApr().equals(-1)) {
+					cursoService.insertarUnidad(objCurso, objUnidad,
+							outParametersUnidad);
+
+					System.out.println(outParametersUnidad.get("menErr"));
+
+				} else {
+					cursoService.actualizarUnidad(objUnidad,
+							outParametersUnidad);
+					System.out.println(outParametersUnidad.get("menErr"));
+				}
+
+				
+				vista = mostrarUnidad();
+
+				mensaje = "Unidad registrada correctamente";
+				tipo = 3;
+
+			}
+
+		} catch (Exception e) {
+			mensaje = "Error genérico";
+			tipo = 1;
+
+		} finally {
+			Utilitario.showFacesMessage(mensaje, tipo);
 		}
-
-		if (objUnidad.getCodUniApr().equals(-1)) {
-			cursoService.insertarUnidad(objCurso, objUnidad,
-					outParametersUnidad);
-
-			System.out.println(outParametersUnidad.get("menErr"));
-
-		} else {
-			cursoService.actualizarUnidad(objUnidad, outParametersUnidad);
-			System.out.println(outParametersUnidad.get("menErr"));
-		}
-
-		cursoService.listarUnidad(objCurso, outParametersUnidad);
-		lstUnidad = (List<UnidadAprendizaje>) outParametersUnidad.get("lstUni");
-
-		vista = mostrarAdministracionUnidad();
 
 		return vista;
 	}

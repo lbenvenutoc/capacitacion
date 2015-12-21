@@ -70,14 +70,17 @@
 						<p:row>
 							<p:column colspan="2" style="text-align: center;">
 								<p:commandButton
-									value="#{etiquetas.cl_cursos_registro_boton_grabar}"									
+									value="#{etiquetas.cl_cursos_registro_boton_grabar}"
+									icon="ico-guardar"															
 									action="#{cursoManagedBean.grabarCurso}" update="btnUnidad, message"></p:commandButton>
 								<p:commandButton rendered="#{cursoManagedBean.muestraUnidad}"
 									id="btnUnidad"
+									icon="ico-unidad"			
 									value="#{etiquetas.cl_cursos_registro_boton_unidad}"
 									action="#{cursoManagedBean.mostrarAdministracionUnidad}"></p:commandButton>
 								<p:commandButton
 									value="#{etiquetas.cl_cursos_registro_boton_regresar}"
+									icon="ico-cancelar"
 									action="#{cursoManagedBean.buscarCurso}"></p:commandButton>
 							</p:column>
 						</p:row>

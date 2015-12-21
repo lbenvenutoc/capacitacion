@@ -99,3 +99,27 @@
 		!important;
 }
 
+.ico-cancelar {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-cancelar.png")
+		!important;
+}
+
+.ico-guardar {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-guardar.png")
+		!important;
+}
+
+.ico-unidad {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-unidad.png")
+		!important;
+}
+

@@ -74,6 +74,7 @@ public class ProgramacionAsignacionManagedBean {
 			lstAsig = (List<Asignacion>) outParameters.get("lstAsi");
 		} else {
 			inicializarProgramacionAsignacion();
+			inicializarAsignacion();
 
 		}
 		vista = "pretty:programarAsignacion";
@@ -117,46 +118,64 @@ public class ProgramacionAsignacionManagedBean {
 
 		try {
 
-			if (objProgramacionAsignacion.getnCodProAsi().equals(-1)) {
-				objProgramacionAsignacion.setnCodCur(unidadAprendisaje
-						.getCodCur());
-				objProgramacionAsignacion.setnCodUniApr(unidadAprendisaje
-						.getCodUniApr());
-				asignacionService.insertarProgramacionAsignacion(
-						objProgramacionAsignacion, unidadAprendisaje,
-						outParametersProgAsig);
+			if (objProgramacionAsignacion.getvDesProAsi().equals(null)
+					|| objProgramacionAsignacion.getvDesProAsi().equals("")) {
+				mensaje = "Ingrese la descripción de la programación de la asignación";
+				tipo = 1;
+			} else if (objProgramacionAsignacion.getdFinProAsi().after(
+					objProgramacionAsignacion.getdFfiProAsi())) {
+				mensaje = "La fecha final no puede ser menor que la fecha  de inicio";
+				tipo = 1;
+			} else if(lstAsig.isEmpty()){
+				mensaje = "Debe generar las asignaciones para dicha programación";
+				tipo = 1;
+			}
+			else {
+				if (objProgramacionAsignacion.getnCodProAsi().equals(-1)) {
+					objProgramacionAsignacion.setnCodCur(unidadAprendisaje
+							.getCodCur());
+					objProgramacionAsignacion.setnCodUniApr(unidadAprendisaje
+							.getCodUniApr());
+					asignacionService.insertarProgramacionAsignacion(
+							objProgramacionAsignacion, unidadAprendisaje,
+							outParametersProgAsig);
 
-				System.out.println(outParametersProgAsig.get("menErr"));
+					System.out.println(outParametersProgAsig.get("menErr"));
 
-				objProgramacionAsignacion
-						.setnCodProAsi((Integer) outParametersProgAsig
-								.get("codProAsi"));
+					objProgramacionAsignacion
+							.setnCodProAsi((Integer) outParametersProgAsig
+									.get("codProAsi"));
 
-				for (Asignacion asig : lstAsig) {
-					asig.setnCodProAsi(objProgramacionAsignacion
-							.getnCodProAsi());
+					for (Asignacion asig : lstAsig) {
+						asig.setnCodProAsi(objProgramacionAsignacion
+								.getnCodProAsi());
 
-					asignacionService.insertarAsignacion(asig,
-							outParametersAsig);
+						asignacionService.insertarAsignacion(asig,
+								outParametersAsig);
+
+					}
+
+				} else {
+					asignacionService.actualizarProgramacionAsignacion(
+							objProgramacionAsignacion, outParametersProgAsig);
+
+					for (Asignacion asigQuitar : lstAsigQuitar) {
+
+						asignacionService.eliminarAsignacion(asigQuitar,
+								outParametersAsig);
+
+					}
+					for (Asignacion asigInsertar : lstAsig) {
+
+						asignacionService.insertarAsignacion(asigInsertar,
+								outParametersAsig);
+
+					}
 
 				}
 
-			} else {
-				asignacionService.actualizarProgramacionAsignacion(
-						objProgramacionAsignacion, outParametersProgAsig);
-
-				for (Asignacion asigQuitar : lstAsigQuitar) {
-
-					asignacionService.eliminarAsignacion(asigQuitar,
-							outParametersAsig);
-
-				}
-				for (Asignacion asigInsertar : lstAsig) {
-
-					asignacionService.insertarAsignacion(asigInsertar,
-							outParametersAsig);
-
-				}
+				mensaje = "Programación de asignación registrada correctamente";
+				tipo = 3;
 
 			}
 

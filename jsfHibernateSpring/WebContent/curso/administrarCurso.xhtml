@@ -13,30 +13,36 @@
 
 
 			<h:form id="frmBuscarCurso">
-				<p:panelGrid style="border: 0">
-					<p:row>
-						<p:column>
-							<p:outputLabel
-								value="#{etiquetas.cl_busqueda_cursos_descripcion}"></p:outputLabel>
-						</p:column>
-						<p:column>
-							<p:inputText value="#{cursoManagedBean.objCursoParam.vNomCur}"></p:inputText>
-						</p:column>
-					</p:row>
-					<p:row>
-						<p:column>
-							<p:commandButton icon="ico-buscar" title="Buscar Curso"
-								action="#{cursoManagedBean.buscarCurso}"
-								update=":frmListaCursos:tablaCursos"></p:commandButton>
+				<p:fieldset legend="#{etiquetas.cl_cursos_titulo_busqueda}"
+					style="text-align: left">
+					<p:panelGrid style="border: 0">
 
-							<p:commandButton icon="ico-nuevo" title="Nuevo Curso"
-								action="#{cursoManagedBean.mostrarCurso}"></p:commandButton>
-						</p:column>
-						<p:column>
+						<p:row>
+							<p:column>
+								<p:outputLabel
+									value="#{etiquetas.cl_busqueda_cursos_descripcion}"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{cursoManagedBean.objCursoParam.vNomCur}"></p:inputText>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:commandButton icon="ico-buscar"
+									value="#{etiquetas.cl_busqueda_cursos_boton_buscar}"
+									action="#{cursoManagedBean.buscarCurso}"
+									update=":frmListaCursos:tablaCursos"></p:commandButton>
 
-						</p:column>
-					</p:row>
-				</p:panelGrid>
+								<p:commandButton icon="ico-nuevo"
+									value="#{etiquetas.cl_busqueda_cursos_boton_nuevo}"
+									action="#{cursoManagedBean.mostrarCurso}"></p:commandButton>
+							</p:column>
+							<p:column>
+
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:fieldset>
 			</h:form>
 
 
@@ -95,15 +101,16 @@
 										<f:setPropertyActionListener value="PRE"
 											target="#{cursoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
 									</p:commandButton>
-									<p:commandButton icon="ico-edipresentacion" title="Actualizar Presentacion de Curso"
+									<p:commandButton icon="ico-edipresentacion"
+										title="Actualizar Presentacion de Curso"
 										oncomplete="dialogoUploadPresentacion.show();">
 										<f:setPropertyActionListener value="#{objCurso}"
 											target="#{cursoManagedBean.objCurso}"></f:setPropertyActionListener>
 										<f:setPropertyActionListener value="PRE"
 											target="#{cursoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
 									</p:commandButton>
-									
-									
+
+
 									<p:commandButton rendered="#{objCurso.vRutCro!=''}"
 										icon="ico-vercronograma" title="Ver Cronograma de Curso"
 										onclick="this.form.target='_blank'" ajax="false"
@@ -113,15 +120,16 @@
 										<f:setPropertyActionListener value="CRO"
 											target="#{cursoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
 									</p:commandButton>
-									<p:commandButton icon="ico-edicronograma" title="Actualizar Cronograma de Curso"
+									<p:commandButton icon="ico-edicronograma"
+										title="Actualizar Cronograma de Curso"
 										oncomplete="dialogoUploadCronograma.show();">
 										<f:setPropertyActionListener value="#{objCurso}"
 											target="#{cursoManagedBean.objCurso}"></f:setPropertyActionListener>
 										<f:setPropertyActionListener value="CRO"
 											target="#{cursoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
 									</p:commandButton>
-									
-									
+
+
 
 								</p:column>
 
@@ -157,9 +165,10 @@
 			</h:form>
 			<h:form id="frmUploadPresentacion">
 
-				<p:dialog id="dialogoUploadPresentacion" header="Subir Presentacion de Curso"
-					widgetVar="dialogoUploadPresentacion" showEffect="fade" hideEffect="fade"
-					resizable="false">
+				<p:dialog id="dialogoUploadPresentacion"
+					header="Subir Presentacion de Curso"
+					widgetVar="dialogoUploadPresentacion" showEffect="fade"
+					hideEffect="fade" resizable="false">
 
 					<p:fileUpload oncomplete="dialogoUploadPresentacion.hide();"
 						mode="advanced"
@@ -177,12 +186,13 @@
 				</p:dialog>
 
 			</h:form>
-			
+
 			<h:form id="frmUploadCronograma">
 
-				<p:dialog id="dialogoUploadCronograma" header="Subir Cronograma de Curso"
-					widgetVar="dialogoUploadCronograma" showEffect="fade" hideEffect="fade"
-					resizable="false">
+				<p:dialog id="dialogoUploadCronograma"
+					header="Subir Cronograma de Curso"
+					widgetVar="dialogoUploadCronograma" showEffect="fade"
+					hideEffect="fade" resizable="false">
 
 					<p:fileUpload oncomplete="dialogoUploadCronograma.hide();"
 						mode="advanced"
