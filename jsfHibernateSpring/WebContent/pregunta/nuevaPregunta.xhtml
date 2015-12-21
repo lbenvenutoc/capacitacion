@@ -32,7 +32,7 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="aa"></p:outputLabel>
+										<p:outputLabel value="#{preguntaManagedBean.objCurso.nCodCur}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
@@ -43,7 +43,7 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="bb"></p:outputLabel>
+										<p:outputLabel value="#{preguntaManagedBean.objCurso.vNomCur}"></p:outputLabel>
 									</p:column>
 								</p:row>
 								<p:row>
@@ -52,7 +52,8 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="cc"></p:outputLabel>
+										<p:outputLabel
+											value="#{preguntaManagedBean.unidadAprendisaje.desUni}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
@@ -66,7 +67,8 @@
 									<p:column>
 
 										<p:inputTextarea
-											value="#{preguntaManagedBean.objPregunta.desPre}" rows="5" maxlength="100"></p:inputTextarea>
+											value="#{preguntaManagedBean.objPregunta.desPre}" rows="5"
+											maxlength="100"></p:inputTextarea>
 
 									</p:column>
 
@@ -81,7 +83,8 @@
 					<p:row>
 						<p:column colspan="2">
 							<center>
-								<p:commandButton value="#{etiquetas.cl_admpreg_opcion_nuevo}"
+								<p:commandButton icon="ico-nuevo"
+									value="#{etiquetas.cl_admpreg_opcion_nuevo}"
 									action="#{preguntaManagedBean.inicializarOpcion}"
 									update=":frmNuevaOpcion:panelNuevaOpcion"
 									oncomplete="dialogoNuevaOpcion.show();">
@@ -109,7 +112,8 @@
 
 												<p:commandButton
 													action="#{preguntaManagedBean.mostrarOpcion}"
-													value="Actualizar" oncomplete="dialogoNuevaOpcion.show();"
+													icon="ico-editar" title="Actualizar Opción"
+													oncomplete="dialogoNuevaOpcion.show();"
 													update=":frmNuevaOpcion:panelNuevaOpcion">
 													<f:setPropertyActionListener value="#{objOpcion}"
 														target="#{preguntaManagedBean.objOpcion}"></f:setPropertyActionListener>
@@ -120,7 +124,8 @@
 												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_opcion_eliminar}">
 												<p:commandButton
 													action="#{preguntaManagedBean.quitarOpcion}"
-													value="Eliminar" update=":frmProgEval:tablaOpcion">
+													icon="ico-eliminar" title="Eliminar Opción"
+													update=":frmProgEval:tablaOpcion">
 													<f:setPropertyActionListener value="#{objOpcion}"
 														target="#{preguntaManagedBean.objOpcion}"></f:setPropertyActionListener>
 												</p:commandButton>
@@ -138,10 +143,13 @@
 					<p:row>
 						<p:column colspan="2">
 							<center>
-								<p:commandButton value="#{etiquetas.cl_admpreg_grabar}"
+								<p:commandButton 
+								icon="ico-guardar"
+								value="#{etiquetas.cl_admpreg_grabar}"
 									action="#{preguntaManagedBean.actualizarPregunta}"
 									update=":frmProgEval:mnsPregunta"></p:commandButton>
 								<p:commandButton value="#{etiquetas.cl_admpreg_salir}"
+									icon="ico-cancelar"
 									action="#{preguntaManagedBean.administrarPregunta}"></p:commandButton>
 							</center>
 						</p:column>
@@ -167,7 +175,8 @@
 								value="#{etiquetas.cl_formmulario_opcion_desopcion}" />
 						</p:column>
 						<p:column>
-							<p:inputTextarea  value="#{preguntaManagedBean.objOpcion.desOpc}" rows="5" maxlength="100"></p:inputTextarea>
+							<p:inputTextarea value="#{preguntaManagedBean.objOpcion.desOpc}"
+								rows="5" maxlength="100"></p:inputTextarea>
 						</p:column>
 					</p:row>
 					<p:row>
@@ -175,11 +184,13 @@
 							<center>
 								<p:commandButton
 									value="#{etiquetas.cl_formmulario_opcion_btn_actualizar}"
+									icon="ico-guardar"
 									action="#{preguntaManagedBean.actualizarOpcion}"
 									oncomplete="validarDialogoOpcion(xhr, status, args);"
 									update=":frmProgEval:tablaOpcion, :frmNuevaOpcion:mnsOpcion"></p:commandButton>
 								<p:commandButton
 									value="#{etiquetas.cl_formmulario_opcion_btn_cerrar}"
+									icon="ico-cancelar"
 									onclick="dialogoNuevaOpcion.hide();"></p:commandButton>
 							</center>
 						</p:column>

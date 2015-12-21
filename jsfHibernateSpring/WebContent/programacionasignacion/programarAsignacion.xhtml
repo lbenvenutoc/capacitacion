@@ -32,7 +32,7 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="aa"></p:outputLabel>
+										<p:outputLabel value="#{programacionAsignacionManagedBean.objCurso.nCodCur}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
@@ -43,7 +43,7 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="bb"></p:outputLabel>
+										<p:outputLabel value="#{programacionAsignacionManagedBean.objCurso.vNomCur}"></p:outputLabel>
 									</p:column>
 								</p:row>
 								<p:row>
@@ -52,7 +52,7 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="cc"></p:outputLabel>
+									<p:outputLabel value="#{programacionAsignacionManagedBean.unidadAprendisaje.desUni}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
@@ -127,7 +127,9 @@
 					<p:row>
 						<p:column>
 							<center>
-								<p:commandButton value="#{etiquetas.cl_progasig_generarasig}"
+								<p:commandButton 
+								icon="ico-nuevo"
+								value="#{etiquetas.cl_progasig_generarasig}"
 									action="#{programacionAsignacionManagedBean.generarAsignacion}"
 									update=":frmProgAsig:tablaAsignacion"></p:commandButton>
 							</center>
@@ -157,7 +159,9 @@
 
 												<p:commandButton
 													action="#{programacionAsignacionManagedBean.quitarAsignacion}"
-													value="Eliminar" update=":frmProgAsig:tablaAsignacion">
+													icon="ico-eliminar"
+													title="Quitar Asignación"
+													 update=":frmProgAsig:tablaAsignacion">
 													<f:setPropertyActionListener value="#{objAsignacion}"
 														target="#{programacionAsignacionManagedBean.objAsignacion}"></f:setPropertyActionListener>
 												</p:commandButton>
@@ -177,9 +181,11 @@
 						<p:column>
 							<center>
 								<p:commandButton value="#{etiquetas.cl_progasig_grabar}"
+									icon="ico-grabar"
 									action="#{programacionAsignacionManagedBean.actualizarProgramacionAsignacion}"
 									update=":frmProgAsig:mnsProgAsi"></p:commandButton>
 								<p:commandButton value="#{etiquetas.cl_progasig_cancelar}"
+									icon="ico-cancelar"
 									action="#{programacionAsignacionManagedBean.administrarAsignacion}"></p:commandButton>
 							</center>
 						</p:column>

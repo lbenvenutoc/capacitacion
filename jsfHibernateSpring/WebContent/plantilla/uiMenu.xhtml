@@ -13,22 +13,7 @@
 				<p:menuitem action="#{foroManagedBean.listar()}"
 					value="Unidad de Aprendizaje" icon="ui-icon-home" />
 			</p:submenu>
-			<p:submenu label="#{etiquetas.cl_submenu_pregunta}">
-				<p:menuitem action="#{preguntaManagedBean.administrarPregunta}"
-					value="#{etiquetas.cl_menuitem_admpreg}" icon="ui-icon-home" />
-
-			</p:submenu>
-			<p:submenu label="#{etiquetas.cl_submenu_evaluacion}">
-				<p:menuitem
-					action="#{programacionEvaluacionManagedBean.programarEvaluacion}"
-					value="#{etiquetas.cl_menuitem_admeval}" icon="ui-icon-home" />
-
-			</p:submenu>
-			<p:submenu label="#{etiquetas.cl_submenu_asignacion}">
-				<p:menuitem
-					action="#{programacionAsignacionManagedBean.administrarAsignacion}"
-					value="#{etiquetas.cl_submenu_asignacion}" icon="ui-icon-home" />
-			</p:submenu>
+			
 			<p:submenu label="#{etiquetas.cl_submenu_reneva}">
 				<p:menuitem
 					action="#{programacionEvaluacionManagedBean.rendirEvaluacion}"

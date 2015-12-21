@@ -32,7 +32,7 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="aa"></p:outputLabel>
+										<p:outputLabel value="#{preguntaManagedBean.objCurso.nCodCur}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
@@ -43,7 +43,7 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="bb"></p:outputLabel>
+										<p:outputLabel value="#{preguntaManagedBean.objCurso.vNomCur}"></p:outputLabel>
 									</p:column>
 								</p:row>
 								<p:row>
@@ -52,20 +52,11 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="cc"></p:outputLabel>
+										<p:outputLabel value="#{preguntaManagedBean.unidadAprendisaje.desUni}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
-								<p:row>
-									<p:column>
-										<p:commandButton value="#{etiquetas.cl_bsuqueda_curso_buscar}"></p:commandButton>
-									</p:column>
-									<p:column>
-										<p:commandButton
-											value="#{etiquetas.cl_bsuqueda_curso_limpiar}"></p:commandButton>
-									</p:column>
-
-								</p:row>
+								
 
 							</p:panelGrid>
 
@@ -74,7 +65,9 @@
 					<p:row>
 						<p:column>
 							<center>
-								<p:commandButton value="#{etiquetas.cl_admpreg_nuevo}"
+								<p:commandButton 
+								icon="ico-nuevo"
+								value="#{etiquetas.cl_admpreg_nuevo}"
 									action="#{preguntaManagedBean.mostrarPregunta}"></p:commandButton>
 							</center>
 
@@ -103,7 +96,8 @@
 												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_actualizar}">
 												<p:commandButton
 													action="#{preguntaManagedBean.mostrarPregunta}"
-													value="Actualizar">
+													title="Actualizar Pregunta"
+													icon="ico-editar">
 													<f:setPropertyActionListener value="#{objPreg}"
 														target="#{preguntaManagedBean.objPregunta}"></f:setPropertyActionListener>
 												</p:commandButton>
@@ -112,8 +106,7 @@
 											<p:column
 												headerText="#{etiquetas.cl_cabecera_tablaadmpreg_eliminar}">
 												<p:commandButton oncomplete="dlgConfirmacion.show();"
-													value="Eliminar">
-
+													icon="ico-eliminar" title="Eliminar Pregunta">
 													<f:setPropertyActionListener value="#{objPreg}"
 														target="#{preguntaManagedBean.objPregunta}"></f:setPropertyActionListener>
 
@@ -133,7 +126,9 @@
 					<p:row>
 						<p:column>
 							<center>
-								<p:commandButton value="#{etiquetas.cl_admpreg_cancelar}"></p:commandButton>
+								<p:commandButton value="#{etiquetas.cl_admpreg_cancelar}"
+								icon="ico-cancelar"
+								action="#{cursoManagedBean.mostrarAdministracionUnidad}"></p:commandButton>
 							</center>
 						</p:column>
 					</p:row>

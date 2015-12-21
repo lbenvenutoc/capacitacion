@@ -32,7 +32,8 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="#{programacionAsignacionManagedBean.objCurso.nCodCur}"></p:outputLabel>
+										<p:outputLabel
+											value="#{programacionAsignacionManagedBean.objCurso.nCodCur}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
@@ -43,7 +44,8 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="#{programacionAsignacionManagedBean.objCurso.vNomCur}"></p:outputLabel>
+										<p:outputLabel
+											value="#{programacionAsignacionManagedBean.objCurso.vNomCur}"></p:outputLabel>
 									</p:column>
 								</p:row>
 								<p:row>
@@ -52,20 +54,12 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="#{programacionAsignacionManagedBean.unidadAprendisaje.desUni}"></p:outputLabel>
+										<p:outputLabel
+											value="#{programacionAsignacionManagedBean.unidadAprendisaje.desUni}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
-								<p:row>
-									<p:column>
-										<p:commandButton value="#{etiquetas.cl_bsuqueda_curso_buscar}"></p:commandButton>
-									</p:column>
-									<p:column>
-										<p:commandButton
-											value="#{etiquetas.cl_bsuqueda_curso_limpiar}"></p:commandButton>
-									</p:column>
 
-								</p:row>
 							</p:panelGrid>
 
 						</p:column>
@@ -73,7 +67,8 @@
 					<p:row>
 						<p:column>
 							<center>
-								<p:commandButton value="#{etiquetas.cl_admasig_nuevo}"
+								<p:commandButton icon="ico-nuevo"
+									value="#{etiquetas.cl_admasig_nuevo}"
 									action="#{programacionAsignacionManagedBean.mostrarProgramacionAsignacion}"></p:commandButton>
 							</center>
 
@@ -120,7 +115,8 @@
 												headerText="#{etiquetas.cl_cabecera_tablaadmasig_actualizar}">
 												<p:commandButton
 													action="#{programacionAsignacionManagedBean.mostrarProgramacionAsignacion}"
-													value="Actualizar">
+													icon="ico-editar"
+													title="Actualizar Programación de Asignación">
 													<f:setPropertyActionListener value="#{objAdmAsig}"
 														target="#{programacionAsignacionManagedBean.objProgramacionAsignacion}"></f:setPropertyActionListener>
 												</p:commandButton>
@@ -129,7 +125,9 @@
 											<p:column
 												headerText="#{etiquetas.cl_cabecera_tablaadmeval_eliminar}">
 
-												<p:commandButton value="Eliminar" oncomplete="dlgConfirmacion.show();">
+												<p:commandButton icon="ico-eliminar"
+													title="Eliminar Programación de Asignación"
+													oncomplete="dlgConfirmacion.show();">
 													<f:setPropertyActionListener value="#{objAdmAsig}"
 														target="#{programacionAsignacionManagedBean.objProgramacionAsignacion}"></f:setPropertyActionListener>
 												</p:commandButton>
@@ -140,12 +138,22 @@
 									</p:column>
 								</p:row>
 
+								<p:row>
+									<p:column>
+										<center>
+											<p:commandButton value="#{etiquetas.cl_admasig_cancelar}"
+												icon="ico-cancelar"
+												action="#{cursoManagedBean.mostrarAdministracionUnidad}"></p:commandButton>
+										</center>
+									</p:column>
+								</p:row>
+
 							</p:panelGrid>
 
 						</p:column>
 					</p:row>
 
-					
+
 				</p:panelGrid>
 
 

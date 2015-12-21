@@ -13,37 +13,40 @@
 
 
 			<h:form id="frmVistaCurso">
-				<p:panelGrid style="border: 0">
-					<p:row>
-						<p:column>
-							<p:outputLabel
-								value="#{etiquetas.cl_unidad_adm_busqueda_codcurso}"></p:outputLabel>
-						</p:column>
-						<p:column>
-							<p:outputLabel value="#{cursoManagedBean.objCurso.nCodCur}"></p:outputLabel>
-						</p:column>
-					</p:row>
-					<p:row>
-						<p:column>
-							<p:outputLabel
-								value="#{etiquetas.cl_unidad_adm_busqueda_nomcurso}"></p:outputLabel>
-						</p:column>
-						<p:column>
-							<p:outputLabel value="#{cursoManagedBean.objCurso.vNomCur}"></p:outputLabel>
-						</p:column>
-					</p:row>
-					<p:row>
-						<p:column>
+				<p:fieldset legend="#{etiquetas.cl_unidad_adm_busqueda_titulo}"
+					style="text-align: left">
+					<p:panelGrid style="border: 0">
+						<p:row>
+							<p:column>
+								<p:outputLabel
+									value="#{etiquetas.cl_unidad_adm_busqueda_codcurso}"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="#{cursoManagedBean.objCurso.nCodCur}"></p:outputLabel>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel
+									value="#{etiquetas.cl_unidad_adm_busqueda_nomcurso}"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="#{cursoManagedBean.objCurso.vNomCur}"></p:outputLabel>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
 
-							<p:commandButton icon="ico-nuevo"
-								value="#{etiquetas.cl_unidad_adm_busqueda_boton_nuevo}"
-								action="#{cursoManagedBean.mostrarUnidad}"></p:commandButton>
-						</p:column>
-						<p:column>
+								<p:commandButton icon="ico-nuevo"
+									value="#{etiquetas.cl_unidad_adm_busqueda_boton_nuevo}"
+									action="#{cursoManagedBean.mostrarUnidad}"></p:commandButton>
+							</p:column>
+							<p:column>
 
-						</p:column>
-					</p:row>
-				</p:panelGrid>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:fieldset>
 			</h:form>
 
 
@@ -60,7 +63,7 @@
 									headerText="#{etiquetas.cl_unidad_adm_tabla_cab_nombreunidad}">#{objUnidad.desUni}</p:column>
 
 								<p:column
-									headerText="#{etiquetas.cl_unidad_adm_tabla_cab_actualizar}">
+									headerText="#{etiquetas.cl_unidad_adm_tabla_cab_opciones}">
 									<p:commandButton action="#{cursoManagedBean.mostrarUnidad}"
 										icon="ico-editar"
 										title="Actualizar Datos de Unidad de Aprendizaje">
@@ -84,6 +87,15 @@
 										<f:setPropertyActionListener
 											value="#{cursoManagedBean.objCurso}"
 											target="#{programacionAsignacionManagedBean.objCurso}"></f:setPropertyActionListener>
+									</p:commandButton>
+									<p:commandButton icon="ico-pregunta"
+										title="Administrar Preguntas"
+										action="#{preguntaManagedBean.administrarPregunta}">
+										<f:setPropertyActionListener value="#{objUnidad}"
+											target="#{preguntaManagedBean.unidadAprendisaje}"></f:setPropertyActionListener>
+										<f:setPropertyActionListener
+											value="#{cursoManagedBean.objCurso}"
+											target="#{preguntaManagedBean.objCurso}"></f:setPropertyActionListener>
 									</p:commandButton>
 								</p:column>
 

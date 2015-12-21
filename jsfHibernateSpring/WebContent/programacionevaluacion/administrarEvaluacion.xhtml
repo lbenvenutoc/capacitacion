@@ -32,7 +32,8 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="#{programacionEvaluacionManagedBean.objCurso.nCodCur}"></p:outputLabel>
+										<p:outputLabel
+											value="#{programacionEvaluacionManagedBean.objCurso.nCodCur}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
@@ -43,7 +44,8 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="#{programacionEvaluacionManagedBean.objCurso.vNomCur}"></p:outputLabel>
+										<p:outputLabel
+											value="#{programacionEvaluacionManagedBean.objCurso.vNomCur}"></p:outputLabel>
 									</p:column>
 								</p:row>
 								<p:row>
@@ -52,20 +54,12 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="#{programacionEvaluacionManagedBean.unidadAprendisaje.desUni}"></p:outputLabel>
+										<p:outputLabel
+											value="#{programacionEvaluacionManagedBean.unidadAprendisaje.desUni}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
-								<p:row>
-									<p:column>
-										<p:commandButton value="#{etiquetas.cl_bsuqueda_curso_buscar}"></p:commandButton>
-									</p:column>
-									<p:column>
-										<p:commandButton
-											value="#{etiquetas.cl_bsuqueda_curso_limpiar}"></p:commandButton>
-									</p:column>
 
-								</p:row>
 							</p:panelGrid>
 
 						</p:column>
@@ -73,7 +67,8 @@
 					<p:row>
 						<p:column>
 							<center>
-								<p:commandButton value="#{etiquetas.cl_admeval_nuevo}"
+								<p:commandButton icon="ico-nuevo"
+									value="#{etiquetas.cl_admeval_nuevo}"
 									action="#{programacionEvaluacionManagedBean.mostrarProgramacionEvaluacion}"></p:commandButton>
 							</center>
 
@@ -120,7 +115,7 @@
 												headerText="#{etiquetas.cl_cabecera_tablaadmeval_actualizar}">
 												<p:commandButton
 													action="#{programacionEvaluacionManagedBean.mostrarProgramacionEvaluacion}"
-													value="Actualizar">
+													icon="ico-editar" title="Editar Programación de Evaluación">
 													<f:setPropertyActionListener value="#{objAdmEval}"
 														target="#{programacionEvaluacionManagedBean.objProgramacionEvaluacion}"></f:setPropertyActionListener>
 												</p:commandButton>
@@ -129,7 +124,9 @@
 											<p:column
 												headerText="#{etiquetas.cl_cabecera_tablaadmeval_eliminar}">
 
-												<p:commandButton value="Eliminar" oncomplete="dlgConfirmacion.show();">
+												<p:commandButton icon="ico-eliminar"
+													title="Eliminar Programación de Evaluación"
+													oncomplete="dlgConfirmacion.show();">
 													<f:setPropertyActionListener value="#{objAdmEval}"
 														target="#{programacionEvaluacionManagedBean.objProgramacionEvaluacion}"></f:setPropertyActionListener>
 												</p:commandButton>
@@ -148,7 +145,9 @@
 					<p:row>
 						<p:column>
 							<center>
-								<p:commandButton value="#{etiquetas.cl_admeval_cancelar}"></p:commandButton>
+								<p:commandButton value="#{etiquetas.cl_admeval_cancelar}"
+									icon="ico-cancelar"
+									action="#{cursoManagedBean.mostrarAdministracionUnidad}"></p:commandButton>
 							</center>
 						</p:column>
 					</p:row>
