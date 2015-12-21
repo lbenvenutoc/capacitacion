@@ -36,10 +36,14 @@
 						<h:outputText value="#{lst.nCodTipForo}" />
 					</p:column>
 					<p:column headerText="Fecha Inicio">
-						<h:outputText value="#{lst.dFechaIni}" />
+						<h:outputText value="#{lst.dFechaIni}" >
+						<f:convertDateTime pattern="#{etiquetas.FormatoFecha}" />
+						</h:outputText>
 					</p:column>
 					<p:column headerText="Fecha Fin">
-						<h:outputText value="#{lst.dFechaFin}" />
+						<h:outputText value="#{lst.dFechaFin}" >
+						<f:convertDateTime pattern="#{etiquetas.FormatoFecha}" />
+						</h:outputText>
 					</p:column>
 					<p:column headerText="Activo">
 						<h:outputText value="#{lst.nEstForo}" />

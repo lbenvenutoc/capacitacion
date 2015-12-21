@@ -91,6 +91,8 @@ public class ForoManagedBean implements Serializable {
 
 	public String listar() {
 		String vista = null;
+		lstForo = null;
+		objForo = new Foro();
 		vista = "pretty:listarForo";
 		return vista;
 	}
@@ -101,7 +103,7 @@ public class ForoManagedBean implements Serializable {
 			vista = "pretty:crearForo";
 			HashMap<String, Object> outParameters = new HashMap<String, Object>();
 			TipoForo tfp = new TipoForo();
-			tfp.setvDesTipoForo("F");
+			tfp.setvDesTipoForo("%");
 			tipoForoService.listarTipoForo(tfp, outParameters);
 			lstTipoForo = (List<TipoForo>) outParameters.get("lstCur");		
 			return vista;
@@ -113,6 +115,7 @@ public class ForoManagedBean implements Serializable {
 	
 	public String prepareEditar(Foro f) {
 		String vista = null;
+		objForo=f;
 		vista = "pretty:editarForo";
 		return vista;
 	}
@@ -121,6 +124,7 @@ public class ForoManagedBean implements Serializable {
 	
 	public String prepareVer(Foro f) {
 		String vista = null;
+		objForo=f;
 		vista = "pretty:verForo";
 		return vista;
 	}

@@ -14,19 +14,25 @@
                         <p:fieldset legend="Ver Foro" style="text-align: left">
                         	<p:panelGrid columns="2">
                         	<p:outputLabel value="Id Foro:"></p:outputLabel>
-                        	<h:outputText value="7"></h:outputText>
+                        	<h:outputText value="#{foroManagedBean.objForo.nCodForo}"></h:outputText>
                         	
                         	<p:outputLabel value="Tipo Foro:"></p:outputLabel>
                         	<h:outputText value="Foro Presentacion"></h:outputText>
                         	
                         	<p:outputLabel value="Descripcion:"></p:outputLabel>
-                        	<p:inputTextarea cols="7" rows="5" disabled="true"></p:inputTextarea>
+                        	<p:inputTextarea cols="7" rows="5" 
+                        	value="#{foroManagedBean.objForo.vDesForo}"
+                        	disabled="true"></p:inputTextarea>
                         	
                         	<p:outputLabel value="Fecha Inicio:"></p:outputLabel>
-                        	<h:outputText value="11/10/2015"></h:outputText>
+                        	<h:outputText value="#{foroManagedBean.objForo.dFechaIni}" >
+						<f:convertDateTime pattern="#{etiquetas.FormatoFecha}" />
+						</h:outputText>
                         	
                         	<p:outputLabel value="Fecha Fin:"></p:outputLabel>
-                        	<h:outputText value="11/12/2015"></h:outputText>
+                        	<h:outputText value="#{foroManagedBean.objForo.dFechaFin}" >
+						<f:convertDateTime pattern="#{etiquetas.FormatoFecha}" />
+						</h:outputText>
                     
                     		<p:outputLabel value="Activo: " />
 	                        <p:selectBooleanCheckbox value="true" disabled="true">
@@ -34,7 +40,8 @@
 	                        
                         	</p:panelGrid>
                         	<p:panelGrid columns="1">
-                        	<p:commandButton action="#{foroManagedBean.listar}" value="Buscar" style="float:right"></p:commandButton>
+                        	<p:commandButton action="#{foroManagedBean.listar}" 
+                        	value="Buscar" style="float:right"></p:commandButton>
                         	</p:panelGrid>
                         </p:fieldset>
                         

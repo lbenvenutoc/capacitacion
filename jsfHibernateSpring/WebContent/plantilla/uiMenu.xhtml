@@ -10,7 +10,8 @@
 				<p:menuitem
 					action="#{cursoManagedBean.mostrarAdministrarCurso}"
 					value="#{etiquetas.cl_cursos_titulo_listado}" icon="ui-icon-home" />
-
+				<p:menuitem action="#{foroManagedBean.listar()}"
+					value="Unidad de Aprendizaje" icon="ui-icon-home" />
 			</p:submenu>
 			<p:submenu label="#{etiquetas.cl_submenu_pregunta}">
 				<p:menuitem action="#{preguntaManagedBean.administrarPregunta}"
@@ -40,7 +41,7 @@
 					value="Mantenimiento Tipo Foro" icon="ui-icon-home" />
 				<p:menuitem action="#{foroManagedBean.usuarioXForo}"
 					value="Usuario X Foro" icon="ui-icon-home" />
-			</p:submenu>
+			</p:submenu>			
 		</p:menu>
 	</h:form>
 </ui:composition>
