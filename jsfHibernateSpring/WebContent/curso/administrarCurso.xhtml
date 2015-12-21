@@ -70,12 +70,19 @@
 										pattern="dd/MM/yyyy" disabled="true"></p:calendar>
 								</p:column>
 								<p:column
-									headerText="#{etiquetas.cl_cabecera_tablaadmeval_actualizar}">
+									headerText="#{etiquetas.cl_cabecera_tabla_cursos_opciones}">
 									<p:commandButton action="#{cursoManagedBean.mostrarCurso}"
 										icon="ico-editar" title="Actualizar Datos de Curso">
 										<f:setPropertyActionListener value="#{objCurso}"
 											target="#{cursoManagedBean.objCurso}"></f:setPropertyActionListener>
 									</p:commandButton>
+									<p:commandButton id="btnUnidad" icon="ico-unidad"
+										title="Unidades de Aprendizaje"
+										action="#{cursoManagedBean.mostrarAdministracionUnidad}">
+										<f:setPropertyActionListener value="#{objCurso}"
+											target="#{cursoManagedBean.objCurso}"></f:setPropertyActionListener>
+									</p:commandButton>
+									
 									<p:commandButton rendered="#{objCurso.vRutSil!=''}"
 										icon="ico-versilabo" title="Ver Silabo"
 										onclick="this.form.target='_blank'" ajax="false"

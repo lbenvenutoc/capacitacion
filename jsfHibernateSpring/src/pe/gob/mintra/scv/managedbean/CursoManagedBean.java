@@ -27,8 +27,7 @@ import pe.gob.mintra.scv.util.Utilitario;
 public class CursoManagedBean implements Serializable {
 
 	private static Logger logger = Logger.getLogger(CursoManagedBean.class);
-	// @ManagedProperty(value="#{cursoService}")
-
+	
 	@Autowired
 	private CursoService cursoService;
 

@@ -34,8 +34,8 @@
 					</p:row>
 					<p:row>
 						<p:column>
-							
-							<p:commandButton
+
+							<p:commandButton icon="ico-nuevo"
 								value="#{etiquetas.cl_unidad_adm_busqueda_boton_nuevo}"
 								action="#{cursoManagedBean.mostrarUnidad}"></p:commandButton>
 						</p:column>
@@ -55,20 +55,49 @@
 							<p:dataTable id="tablaUnidad"
 								value="#{cursoManagedBean.lstUnidad}" var="objUnidad"
 								paginator="true" paginatorPosition="bottom" rows="20">
-								
+
 								<p:column
 									headerText="#{etiquetas.cl_unidad_adm_tabla_cab_nombreunidad}">#{objUnidad.desUni}</p:column>
-								
+
 								<p:column
 									headerText="#{etiquetas.cl_unidad_adm_tabla_cab_actualizar}">
 									<p:commandButton action="#{cursoManagedBean.mostrarUnidad}"
-										value="Actualizar">
+										icon="ico-editar"
+										title="Actualizar Datos de Unidad de Aprendizaje">
 										<f:setPropertyActionListener value="#{objUnidad}"
 											target="#{cursoManagedBean.objUnidad}"></f:setPropertyActionListener>
+									</p:commandButton>
+									<p:commandButton icon="ico-evaluacion"
+										title="Administrar Evaluaciones"
+										action="#{programacionEvaluacionManagedBean.programarEvaluacion}">
+										<f:setPropertyActionListener value="#{objUnidad}"
+											target="#{programacionEvaluacionManagedBean.unidadAprendisaje}"></f:setPropertyActionListener>
+										<f:setPropertyActionListener
+											value="#{cursoManagedBean.objCurso}"
+											target="#{programacionEvaluacionManagedBean.objCurso}"></f:setPropertyActionListener>
+									</p:commandButton>
+									<p:commandButton icon="ico-asignacion"
+										title="Administrar Asignaciones"
+										action="#{programacionAsignacionManagedBean.administrarAsignacion}">
+										<f:setPropertyActionListener value="#{objUnidad}"
+											target="#{programacionAsignacionManagedBean.unidadAprendisaje}"></f:setPropertyActionListener>
+										<f:setPropertyActionListener
+											value="#{cursoManagedBean.objCurso}"
+											target="#{programacionAsignacionManagedBean.objCurso}"></f:setPropertyActionListener>
 									</p:commandButton>
 								</p:column>
 
 							</p:dataTable>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<center>
+								<p:commandButton icon="ico-cancelar"
+									action="#{cursoManagedBean.buscarCurso}"
+									value="#{etiquetas.cl_unidad_adm_busqueda_boton_cancelar}"></p:commandButton>
+							</center>
 						</p:column>
 					</p:row>
 

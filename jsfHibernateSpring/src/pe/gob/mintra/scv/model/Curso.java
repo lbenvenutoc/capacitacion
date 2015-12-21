@@ -3,6 +3,10 @@ package pe.gob.mintra.scv.model;
 import java.io.Serializable;
 import java.util.Date;
 
+
+
+
+
 import pe.gob.mintra.scv.util.Utilitario;
 
 public class Curso implements Serializable {

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import pe.gob.mintra.scv.model.Asignacion;
+import pe.gob.mintra.scv.model.Curso;
 import pe.gob.mintra.scv.model.ProgramacionAsignacion;
 import pe.gob.mintra.scv.model.UnidadAprendizaje;
 import pe.gob.mintra.scv.model.UsuarioPorCurso;
@@ -31,11 +32,13 @@ public class ProgramacionAsignacionManagedBean {
 	private List<Asignacion> lstAsigQuitar;
 	private Asignacion objAsignacion;
 	private List<UsuarioPorCurso> lstUsuarioPorCurso;
+	private Curso objCurso;
 
 	public ProgramacionAsignacionManagedBean() {
 		unidadAprendisaje = new UnidadAprendizaje();
-		unidadAprendisaje.setCodCur(23);
-		unidadAprendisaje.setCodUniApr(25);
+		/*
+		 * unidadAprendisaje.setCodCur(23); unidadAprendisaje.setCodUniApr(25);
+		 */
 		inicializarProgramacionAsignacion();
 		inicializarAsignacion();
 	}
@@ -126,11 +129,10 @@ public class ProgramacionAsignacionManagedBean {
 					objProgramacionAsignacion.getdFfiProAsi())) {
 				mensaje = "La fecha final no puede ser menor que la fecha  de inicio";
 				tipo = 1;
-			} else if(lstAsig.isEmpty()){
+			} else if (lstAsig.isEmpty()) {
 				mensaje = "Debe generar las asignaciones para dicha programación";
 				tipo = 1;
-			}
-			else {
+			} else {
 				if (objProgramacionAsignacion.getnCodProAsi().equals(-1)) {
 					objProgramacionAsignacion.setnCodCur(unidadAprendisaje
 							.getCodCur());
@@ -239,6 +241,22 @@ public class ProgramacionAsignacionManagedBean {
 
 	public void setLstUsuarioPorCurso(List<UsuarioPorCurso> lstUsuarioPorCurso) {
 		this.lstUsuarioPorCurso = lstUsuarioPorCurso;
+	}
+
+	public UnidadAprendizaje getUnidadAprendisaje() {
+		return unidadAprendisaje;
+	}
+
+	public void setUnidadAprendisaje(UnidadAprendizaje unidadAprendisaje) {
+		this.unidadAprendisaje = unidadAprendisaje;
+	}
+
+	public Curso getObjCurso() {
+		return objCurso;
+	}
+
+	public void setObjCurso(Curso objCurso) {
+		this.objCurso = objCurso;
 	}
 
 }

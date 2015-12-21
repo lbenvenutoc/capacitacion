@@ -123,3 +123,27 @@
 		!important;
 }
 
+.ico-evaluacion {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-evaluacion.png")
+		!important;
+}
+
+.ico-asignacion {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-asignacion.png")
+		!important;
+}
+
+.ico-pregunta {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-pregunta.png")
+		!important;
+}
+

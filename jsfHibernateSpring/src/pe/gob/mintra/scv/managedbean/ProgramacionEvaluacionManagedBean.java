@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import pe.gob.mintra.scv.model.Curso;
 import pe.gob.mintra.scv.model.DetalleEvaluacion;
 import pe.gob.mintra.scv.model.Evaluacion;
 import pe.gob.mintra.scv.model.Opcion;
@@ -29,6 +29,8 @@ public class ProgramacionEvaluacionManagedBean {
 	private EvaluacionService evaluacionService;
 	@Autowired
 	private PreguntaService preguntaService;
+		
+	private Curso objCurso;
 
 	private List<ProgramacionEvaluacion> lstProgEval;
 	private List<Evaluacion> lstEvalQuitar;
@@ -42,8 +44,10 @@ public class ProgramacionEvaluacionManagedBean {
 
 	public ProgramacionEvaluacionManagedBean() {
 		unidadAprendisaje = new UnidadAprendizaje();
+		/*
 		unidadAprendisaje.setCodCur(23);
 		unidadAprendisaje.setCodUniApr(25);
+		*/
 		inicializarProgramacionEvaluacion();
 		lstPregunta = new ArrayList<Pregunta>();
 		lstOpcion = new ArrayList<Opcion>();
@@ -61,6 +65,8 @@ public class ProgramacionEvaluacionManagedBean {
 	public String programarEvaluacion() {
 
 		inicializarProgramacionEvaluacion();
+		
+		//System.out.println(objCurso.getvNomCur());
 
 		String vista = null;
 		HashMap<String, Object> outParameters = new HashMap<String, Object>();
@@ -334,5 +340,24 @@ public class ProgramacionEvaluacionManagedBean {
 	public void setObjEvaluacion(Evaluacion objEvaluacion) {
 		this.objEvaluacion = objEvaluacion;
 	}
+
+	public Curso getObjCurso() {
+		return objCurso;
+	}
+
+	public void setObjCurso(Curso objCurso) {
+		this.objCurso = objCurso;
+	}
+
+	public UnidadAprendizaje getUnidadAprendisaje() {
+		return unidadAprendisaje;
+	}
+
+	public void setUnidadAprendisaje(UnidadAprendizaje unidadAprendisaje) {
+		this.unidadAprendisaje = unidadAprendisaje;
+	}
+	
+	
+	
 
 }
