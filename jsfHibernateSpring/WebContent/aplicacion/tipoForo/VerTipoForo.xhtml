@@ -15,7 +15,8 @@
                         	<p:panelGrid columns="2">                        	
                         	
                         	<p:outputLabel value="Nombre Tipo Foro:"></p:outputLabel>
-                        	<p:inputText></p:inputText>                        	                       
+                        	<p:inputText value="#{tipoForoManagedBean.objTipoForo.vDesTipoForo}" 
+                        	 readonly="true"></p:inputText>                        	                       
                     
                     <p:outputLabel value="Activo: " />
                         <p:selectBooleanCheckbox value="true" >
@@ -23,7 +24,7 @@
                         
                         	</p:panelGrid>
                         	<p:panelGrid columns="1">
-                        	<p:commandButton action="#{tipoForoManagedBean.listarTipoForo}" value="Buscar" style="float:right"></p:commandButton>
+                        	<p:commandButton action="#{tipoForoManagedBean.listar()}" value="Buscar" style="float:right"></p:commandButton>
                         	</p:panelGrid>
                         </p:fieldset>
                         

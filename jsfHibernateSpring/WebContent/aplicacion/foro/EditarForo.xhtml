@@ -1,67 +1,72 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <ui:composition template="/plantilla/uiMaestro.xhtml">
-        <ui:define name="app">
-            <div align="center">
-                <h:form id="frmCrear">
+<ui:composition template="/plantilla/uiMaestro.xhtml">
+	<ui:define name="app">
+		<div align="center">
+			<h:form id="frmCrear">
 
-                        <p:fieldset legend="Editar Foro" style="text-align: left">
-                        	<p:panelGrid columns="2">
-                        	<p:outputLabel value="Criterio:"></p:outputLabel>
-                        	<p:panelGrid columns="2">
-                        	<p:inputText></p:inputText>
-                        	<p:commandButton value="Nuevo" 
-                                                 oncomplete="PF('CreateViewDialog').show()" 
-                                                 process="@this" 
-                                                 actionListener="#"/>
-                        	</p:panelGrid>
-                        	
-                        	<p:outputLabel value="Descripcion:"></p:outputLabel>
-                        	<p:inputTextarea cols="7" rows="5"></p:inputTextarea>
-                        	
-                        	<p:outputLabel value="Fecha Inicio:"></p:outputLabel>
-                        	<p:calendar id="fechainicio" 
-                                showOn="button" 
-                                pattern="#{etiquetas.FormatoFecha}" >  
-                        <f:convertDateTime pattern="#{etiquetas.FormatoFecha}" />
-                    </p:calendar>
-                        	
-                        	<p:outputLabel value="Fecha Fin:"></p:outputLabel>
-                        	<p:calendar id="fechafin" 
-                                showOn="button" 
-                                pattern="#{etiquetas.FormatoFecha}" >  
-                        <f:convertDateTime pattern="#{etiquetas.FormatoFecha}" />
-                    </p:calendar>
-                    
-                    <p:outputLabel value="Activo: " />
-                        <p:selectBooleanCheckbox value="true" >
-                        </p:selectBooleanCheckbox>
-                        
-                        	</p:panelGrid>
-                        	<p:panelGrid columns="1">
-                        	<p:column>
-                        	<p:commandButton action="#{foroManagedBean.listarForo}" value="Cancelar" style="float:right"></p:commandButton>
-                        	<p:commandButton action="#" value="Actualizar" style="float:right"></p:commandButton>
-                        	</p:column>
-                        	</p:panelGrid>
-                        </p:fieldset>
-                        
-                        
-                       
-                </h:form>
-            </div>
-           
-               
+				<p:fieldset legend="Editar Foro" style="text-align: left">
+					<p:panelGrid columns="2">
+						<p:outputLabel value="Criterio:"></p:outputLabel>
+						<p:selectOneMenu style="width:150px"
+							value="#{foroManagedBean.objForo.nCodTipForo}">
+							<f:selectItem itemLabel="---" itemValue="-1" />
+							<f:selectItems var="item" itemValue="#{item.nCodTipoForo}"
+								itemLabel="#{item.vDesTipoForo}"
+								value="#{foroManagedBean.lstTipoForo}" />
+						</p:selectOneMenu>
 
-        </ui:define>
-        <ui:include src="dlgEditarDatos.xhtml"/>
-    </ui:composition>
+						<p:outputLabel value="Descripcion:"></p:outputLabel>
+						<p:inputTextarea value="#{foroManagedBean.objForo.vDesForo}"
+							cols="5" rows="4"></p:inputTextarea>
+
+						<p:outputLabel value="Fecha Inicio:"></p:outputLabel>
+						<p:calendar id="fechainicio" style="width:150px !important"
+							locale="es" readonlyInput="true" maxlength="10" size="10"
+							showOn="button" value="#{foroManagedBean.objForo.dFechaIni}"
+							pattern="#{etiquetas.FormatoFecha}">
+							<f:convertDateTime pattern="#{etiquetas.FormatoFecha}" />
+						</p:calendar>
+
+						<p:outputLabel value="Fecha Fin:"></p:outputLabel>
+						<p:calendar id="fechafin" style="width:150px !important"
+							locale="es" readonlyInput="true" maxlength="10" size="10"
+							showOn="button" value="#{foroManagedBean.objForo.dFechaFin}"
+							pattern="#{etiquetas.FormatoFecha}">
+							<f:convertDateTime pattern="#{etiquetas.FormatoFecha}" />
+						</p:calendar>
+
+						<p:outputLabel value="Activo: " />
+						<p:selectBooleanCheckbox value="true">
+						</p:selectBooleanCheckbox>
+
+					</p:panelGrid>
+					<p:panelGrid columns="1">
+						<p:column>
+							<p:commandButton action="#{foroManagedBean.listar}"
+								value="Cancelar" style="float:right"></p:commandButton>
+							<p:commandButton action="#{foroManagedBean.editar()}" value="Actualizar"
+								style="float:right"></p:commandButton>
+						</p:column>
+					</p:panelGrid>
+				</p:fieldset>
+
+
+
+			</h:form>
+		</div>
+
+
+
+	</ui:define>
+	<ui:include src="dlgEditarDatos.xhtml" />
+</ui:composition>
 
 </html>
 
