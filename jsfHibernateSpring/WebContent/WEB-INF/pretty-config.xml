@@ -8,19 +8,19 @@
 		<pattern value="/mostrarPrincipal" />
 		<view-id value="/faces/principal.xhtml" />
 	</url-mapping>
-	
+
 	<!-- PROGRAMACION DE ASIGNACION -->
 	<url-mapping id="administrarAsignacion">
 		<pattern value="/administrarAsignacion" />
 		<view-id value="/faces/programacionasignacion/administrarAsignacion.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="programarAsignacion">
 		<pattern value="/programarAsignacion" />
 		<view-id value="/faces/programacionasignacion/programarAsignacion.xhtml" />
 	</url-mapping>
 
-	<!-- CURSO -->	
+	<!-- CURSO -->
 	<url-mapping id="mostrarAdministrarCurso">
 		<pattern value="/mostrarAdministrarCurso" />
 		<view-id value="/faces/curso/administrarCurso.xhtml" />
@@ -29,8 +29,8 @@
 		<pattern value="/mostrarCurso" />
 		<view-id value="/faces/curso/curso.xhtml" />
 	</url-mapping>
-	
-	<!-- UNIDAD DE APRENDIZAJE -->	
+
+	<!-- UNIDAD DE APRENDIZAJE -->
 	<url-mapping id="mostrarAdministrarUnidad">
 		<pattern value="/mostrarAdministrarUnidad" />
 		<view-id value="/faces/curso/administrarUnidad.xhtml" />
@@ -39,7 +39,7 @@
 		<pattern value="/mostrarUnidad" />
 		<view-id value="/faces/curso/unidad.xhtml" />
 	</url-mapping>
-	
+
 
 	<!-- PROGRAMACION DE EVALUACION -->
 
@@ -47,80 +47,102 @@
 		<pattern value="/administrarEvaluacion" />
 		<view-id value="/faces/programacionevaluacion/administrarEvaluacion.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="programarEvaluacion">
 		<pattern value="/programarEvaluacion" />
 		<view-id value="/faces/programacionevaluacion/programarEvaluacion.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="rendirEvaluacion">
 		<pattern value="/rendirEvaluacion" />
 		<view-id value="/faces/programacionevaluacion/evaluacion.xhtml" />
 	</url-mapping>
-	
+
 	<!-- ADMINISTRAR PREGUNTA -->
 	<url-mapping id="administrarPregunta">
 		<pattern value="/administrarPregunta" />
 		<view-id value="/faces/pregunta/administrarPregunta.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="nuevaPregunta">
 		<pattern value="/nuevaPregunta" />
 		<view-id value="/faces/pregunta/nuevaPregunta.xhtml" />
 	</url-mapping>
 
-<!-- ADMINISTRACION DE FORO -->
+	<!-- ADMINISTRACION DE FORO -->
 	<url-mapping id="listarForo">
 		<pattern value="/listarForo" />
 		<view-id value="/faces/aplicacion/foro/listaForo.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="crearForo">
 		<pattern value="/crearForo" />
 		<view-id value="/faces/aplicacion/foro/CrearForo.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="editarForo">
 		<pattern value="/editarForo" />
 		<view-id value="/faces/aplicacion/foro/EditarForo.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="verForo">
 		<pattern value="/verForo" />
 		<view-id value="/faces/aplicacion/foro/VerForo.xhtml" />
 	</url-mapping>
-	
+
 	<!-- ADMINISTRACION DE TIPO FORO -->
 	<url-mapping id="listarTipoForo">
 		<pattern value="/listarTipoForo" />
 		<view-id value="/faces/aplicacion/tipoForo/listaTipoForo.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="crearTipoForo">
 		<pattern value="/crearTipoForo" />
 		<view-id value="/faces/aplicacion/tipoForo/CrearTipoForo.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="editarTipoForo">
 		<pattern value="/editarTipoForo" />
 		<view-id value="/faces/aplicacion/tipoForo/EditarTipoForo.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="verTipoForo">
 		<pattern value="/verTipoForo" />
 		<view-id value="/faces/aplicacion/tipoForo/VerTipoForo.xhtml" />
 	</url-mapping>
-	
+
 	<!-- USUARIO X FORO -->
-	
+
 	<url-mapping id="usuarioXForo">
 		<pattern value="/usuarioXForo" />
 		<view-id value="/faces/aplicacion/usuarioXForo/usuarioXForo.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="mostrarForo">
 		<pattern value="/mostrarForo" />
 		<view-id value="/faces/aplicacion/usuarioXForo/mostrarForo.xhtml" />
+	</url-mapping>
+
+	<!-- UNIDAD APRENDIZAJE -->
+
+	<url-mapping id="listarUa">
+		<pattern value="/listarUa" />
+		<view-id value="/faces/aplicacion/unidadAprendizaje/listaUa.xhtml" />
+	</url-mapping>
+
+	<url-mapping id="crearUa">
+		<pattern value="/crearUa" />
+		<view-id value="/faces/aplicacion/unidadAprendizaje/crearUa.xhtml" />
+	</url-mapping>
+
+	<url-mapping id="editarUa">
+		<pattern value="/editarUa" />
+		<view-id value="/faces/aplicacion/unidadAprendizaje/editarUa.xhtml" />
+	</url-mapping>
+
+	<url-mapping id="verUa">
+		<pattern value="/verUa" />
+		<view-id value="/faces/aplicacion/unidadAprendizaje/verUa.xhtml" />
 	</url-mapping>
 
 </pretty-config>

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/plantilla/uiMaestro.xhtml">
+        <ui:define name="app">
+            <div align="center">
+                <h:form id="frmList">
+
+                        <p:fieldset legend="Listado Tipo Foro" style="text-align: left">
+                        	<p:panelGrid columns="4">
+                        	<p:outputLabel value="Criterio:"></p:outputLabel>
+                        	<p:inputText value="#{tipoForoManagedBean.objTipoForo.vDesTipoForo}" />
+                        	<p:commandButton actionListener="#{tipoForoManagedBean.buscar()}" 
+                        					value="Buscar" 
+                        					update="@form"/>
+                        	<p:commandButton action="#{tipoForoManagedBean.prepareCrear}" value="Nuevo" style="float:right"></p:commandButton>
+                        	</p:panelGrid>
+                        </p:fieldset>
+                        
+                        <p:dataTable id="datatable" 
+                        		value="#{tipoForoManagedBean.lstTipoForo}"
+                                 var="lst" widgetVar="usrTable"   
+                                 emptyMessage="#{etiquetas.MensajeNoResultados}"
+                                 paginator="true" rows="#{etiquetas.PaginatorFilas}" scrollable="true" scrollHeight="400" 
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="#{etiquetas.PaginatorFilasPorPagina}">                                                   
+                        <p:column headerText="Nombre Tipo Foro" > 
+                            <h:outputText value="#{lst.vDesTipoForo}"/>
+                        </p:column>
+                        <p:column headerText="Opciones" > 
+                            <p:commandButton value="Ver" 
+                            action="#{tipoForoManagedBean.prepareVer(lst)}" >
+                            </p:commandButton>
+                            <p:commandButton value="Editar" 
+                            action="#{tipoForoManagedBean.prepareEditar(lst)}" >
+                            </p:commandButton>
+                        </p:column>
+                        </p:dataTable>
+                </h:form>
+            </div>
+           
+               
+
+        </ui:define>
+    </ui:composition>
+
+</html>
+
