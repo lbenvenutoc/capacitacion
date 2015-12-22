@@ -1,13 +1,11 @@
 package pe.gob.mintra.scv.managedbean;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.primefaces.event.FileUploadEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -27,7 +25,7 @@ import pe.gob.mintra.scv.util.Utilitario;
 public class CursoManagedBean implements Serializable {
 
 	private static Logger logger = Logger.getLogger(CursoManagedBean.class);
-	
+
 	@Autowired
 	private CursoService cursoService;
 
@@ -39,7 +37,6 @@ public class CursoManagedBean implements Serializable {
 	private List<UnidadAprendizaje> lstUnidad;
 
 	public boolean muestraUnidad = false;
-	private String tipoDocumentoSubir;
 
 	@Autowired
 	private Propiedad propiedad;
@@ -56,7 +53,7 @@ public class CursoManagedBean implements Serializable {
 
 		objUnidad = new UnidadAprendizaje();
 		lstUnidad = new ArrayList<UnidadAprendizaje>();
-		tipoDocumentoSubir = "";
+
 	}
 
 	public String mostrarAdministrarCurso() {
@@ -217,7 +214,6 @@ public class CursoManagedBean implements Serializable {
 					System.out.println(outParametersUnidad.get("menErr"));
 				}
 
-				
 				vista = mostrarUnidad();
 
 				mensaje = "Unidad registrada correctamente";
@@ -234,83 +230,6 @@ public class CursoManagedBean implements Serializable {
 		}
 
 		return vista;
-	}
-
-	public void subirArchivo(FileUploadEvent event) {
-
-		HashMap<String, Object> outParametersCurso = new HashMap<String, Object>();
-		String nombreArchivo = "";
-		String identificador = "";
-		String extension = "";
-		String ruta = "";
-
-		try {
-
-			if (tipoDocumentoSubir.equals("SIL")) {
-				identificador = propiedad.getSilaboIdentificador();
-				extension = propiedad.getSilaboExtension();
-				ruta = propiedad.getSilaboRuta();
-			} else if (tipoDocumentoSubir.equals("PRE")) {
-				identificador = propiedad.getPresentacionIdentificador();
-				extension = propiedad.getPresentacionExtension();
-				ruta = propiedad.getPresentacionRuta();
-			} else {
-				identificador = propiedad.getCronogramaIdentificador();
-				extension = propiedad.getCronogramaExtension();
-				ruta = propiedad.getCronogramaRuta();
-			}
-
-			nombreArchivo = objCurso.getnCodCur() + identificador + "."
-					+ extension;
-
-			if (tipoDocumentoSubir.equals("SIL")) {
-				objCurso.setvRutSil(nombreArchivo);
-			} else if (tipoDocumentoSubir.equals("PRE")) {
-				objCurso.setvRutPres(nombreArchivo);
-			} else {
-				objCurso.setvRutCro(nombreArchivo);
-			}
-
-			cursoService.actualizarCurso(objCurso, outParametersCurso);
-
-			Utilitario.copiarArchivo(nombreArchivo, event.getFile()
-					.getInputstream(), ruta);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-		buscarCurso();
-
-	}
-
-	public void mostrarArchivo() {
-		String ruta = "";
-		String extension = "";
-		String nombreArchivo = "";
-		try {
-			if (tipoDocumentoSubir.equals("SIL")) {
-				extension = propiedad.getSilaboExtension();
-				ruta = propiedad.getSilaboRuta();
-				nombreArchivo = objCurso.getvRutSil();
-			} else if (tipoDocumentoSubir.equals("PRE")) {
-				extension = propiedad.getPresentacionExtension();
-				ruta = propiedad.getPresentacionRuta();
-				nombreArchivo = objCurso.getvRutPres();
-			} else {
-				extension = propiedad.getCronogramaExtension();
-				ruta = propiedad.getCronogramaRuta();
-				nombreArchivo = objCurso.getvRutCro();
-			}
-			Utilitario.mostrarArchivo(ruta, nombreArchivo, extension);
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-
 	}
 
 	public Curso getObjCurso() {
@@ -367,14 +286,6 @@ public class CursoManagedBean implements Serializable {
 
 	public void setPropiedad(Propiedad propiedad) {
 		this.propiedad = propiedad;
-	}
-
-	public String getTipoDocumentoSubir() {
-		return tipoDocumentoSubir;
-	}
-
-	public void setTipoDocumentoSubir(String tipoDocumentoSubir) {
-		this.tipoDocumentoSubir = tipoDocumentoSubir;
 	}
 
 }

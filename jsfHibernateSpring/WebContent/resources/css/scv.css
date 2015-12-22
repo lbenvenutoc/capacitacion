@@ -147,3 +147,21 @@
 		!important;
 }
 
+.ico-verasignacion {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-verasignacion.png")
+		!important;
+}
+
+
+.ico-ediasignacion {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background-image: url("./../../resources/imagenes/iconos/ico-ediasignacion.png")
+		!important;
+}
+
+

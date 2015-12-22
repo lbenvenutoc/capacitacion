@@ -32,7 +32,8 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="#{programacionAsignacionManagedBean.objCurso.nCodCur}"></p:outputLabel>
+										<p:outputLabel
+											value="#{programacionAsignacionManagedBean.objCurso.nCodCur}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
@@ -43,7 +44,8 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="#{programacionAsignacionManagedBean.objCurso.vNomCur}"></p:outputLabel>
+										<p:outputLabel
+											value="#{programacionAsignacionManagedBean.objCurso.vNomCur}"></p:outputLabel>
 									</p:column>
 								</p:row>
 								<p:row>
@@ -52,20 +54,12 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="#{programacionAsignacionManagedBean.unidadAprendisaje.desUni}"></p:outputLabel>
+										<p:outputLabel
+											value="#{programacionAsignacionManagedBean.unidadAprendisaje.desUni}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
-								<p:row>
-									<p:column>
-										<p:commandButton value="#{etiquetas.cl_bsuqueda_curso_buscar}"></p:commandButton>
-									</p:column>
-									<p:column>
-										<p:commandButton
-											value="#{etiquetas.cl_bsuqueda_curso_limpiar}"></p:commandButton>
-									</p:column>
 
-								</p:row>
 							</p:panelGrid>
 
 						</p:column>
@@ -73,7 +67,8 @@
 					<p:row>
 						<p:column>
 							<center>
-								<p:commandButton value="#{etiquetas.cl_admasig_nuevo}"
+								<p:commandButton icon="ico-nuevo"
+									value="#{etiquetas.cl_admasig_nuevo}"
 									action="#{programacionAsignacionManagedBean.mostrarProgramacionAsignacion}"></p:commandButton>
 							</center>
 
@@ -120,23 +115,51 @@
 												headerText="#{etiquetas.cl_cabecera_tablaadmasig_actualizar}">
 												<p:commandButton
 													action="#{programacionAsignacionManagedBean.mostrarProgramacionAsignacion}"
-													value="Actualizar">
+													icon="ico-editar"
+													title="Actualizar Programación de Asignación">
 													<f:setPropertyActionListener value="#{objAdmAsig}"
 														target="#{programacionAsignacionManagedBean.objProgramacionAsignacion}"></f:setPropertyActionListener>
 												</p:commandButton>
-											</p:column>
-
-											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmeval_eliminar}">
-
-												<p:commandButton value="Eliminar" oncomplete="dlgConfirmacion.show();">
+												<p:commandButton icon="ico-eliminar"
+													title="Eliminar Programación de Asignación"
+													oncomplete="dlgConfirmacion.show();">
 													<f:setPropertyActionListener value="#{objAdmAsig}"
 														target="#{programacionAsignacionManagedBean.objProgramacionAsignacion}"></f:setPropertyActionListener>
 												</p:commandButton>
-
+												<p:commandButton rendered="#{objAdmAsig.vRutProAsi!=''}"
+													icon="ico-verasignacion" title="Ver Asignacion"
+													onclick="this.form.target='_blank'" ajax="false"
+													action="#{archivoManagedBean.mostrarArchivo}">
+													<f:setPropertyActionListener value="#{objAdmAsig}"
+														target="#{archivoManagedBean.objAdmAsig}">
+													</f:setPropertyActionListener>
+													<f:setPropertyActionListener value="ASIG"
+														target="#{archivoManagedBean.tipoDocumentoSubir}">
+													</f:setPropertyActionListener>
+												</p:commandButton>
+												<p:commandButton icon="ico-ediasignacion"
+													title="Actualizar Silabo"
+													oncomplete="dialogoUploadAsignacion.show();">
+													<f:setPropertyActionListener value="#{objAdmAsig}"
+														target="#{archivoManagedBean.objAdmAsig}"></f:setPropertyActionListener>
+													<f:setPropertyActionListener value="ASIG"
+														target="#{archivoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
+												</p:commandButton>
 											</p:column>
+
+
 
 										</p:dataTable>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<center>
+											<p:commandButton value="#{etiquetas.cl_admasig_cancelar}"
+												icon="ico-cancelar"
+												action="#{cursoManagedBean.mostrarAdministracionUnidad}"></p:commandButton>
+										</center>
 									</p:column>
 								</p:row>
 
@@ -145,7 +168,7 @@
 						</p:column>
 					</p:row>
 
-					
+
 				</p:panelGrid>
 
 
@@ -160,16 +183,40 @@
 
 					<center>
 						<p:commandButton id="btnConfirmar" value="Si"
-							oncomplete="dlgConfirmacion.hide()" icon="icon-pref"
+							oncomplete="dlgConfirmacion.hide()" icon="ico-guardar"
 							action="#{programacionAsignacionManagedBean.eliminarProgramacionAsignacion}"
 							update=":frmAdmAsig:tablaAdmAsig" process="@this" />
 
 						<p:commandButton value="No" oncomplete="dlgConfirmacion.hide();"
-							icon="icon-cancel" />
+							icon="ico-cancelar" />
 
 					</center>
 
 				</p:confirmDialog>
+			</h:form>
+			
+			<h:form id="frmUploadAsignacion">
+
+				<p:dialog id="dialogoUploadAsignacion"
+					header="Subir Asignacion"
+					widgetVar="dialogoUploadAsignacion" showEffect="fade"
+					hideEffect="fade" resizable="false">
+
+					<p:fileUpload oncomplete="dialogoUploadAsignacion.hide();"
+						mode="advanced"
+						fileUploadListener="#{archivoManagedBean.subirArchivo}"
+						dragDropSupport="false" uploadLabel="Subir" cancelLabel="Cancelar"
+						label="Seleccionar"
+						invalidFileMessage="Debe seleccionar solo archivos con extensión #{archivoManagedBean.propiedad.cronogramaExtension}"
+						invalidSizeMessage="El archivo seleccionado pesa mas de  #{archivoManagedBean.propiedad.cronogramaTamanio} MB"
+						update=":frmUploadAsignacion, :frmAdmAsig:tablaAdmAsig"
+						fileLimit="1"
+						allowTypes="/(\.|\/)(#{archivoManagedBean.propiedad.cronogramaExtension})$/"
+						sizeLimit="#{archivoManagedBean.propiedad.cronogramaTamanio}" />
+
+
+				</p:dialog>
+
 			</h:form>
 		</div>
 

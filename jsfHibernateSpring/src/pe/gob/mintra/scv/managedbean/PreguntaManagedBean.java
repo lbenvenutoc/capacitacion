@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-
+import pe.gob.mintra.scv.model.Curso;
 import pe.gob.mintra.scv.model.Opcion;
 import pe.gob.mintra.scv.model.Pregunta;
 import pe.gob.mintra.scv.model.UnidadAprendizaje;
@@ -29,12 +29,16 @@ public class PreguntaManagedBean {
 	private UnidadAprendizaje unidadAprendisaje;
 	private List<Opcion> lstOpcionEliminados;
 
+	private Curso objCurso;
+
 	public PreguntaManagedBean() {
 		inicializarPregunta();
 		inicializarOpcion();
 		unidadAprendisaje = new UnidadAprendizaje();
+		/*
 		unidadAprendisaje.setCodCur(23);
 		unidadAprendisaje.setCodUniApr(25);
+		*/
 		lstOpcionEliminados = new ArrayList<Opcion>();
 	}
 
@@ -118,7 +122,7 @@ public class PreguntaManagedBean {
 
 	// @Transactional(rollbackFor = Exception.class)
 	public void actualizarPregunta() {
-		
+
 		HashMap<String, Object> outParametersPregunta = new HashMap<String, Object>();
 		HashMap<String, Object> outParametersOpcion = new HashMap<String, Object>();
 		String mensaje = "";
@@ -180,10 +184,9 @@ public class PreguntaManagedBean {
 			mensaje = "Error genérico";
 			tipo = 1;
 
-		}finally{
+		} finally {
 			Utilitario.showFacesMessage(mensaje, tipo);
 		}
-
 
 	}
 
@@ -237,6 +240,14 @@ public class PreguntaManagedBean {
 
 	public void setUnidadAprendisaje(UnidadAprendizaje unidadAprendisaje) {
 		this.unidadAprendisaje = unidadAprendisaje;
+	}
+
+	public Curso getObjCurso() {
+		return objCurso;
+	}
+
+	public void setObjCurso(Curso objCurso) {
+		this.objCurso = objCurso;
 	}
 
 }

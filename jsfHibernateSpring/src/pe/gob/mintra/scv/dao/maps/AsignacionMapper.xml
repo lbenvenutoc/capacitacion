@@ -10,6 +10,7 @@
 		<result column="V_DESPROASI" property="vDesProAsi" />
 		<result column="D_FINPROASI" property="dFinProAsi" />
 		<result column="D_FFIPROASI" property="dFfiProAsi" />
+		<result column="V_RUTPROASI" property="vRutProAsi" />
 		<result column="N_CANASI" property="nCanAsi" />
 	</resultMap>
 	

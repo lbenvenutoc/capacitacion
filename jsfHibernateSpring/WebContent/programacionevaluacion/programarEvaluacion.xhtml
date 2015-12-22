@@ -32,7 +32,8 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="aa"></p:outputLabel>
+										<p:outputLabel
+											value="#{programacionEvaluacionManagedBean.objCurso.nCodCur}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
@@ -43,7 +44,8 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="bb"></p:outputLabel>
+										<p:outputLabel
+											value="#{programacionEvaluacionManagedBean.objCurso.vNomCur}"></p:outputLabel>
 									</p:column>
 								</p:row>
 								<p:row>
@@ -52,7 +54,8 @@
 
 									</p:column>
 									<p:column>
-										<p:outputLabel value="cc"></p:outputLabel>
+										<p:outputLabel
+											value="#{programacionEvaluacionManagedBean.unidadAprendisaje.desUni}"></p:outputLabel>
 									</p:column>
 
 								</p:row>
@@ -116,7 +119,9 @@
 					<p:row>
 						<p:column>
 							<center>
-								<p:commandButton value="#{etiquetas.cl_progeval_nuevo}"
+								<p:commandButton 
+								icon="ico-nuevo"
+								value="#{etiquetas.cl_progeval_nuevo}"
 									action="#{programacionEvaluacionManagedBean.generarEvaluacion}"
 									update=":frmProgEval:tablaEvaluacion"></p:commandButton>
 							</center>
@@ -145,8 +150,10 @@
 												headerText="#{etiquetas.cl_cabecera_tablaprogeval_quitar}">
 
 												<p:commandButton
+													icon="ico-eliminar"
 													action="#{programacionEvaluacionManagedBean.quitarEvaluacion}"
-													value="Eliminar" update=":frmProgEval:tablaEvaluacion">
+													title="Quitar Evaluación"
+													update=":frmProgEval:tablaEvaluacion">
 													<f:setPropertyActionListener value="#{objProgEval}"
 														target="#{programacionEvaluacionManagedBean.objEvaluacion}"></f:setPropertyActionListener>
 												</p:commandButton>
@@ -165,17 +172,19 @@
 					<p:row>
 						<p:column>
 							<center>
-								<p:commandButton value="#{etiquetas.cl_progeval_grabar}"								 
+								<p:commandButton value="#{etiquetas.cl_progeval_grabar}"
+								icon="ico-guardar"
 									action="#{programacionEvaluacionManagedBean.actualizarProgramacionEvaluacion}"
 									update=":frmProgEval:mnsProgEva"></p:commandButton>
 								<p:commandButton value="#{etiquetas.cl_admeval_cancelar}"
-								action="#{programacionEvaluacionManagedBean.programarEvaluacion}"></p:commandButton>
+								icon="ico-cancelar"
+									action="#{programacionEvaluacionManagedBean.programarEvaluacion}"></p:commandButton>
 							</center>
 						</p:column>
 					</p:row>
 
 				</p:panelGrid>
-				
+
 				<p:messages id="mnsProgEva"></p:messages>
 
 
