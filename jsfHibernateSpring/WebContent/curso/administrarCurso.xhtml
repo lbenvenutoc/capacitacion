@@ -86,54 +86,54 @@
 									<p:commandButton rendered="#{objCurso.vRutSil!=''}"
 										icon="ico-versilabo" title="Ver Silabo"
 										onclick="this.form.target='_blank'" ajax="false"
-										action="#{cursoManagedBean.mostrarArchivo}">
+										action="#{archivoManagedBean.mostrarArchivo}">
 										<f:setPropertyActionListener value="#{objCurso}"
-											target="#{cursoManagedBean.objCurso}"></f:setPropertyActionListener>
+											target="#{archivoManagedBean.objCurso}"></f:setPropertyActionListener>
 										<f:setPropertyActionListener value="SIL"
-											target="#{cursoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
+											target="#{archivoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
 									</p:commandButton>
 									<p:commandButton icon="ico-edisilabo" title="Actualizar Silabo"
 										oncomplete="dialogoUploadSilabo.show();">
 										<f:setPropertyActionListener value="#{objCurso}"
-											target="#{cursoManagedBean.objCurso}"></f:setPropertyActionListener>
+											target="#{archivoManagedBean.objCurso}"></f:setPropertyActionListener>
 										<f:setPropertyActionListener value="SIL"
-											target="#{cursoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
+											target="#{archivoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
 									</p:commandButton>
 									<p:commandButton rendered="#{objCurso.vRutPres!=''}"
 										icon="ico-verpresentacion" title="Ver Presentacion de Curso"
 										onclick="this.form.target='_blank'" ajax="false"
-										action="#{cursoManagedBean.mostrarArchivo}">
+										action="#{archivoManagedBean.mostrarArchivo}">
 										<f:setPropertyActionListener value="#{objCurso}"
-											target="#{cursoManagedBean.objCurso}"></f:setPropertyActionListener>
+											target="#{archivoManagedBean.objCurso}"></f:setPropertyActionListener>
 										<f:setPropertyActionListener value="PRE"
-											target="#{cursoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
+											target="#{archivoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
 									</p:commandButton>
 									<p:commandButton icon="ico-edipresentacion"
 										title="Actualizar Presentacion de Curso"
 										oncomplete="dialogoUploadPresentacion.show();">
 										<f:setPropertyActionListener value="#{objCurso}"
-											target="#{cursoManagedBean.objCurso}"></f:setPropertyActionListener>
+											target="#{archivoManagedBean.objCurso}"></f:setPropertyActionListener>
 										<f:setPropertyActionListener value="PRE"
-											target="#{cursoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
+											target="#{archivoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
 									</p:commandButton>
 
 
 									<p:commandButton rendered="#{objCurso.vRutCro!=''}"
 										icon="ico-vercronograma" title="Ver Cronograma de Curso"
 										onclick="this.form.target='_blank'" ajax="false"
-										action="#{cursoManagedBean.mostrarArchivo}">
+										action="#{archivoManagedBean.mostrarArchivo}">
 										<f:setPropertyActionListener value="#{objCurso}"
-											target="#{cursoManagedBean.objCurso}"></f:setPropertyActionListener>
+											target="#{archivoManagedBean.objCurso}"></f:setPropertyActionListener>
 										<f:setPropertyActionListener value="CRO"
-											target="#{cursoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
+											target="#{archivoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
 									</p:commandButton>
 									<p:commandButton icon="ico-edicronograma"
 										title="Actualizar Cronograma de Curso"
 										oncomplete="dialogoUploadCronograma.show();">
 										<f:setPropertyActionListener value="#{objCurso}"
-											target="#{cursoManagedBean.objCurso}"></f:setPropertyActionListener>
+											target="#{archivoManagedBean.objCurso}"></f:setPropertyActionListener>
 										<f:setPropertyActionListener value="CRO"
-											target="#{cursoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
+											target="#{archivoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
 									</p:commandButton>
 
 
@@ -156,15 +156,15 @@
 
 					<p:fileUpload oncomplete="dialogoUploadSilabo.hide();"
 						mode="advanced"
-						fileUploadListener="#{cursoManagedBean.subirArchivo}"
+						fileUploadListener="#{archivoManagedBean.subirArchivo}"
 						dragDropSupport="false" uploadLabel="Subir" cancelLabel="Cancelar"
 						label="Seleccionar"
-						invalidFileMessage="Debe seleccionar solo archivos con extensión #{cursoManagedBean.propiedad.silaboExtension}"
-						invalidSizeMessage="El archivo seleccionado pesa mas de  #{cursoManagedBean.propiedad.silaboTamanio} MB"
+						invalidFileMessage="Debe seleccionar solo archivos con extensión #{archivoManagedBean.propiedad.silaboExtension}"
+						invalidSizeMessage="El archivo seleccionado pesa mas de  #{archivoManagedBean.propiedad.silaboTamanio} MB"
 						update=":frmUploadSilabo, :frmListaCursos:tablaCursos"
 						fileLimit="1"
-						allowTypes="/(\.|\/)(#{cursoManagedBean.propiedad.silaboExtension})$/"
-						sizeLimit="#{cursoManagedBean.propiedad.silaboTamanio}" />
+						allowTypes="/(\.|\/)(#{archivoManagedBean.propiedad.silaboExtension})$/"
+						sizeLimit="#{archivoManagedBean.propiedad.silaboTamanio}" />
 
 
 				</p:dialog>
@@ -179,15 +179,15 @@
 
 					<p:fileUpload oncomplete="dialogoUploadPresentacion.hide();"
 						mode="advanced"
-						fileUploadListener="#{cursoManagedBean.subirArchivo}"
+						fileUploadListener="#{archivoManagedBean.subirArchivo}"
 						dragDropSupport="false" uploadLabel="Subir" cancelLabel="Cancelar"
 						label="Seleccionar"
-						invalidFileMessage="Debe seleccionar solo archivos con extensión #{cursoManagedBean.propiedad.presentacionExtension}"
-						invalidSizeMessage="El archivo seleccionado pesa mas de  #{cursoManagedBean.propiedad.presentacionTamanio} MB"
+						invalidFileMessage="Debe seleccionar solo archivos con extensión #{archivoManagedBean.propiedad.presentacionExtension}"
+						invalidSizeMessage="El archivo seleccionado pesa mas de  #{archivoManagedBean.propiedad.presentacionTamanio} MB"
 						update=":frmUploadPresentacion, :frmListaCursos:tablaCursos"
 						fileLimit="1"
-						allowTypes="/(\.|\/)(#{cursoManagedBean.propiedad.presentacionExtension})$/"
-						sizeLimit="#{cursoManagedBean.propiedad.presentacionTamanio}" />
+						allowTypes="/(\.|\/)(#{archivoManagedBean.propiedad.presentacionExtension})$/"
+						sizeLimit="#{archivoManagedBean.propiedad.presentacionTamanio}" />
 
 
 				</p:dialog>
@@ -203,15 +203,15 @@
 
 					<p:fileUpload oncomplete="dialogoUploadCronograma.hide();"
 						mode="advanced"
-						fileUploadListener="#{cursoManagedBean.subirArchivo}"
+						fileUploadListener="#{archivoManagedBean.subirArchivo}"
 						dragDropSupport="false" uploadLabel="Subir" cancelLabel="Cancelar"
 						label="Seleccionar"
-						invalidFileMessage="Debe seleccionar solo archivos con extensión #{cursoManagedBean.propiedad.cronogramaExtension}"
-						invalidSizeMessage="El archivo seleccionado pesa mas de  #{cursoManagedBean.propiedad.cronogramaTamanio} MB"
+						invalidFileMessage="Debe seleccionar solo archivos con extensión #{archivoManagedBean.propiedad.cronogramaExtension}"
+						invalidSizeMessage="El archivo seleccionado pesa mas de  #{archivoManagedBean.propiedad.cronogramaTamanio} MB"
 						update=":frmUploadCronograma, :frmListaCursos:tablaCursos"
 						fileLimit="1"
-						allowTypes="/(\.|\/)(#{cursoManagedBean.propiedad.cronogramaExtension})$/"
-						sizeLimit="#{cursoManagedBean.propiedad.cronogramaTamanio}" />
+						allowTypes="/(\.|\/)(#{archivoManagedBean.propiedad.cronogramaExtension})$/"
+						sizeLimit="#{archivoManagedBean.propiedad.cronogramaTamanio}" />
 
 
 				</p:dialog>

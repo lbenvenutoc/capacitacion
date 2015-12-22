@@ -120,19 +120,34 @@
 													<f:setPropertyActionListener value="#{objAdmAsig}"
 														target="#{programacionAsignacionManagedBean.objProgramacionAsignacion}"></f:setPropertyActionListener>
 												</p:commandButton>
-											</p:column>
-
-											<p:column
-												headerText="#{etiquetas.cl_cabecera_tablaadmeval_eliminar}">
-
 												<p:commandButton icon="ico-eliminar"
 													title="Eliminar Programación de Asignación"
 													oncomplete="dlgConfirmacion.show();">
 													<f:setPropertyActionListener value="#{objAdmAsig}"
 														target="#{programacionAsignacionManagedBean.objProgramacionAsignacion}"></f:setPropertyActionListener>
 												</p:commandButton>
-
+												<p:commandButton rendered="#{objAdmAsig.vRutProAsi!=''}"
+													icon="ico-verasignacion" title="Ver Asignacion"
+													onclick="this.form.target='_blank'" ajax="false"
+													action="#{archivoManagedBean.mostrarArchivo}">
+													<f:setPropertyActionListener value="#{objAdmAsig}"
+														target="#{archivoManagedBean.objAdmAsig}">
+													</f:setPropertyActionListener>
+													<f:setPropertyActionListener value="ASIG"
+														target="#{archivoManagedBean.tipoDocumentoSubir}">
+													</f:setPropertyActionListener>
+												</p:commandButton>
+												<p:commandButton icon="ico-ediasignacion"
+													title="Actualizar Silabo"
+													oncomplete="dialogoUploadAsignacion.show();">
+													<f:setPropertyActionListener value="#{objAdmAsig}"
+														target="#{archivoManagedBean.objAdmAsig}"></f:setPropertyActionListener>
+													<f:setPropertyActionListener value="ASIG"
+														target="#{archivoManagedBean.tipoDocumentoSubir}"></f:setPropertyActionListener>
+												</p:commandButton>
 											</p:column>
+
+
 
 										</p:dataTable>
 									</p:column>
@@ -178,6 +193,30 @@
 					</center>
 
 				</p:confirmDialog>
+			</h:form>
+			
+			<h:form id="frmUploadAsignacion">
+
+				<p:dialog id="dialogoUploadAsignacion"
+					header="Subir Asignacion"
+					widgetVar="dialogoUploadAsignacion" showEffect="fade"
+					hideEffect="fade" resizable="false">
+
+					<p:fileUpload oncomplete="dialogoUploadAsignacion.hide();"
+						mode="advanced"
+						fileUploadListener="#{archivoManagedBean.subirArchivo}"
+						dragDropSupport="false" uploadLabel="Subir" cancelLabel="Cancelar"
+						label="Seleccionar"
+						invalidFileMessage="Debe seleccionar solo archivos con extensión #{archivoManagedBean.propiedad.cronogramaExtension}"
+						invalidSizeMessage="El archivo seleccionado pesa mas de  #{archivoManagedBean.propiedad.cronogramaTamanio} MB"
+						update=":frmUploadAsignacion, :frmAdmAsig:tablaAdmAsig"
+						fileLimit="1"
+						allowTypes="/(\.|\/)(#{archivoManagedBean.propiedad.cronogramaExtension})$/"
+						sizeLimit="#{archivoManagedBean.propiedad.cronogramaTamanio}" />
+
+
+				</p:dialog>
+
 			</h:form>
 		</div>
 

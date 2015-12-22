@@ -17,7 +17,7 @@ public class Propiedad {
 
 	@Value("${agnd.subirarchivo.silabo.identificador}")
 	private String silaboIdentificador;
-	
+
 	@Value("${agnd.subirarchivo.presentacion.extension}")
 	private String presentacionExtension;
 
@@ -29,7 +29,7 @@ public class Propiedad {
 
 	@Value("${agnd.subirarchivo.presentacion.identificador}")
 	private String presentacionIdentificador;
-	
+
 	@Value("${agnd.subirarchivo.cronograma.extension}")
 	private String cronogramaExtension;
 
@@ -41,6 +41,18 @@ public class Propiedad {
 
 	@Value("${agnd.subirarchivo.cronograma.identificador}")
 	private String cronogramaIdentificador;
+
+	@Value("${agnd.subirarchivo.asignacion.extension}")
+	private String asignacionExtension;
+
+	@Value("${agnd.subirarchivo.asignacion.tamanoarchivo}")
+	private String asignacionTamanio;
+
+	@Value("${agnd.subirarchivo.asignacion.ruta}")
+	private String asignacionRuta;
+
+	@Value("${agnd.subirarchivo.asignacion.identificador}")
+	private String asignacionIdentificador;
 
 	public String getSilaboExtension() {
 		return silaboExtension;
@@ -120,7 +132,7 @@ public class Propiedad {
 
 	public void setCronogramaTamanio(String cronogramaTamanio) {
 		this.cronogramaTamanio = cronogramaTamanio;
-	}	
+	}
 
 	public String getCronogramaRuta() {
 		return cronogramaRuta;
@@ -137,9 +149,37 @@ public class Propiedad {
 	public void setCronogramaIdentificador(String cronogramaIdentificador) {
 		this.cronogramaIdentificador = cronogramaIdentificador;
 	}
+
+	public String getAsignacionExtension() {
+		return asignacionExtension;
+	}
+
+	public void setAsignacionExtension(String asignacionExtension) {
+		this.asignacionExtension = asignacionExtension;
+	}
+
+	public String getAsignacionTamanio() {
+		return asignacionTamanio;
+	}
+
+	public void setAsignacionTamanio(String asignacionTamanio) {
+		this.asignacionTamanio = asignacionTamanio;
+	}
 	
-	
-	
-	
+	public String getAsignacionRuta() {
+		return asignacionRuta;
+	}
+
+	public void setAsignacionRuta(String asignacionRuta) {
+		this.asignacionRuta = asignacionRuta;
+	}
+
+	public String getAsignacionIdentificador() {
+		return asignacionIdentificador;
+	}
+
+	public void setAsignacionIdentificador(String asignacionIdentificador) {
+		this.asignacionIdentificador = asignacionIdentificador;
+	}
 
 }
