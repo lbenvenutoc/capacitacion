@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pe.gob.mintra.scv.dao.MatApreDao">
+
+	<resultMap id="ResultMapMatApre" type="MaterialAprendizaje">
+		<result column="N_CODIND" property="nCodInd" />
+		<result column="N_CODCUR" property="nCodCur" />
+		<result column="N_CODUNIAPR" property="nCodUniApr" />
+		<result column="V_RUTMATAPR" property="vRutMatApr" />
+		<result column="N_ESTMATAPR" property="nEstMatApr" />
+	</resultMap>
+
+	<select id="listarMatApre" statementType="CALLABLE" resultMap="ResultMapMatApre">
+		{call 
+		PKG_MATAPRE.SP_LST_MATAPRE(
+		#{matapre.vRutMatApr},
+		#{outParameters.lstCur,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapMatApre},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+	<select id="insertarMatApre" statementType="CALLABLE">
+		{call
+		PKG_MATAPRE.SP_INS_MATAPRE(
+		#{matapre.nCodInd},		
+		#{matapre.nCodCur},
+		#{matapre.nCodUniApr},
+		#{matapre.vRutMatApr},
+		#{matapre.nEstMatApr},
+		#{outParameters.codErr,jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+	<select id="actualizarMatApre" statementType="CALLABLE">
+		{call
+		PKG_MATAPRE.SP_ACT_MATAPRE(
+		#{matapre.nCodInd},		
+		#{matapre.nCodCur},
+		#{matapre.nCodUniApr},
+		#{matapre.vRutMatApr},
+		#{matapre.nEstMatApr},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+</mapper>

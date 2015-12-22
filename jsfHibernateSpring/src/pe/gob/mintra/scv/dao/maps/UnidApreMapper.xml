@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pe.gob.mintra.scv.dao.UnidApreDao">
+
+	<resultMap id="ResultMapUnidApre" type="UnidadAprendizaje">
+		<result column="N_CODCUR" property="codCur" />
+		<result column="N_CODUNIAPR" property="codUniApr" />
+		<result column="V_DESUNI" property="desUni" />
+		<result column="N_ESTUNIAPR" property="estUniApr" />
+	</resultMap>
+
+	<select id="listarUnidApre" statementType="CALLABLE" resultMap="ResultMapUnidApre">
+		{call 
+		PKG_UNIDAPRE.SP_LST_UNIDAPRE(
+		#{unidapre.desUni},
+		#{outParameters.lstCur,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=ResultMapUnidApre},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr, jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+	<select id="insertarUnidApre" statementType="CALLABLE">
+		{call
+		PKG_UNIDAPRE.SP_INS_UNIDAPRE(
+		#{unidapre.codCur},		
+		#{unidapre.desUni},
+		#{unidapre.estUniApr},
+		#{outParameters.codUniApr,jdbcType=INTEGER,mode=OUT},
+		#{outParameters.codErr,jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+	<select id="actualizarUnidApre" statementType="CALLABLE">
+		{call
+		PKG_UNIDAPRE.SP_ACT_UNIDAPRE(
+		#{unidapre.codUniApr},
+		#{unidapre.codCur},
+		#{unidapre.desUni},		
+		#{unidapre.estUniApr},
+		#{outParameters.codErr, jdbcType=VARCHAR,mode=OUT},
+		#{outParameters.menErr,jdbcType=VARCHAR,mode=OUT}
+		)}
+	</select>
+
+</mapper>

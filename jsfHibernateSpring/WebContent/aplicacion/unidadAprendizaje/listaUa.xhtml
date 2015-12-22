@@ -11,41 +11,38 @@
             <div align="center">
                 <h:form id="frmList">
 
-                        <p:fieldset legend="Listado Tipo Foro" style="text-align: left">
+                        <p:fieldset legend="Listado Unidad Aprendizaje" style="text-align: left">
                         	<p:panelGrid columns="4">
                         	<p:outputLabel value="Criterio:"></p:outputLabel>
-                        	<p:inputText value="#{tipoForoManagedBean.objTipoForo.vDesTipoForo}" />
-                        	<p:commandButton actionListener="#{tipoForoManagedBean.buscar()}" 
+                        	<p:inputText value="#{unidApreManagedBean.objUnidApre.desUni}" />
+                        	<p:commandButton actionListener="#{unidApreManagedBean.buscar()}" 
                         					value="Buscar" 
                         					update="@form"/>
-                        	<p:commandButton action="#{tipoForoManagedBean.prepareCrear}" value="Nuevo" style="float:right"></p:commandButton>
+                        	<p:commandButton action="#{unidApreManagedBean.prepareCrear}" value="Nuevo" style="float:right"></p:commandButton>
                         	</p:panelGrid>
                         </p:fieldset>
                         
                         <p:dataTable id="datatable" 
-                        		value="#{tipoForoManagedBean.lstTipoForo}"
+                        		value="#{unidApreManagedBean.lstUnidApre}"
                                  var="lst" widgetVar="usrTable"   
                                  emptyMessage="#{etiquetas.MensajeNoResultados}"
                                  paginator="true" rows="#{etiquetas.PaginatorFilas}" scrollable="true" scrollHeight="400" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                  rowsPerPageTemplate="#{etiquetas.PaginatorFilasPorPagina}">                                                   
-                        <p:column headerText="Nombre Tipo Foro" > 
-                            <h:outputText value="#{lst.vDesTipoForo}"/>
+                        <p:column headerText="Nombre Unidad Aprendizaje" > 
+                            <h:outputText value="#{lst.desUni}"/>
                         </p:column>
                         <p:column headerText="Opciones" > 
                             <p:commandButton value="Ver" 
-                            action="#{tipoForoManagedBean.prepareVer(lst)}" >
+                            action="#{unidApreManagedBean.prepareVer(lst)}" >
                             </p:commandButton>
                             <p:commandButton value="Editar" 
-                            action="#{tipoForoManagedBean.prepareEditar(lst)}" >
+                            action="#{unidApreManagedBean.prepareEditar(lst)}" >
                             </p:commandButton>
                         </p:column>
                         </p:dataTable>
                 </h:form>
-            </div>
-           
-               
-
+            </div>           
         </ui:define>
     </ui:composition>
 

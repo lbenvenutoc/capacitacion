@@ -2,7 +2,7 @@ package pe.gob.mintra.scv.model;
 
 import java.io.Serializable;
 
-public class MaterialAprendisaje implements Serializable {
+public class MaterialAprendizaje implements Serializable {
 
 	/**
 	 * 
